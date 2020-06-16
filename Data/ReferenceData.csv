@@ -1,0 +1,964 @@
+Code,Beds,Class,Region
+010007,258,200 - 500,regione piemonte
+010010,73,< 200,regione piemonte
+010012,22,< 200,regione piemonte
+010612,105,< 200,regione piemonte
+010653,9,< 200,regione piemonte
+010655,96,< 200,regione piemonte
+010003,337,200 - 500,regione piemonte
+010011,368,200 - 500,regione piemonte
+010013,95,< 200,regione piemonte
+010611,115,< 200,regione piemonte
+010892,170,< 200,regione piemonte
+010897,159,< 200,regione piemonte
+010030,261,200 - 500,regione piemonte
+010079,346,200 - 500,regione piemonte
+010614,15,< 200,regione piemonte
+010017,202,200 - 500,regione piemonte
+010019,299,200 - 500,regione piemonte
+010023,342,200 - 500,regione piemonte
+010616,48,< 200,regione piemonte
+010617,25,< 200,regione piemonte
+010004,433,200 - 500,regione piemonte
+010618,83,< 200,regione piemonte
+010620,12,< 200,regione piemonte
+010661,2,< 200,regione piemonte
+010009,366,200 - 500,regione piemonte
+010626,90,< 200,regione piemonte
+010085,400,200 - 500,regione piemonte
+010656,45,< 200,regione piemonte
+010006,262,200 - 500,regione piemonte
+010628,64,< 200,regione piemonte
+010649,26,< 200,regione piemonte
+010665,20,< 200,regione piemonte
+010005,368,200 - 500,regione piemonte
+010027,17,< 200,regione piemonte
+010124,241,200 - 500,regione piemonte
+010126,374,200 - 500,regione piemonte
+010120,348,200 - 500,regione piemonte
+010631,13,< 200,regione piemonte
+010632,99,< 200,regione piemonte
+010008,464,200 - 500,regione piemonte
+010654,2,< 200,regione piemonte
+010026,824,≥ 500,regione piemonte
+010640,60,< 200,regione piemonte
+010641,42,< 200,regione piemonte
+010642,60,< 200,regione piemonte
+010643,64,< 200,regione piemonte
+010904,386,200 - 500,regione piemonte
+010905,659,≥ 500,regione piemonte
+010906,698,≥ 500,regione piemonte
+010907,564,≥ 500,regione piemonte
+010908,406,200 - 500,regione piemonte
+010909,2169,≥ 500,regione piemonte
+010920,72,< 200,regione piemonte
+010922,100,< 200,regione piemonte
+020001,412,200 - 500,regione valle d'aosta
+020002,12,< 200,regione valle d'aosta
+030143,165,< 200,regione lombardia
+030144,68,< 200,regione lombardia
+030145,82,< 200,regione lombardia
+030146,95,< 200,regione lombardia
+030147,214,200 - 500,regione lombardia
+030148,243,200 - 500,regione lombardia
+030149,10,< 200,regione lombardia
+030350,15,< 200,regione lombardia
+030354,10,< 200,regione lombardia
+030379,24,< 200,regione lombardia
+030175,86,< 200,regione lombardia
+030176,238,200 - 500,regione lombardia
+030177,10,< 200,regione lombardia
+030178,238,200 - 500,regione lombardia
+030275,109,< 200,regione lombardia
+030294,1,< 200,regione lombardia
+030295,469,200 - 500,regione lombardia
+030369,15,< 200,regione lombardia
+030029,179,< 200,regione lombardia
+030030,199,< 200,regione lombardia
+030031,159,< 200,regione lombardia
+030032,112,< 200,regione lombardia
+030035,51,< 200,regione lombardia
+030218,87,< 200,regione lombardia
+030219,95,< 200,regione lombardia
+030033,68,< 200,regione lombardia
+030034,85,< 200,regione lombardia
+030259,65,< 200,regione lombardia
+030353,5,< 200,regione lombardia
+030355,103,< 200,regione lombardia
+030357,95,< 200,regione lombardia
+030097,229,200 - 500,regione lombardia
+030100,88,< 200,regione lombardia
+030103,34,< 200,regione lombardia
+030104,68,< 200,regione lombardia
+030110,49,< 200,regione lombardia
+030112,124,< 200,regione lombardia
+030119,73,< 200,regione lombardia
+030121,137,< 200,regione lombardia
+030124,39,< 200,regione lombardia
+030367,294,200 - 500,regione lombardia
+030389,62,< 200,regione lombardia
+030116,135,< 200,regione lombardia
+030125,23,< 200,regione lombardia
+030106,150,< 200,regione lombardia
+030107,93,< 200,regione lombardia
+030108,12,< 200,regione lombardia
+030109,1,< 200,regione lombardia
+030381,123,< 200,regione lombardia
+030198,115,< 200,regione lombardia
+030199,17,< 200,regione lombardia
+030201,40,< 200,regione lombardia
+030202,65,< 200,regione lombardia
+030015,176,< 200,regione lombardia
+030017,115,< 200,regione lombardia
+030274,277,200 - 500,regione lombardia
+030920,30,< 200,regione lombardia
+030922,365,200 - 500,regione lombardia
+030923,198,< 200,regione lombardia
+030924,877,≥ 500,regione lombardia
+030925,976,≥ 500,regione lombardia
+030930,15,< 200,regione lombardia
+030934,201,200 - 500,regione lombardia
+030935,898,≥ 500,regione lombardia
+030936,74,< 200,regione lombardia
+030938,126,< 200,regione lombardia
+030939,96,< 200,regione lombardia
+030941,290,200 - 500,regione lombardia
+030943,548,≥ 500,regione lombardia
+030945,4,< 200,regione lombardia
+030946,241,200 - 500,regione lombardia
+030947,376,200 - 500,regione lombardia
+030948,157,< 200,regione lombardia
+030003,131,< 200,regione lombardia
+030282,154,< 200,regione lombardia
+030901,568,≥ 500,regione lombardia
+030006,377,200 - 500,regione lombardia
+030009,41,< 200,regione lombardia
+030012,89,< 200,regione lombardia
+030004,442,200 - 500,regione lombardia
+030008,286,200 - 500,regione lombardia
+030010,163,< 200,regione lombardia
+030159,131,< 200,regione lombardia
+030162,117,< 200,regione lombardia
+030167,157,< 200,regione lombardia
+030906,1236,≥ 500,regione lombardia
+030154,187,< 200,regione lombardia
+030163,94,< 200,regione lombardia
+030156,240,200 - 500,regione lombardia
+030157,130,< 200,regione lombardia
+030158,16,< 200,regione lombardia
+030161,15,< 200,regione lombardia
+030184,227,200 - 500,regione lombardia
+030273,178,< 200,regione lombardia
+030908,542,≥ 500,regione lombardia
+030209,355,200 - 500,regione lombardia
+030022,126,< 200,regione lombardia
+030025,3,< 200,regione lombardia
+030026,60,< 200,regione lombardia
+030902,528,≥ 500,regione lombardia
+030024,250,200 - 500,regione lombardia
+030903,502,≥ 500,regione lombardia
+030905,973,≥ 500,regione lombardia
+030131,334,200 - 500,regione lombardia
+030132,89,< 200,regione lombardia
+030134,64,< 200,regione lombardia
+030138,103,< 200,regione lombardia
+030133,187,< 200,regione lombardia
+030137,64,< 200,regione lombardia
+030140,213,200 - 500,regione lombardia
+030382,102,< 200,regione lombardia
+030227,78,< 200,regione lombardia
+030239,125,< 200,regione lombardia
+030907,477,200 - 500,regione lombardia
+030916,453,200 - 500,regione lombardia
+030913,1014,≥ 500,regione lombardia
+030051,186,< 200,regione lombardia
+030056,174,< 200,regione lombardia
+030058,245,200 - 500,regione lombardia
+030912,65,< 200,regione lombardia
+030057,114,< 200,regione lombardia
+030910,296,200 - 500,regione lombardia
+030914,464,200 - 500,regione lombardia
+030911,273,200 - 500,regione lombardia
+030915,486,200 - 500,regione lombardia
+030074,361,200 - 500,regione lombardia
+030075,112,< 200,regione lombardia
+030281,564,≥ 500,regione lombardia
+030066,292,200 - 500,regione lombardia
+030073,244,200 - 500,regione lombardia
+030087,88,< 200,regione lombardia
+030283,16,< 200,regione lombardia
+030071,117,< 200,regione lombardia
+030072,309,200 - 500,regione lombardia
+030077,31,< 200,regione lombardia
+030085,158,< 200,regione lombardia
+030129,27,< 200,regione lombardia
+030068,346,200 - 500,regione lombardia
+030070,154,< 200,regione lombardia
+030078,465,200 - 500,regione lombardia
+030081,99,< 200,regione lombardia
+030909,675,≥ 500,regione lombardia
+030067,324,200 - 500,regione lombardia
+030079,121,< 200,regione lombardia
+030080,19,< 200,regione lombardia
+030083,41,< 200,regione lombardia
+030190,43,< 200,regione lombardia
+030191,58,< 200,regione lombardia
+030192,37,< 200,regione lombardia
+030193,220,200 - 500,regione lombardia
+030194,281,200 - 500,regione lombardia
+030203,88,< 200,regione lombardia
+030383,112,< 200,regione lombardia
+030042,270,200 - 500,regione lombardia
+030044,56,< 200,regione lombardia
+030045,15,< 200,regione lombardia
+030904,213,200 - 500,regione lombardia
+041001,748,≥ 500,prov. auton. bolzano
+041002,343,200 - 500,prov. auton. bolzano
+041004,204,200 - 500,prov. auton. bolzano
+041005,202,200 - 500,prov. auton. bolzano
+041006,59,< 200,prov. auton. bolzano
+041007,51,< 200,prov. auton. bolzano
+041011,97,< 200,prov. auton. bolzano
+041012,7,< 200,prov. auton. bolzano
+041014,15,< 200,prov. auton. bolzano
+041018,5,< 200,prov. auton. bolzano
+042001,626,≥ 500,provincia autonoma di trento
+042004,74,< 200,provincia autonoma di trento
+042005,102,< 200,provincia autonoma di trento
+042006,279,200 - 500,provincia autonoma di trento
+042007,59,< 200,provincia autonoma di trento
+042010,106,< 200,provincia autonoma di trento
+042014,71,< 200,provincia autonoma di trento
+042015,112,< 200,provincia autonoma di trento
+042020,65,< 200,provincia autonoma di trento
+042022,45,< 200,provincia autonoma di trento
+050059,62,< 200,regione veneto
+050201,446,200 - 500,regione veneto
+050202,299,200 - 500,regione veneto
+050203,479,200 - 500,regione veneto
+050204,393,200 - 500,regione veneto
+050205,365,200 - 500,regione veneto
+050045,75,< 200,regione veneto
+050046,58,< 200,regione veneto
+050047,33,< 200,regione veneto
+050206,891,≥ 500,regione veneto
+050207,551,≥ 500,regione veneto
+050208,606,≥ 500,regione veneto
+050072,12,< 200,regione veneto
+050079,90,< 200,regione veneto
+050080,70,< 200,regione veneto
+050081,105,< 200,regione veneto
+050209,1169,≥ 500,regione veneto
+050100,72,< 200,regione veneto
+050210,469,200 - 500,regione veneto
+050098,97,< 200,regione veneto
+050099,90,< 200,regione veneto
+050212,938,≥ 500,regione veneto
+050213,573,≥ 500,regione veneto
+050214,143,< 200,regione veneto
+050215,646,≥ 500,regione veneto
+050121,20,< 200,regione veneto
+050122,20,< 200,regione veneto
+050123,175,< 200,regione veneto
+050124,145,< 200,regione veneto
+050216,506,≥ 500,regione veneto
+050217,407,200 - 500,regione veneto
+050130,36,< 200,regione veneto
+050131,35,< 200,regione veneto
+050218,544,≥ 500,regione veneto
+050132,104,< 200,regione veneto
+050219,180,< 200,regione veneto
+050018,90,< 200,regione veneto
+050023,34,< 200,regione veneto
+050025,103,< 200,regione veneto
+050220,275,200 - 500,regione veneto
+050221,375,200 - 500,regione veneto
+050017,310,200 - 500,regione veneto
+050022,235,200 - 500,regione veneto
+050026,75,< 200,regione veneto
+050222,240,200 - 500,regione veneto
+050901,1399,≥ 500,regione veneto
+050912,1413,≥ 500,regione veneto
+050952,121,< 200,regione veneto
+060029,80,< 200,regione friuli venezia giulia
+060032,12,< 200,regione friuli venezia giulia
+060033,66,< 200,regione friuli venezia giulia
+060014,204,200 - 500,regione friuli venezia giulia
+060016,195,< 200,regione friuli venezia giulia
+060005,82,< 200,regione friuli venezia giulia
+060009,189,< 200,regione friuli venezia giulia
+060002,6,< 200,regione friuli venezia giulia
+060008,188,< 200,regione friuli venezia giulia
+060011,100,< 200,regione friuli venezia giulia
+060006,141,< 200,regione friuli venezia giulia
+060007,171,< 200,regione friuli venezia giulia
+060040,170,< 200,regione friuli venezia giulia
+060901,179,< 200,regione friuli venezia giulia
+060902,139,< 200,regione friuli venezia giulia
+060912,806,≥ 500,regione friuli venezia giulia
+060913,756,≥ 500,regione friuli venezia giulia
+060916,1063,≥ 500,regione friuli venezia giulia
+070001,567,≥ 500,regione liguria
+070211,400,200 - 500,regione liguria
+070212,452,200 - 500,regione liguria
+070025,377,200 - 500,regione liguria
+070051,123,< 200,regione liguria
+070301,496,200 - 500,regione liguria
+070039,325,200 - 500,regione liguria
+070069,63,< 200,regione liguria
+070058,503,≥ 500,regione liguria
+070070,25,< 200,regione liguria
+070901,1202,≥ 500,regione liguria
+070940,321,200 - 500,regione liguria
+080002,101,< 200,regione emilia romagna
+080003,16,< 200,regione emilia romagna
+080004,534,≥ 500,regione emilia romagna
+080006,46,< 200,regione emilia romagna
+080203,102,< 200,regione emilia romagna
+080204,10,< 200,regione emilia romagna
+080013,244,200 - 500,regione emilia romagna
+080015,86,< 200,regione emilia romagna
+080206,185,< 200,regione emilia romagna
+080207,85,< 200,regione emilia romagna
+080208,57,< 200,regione emilia romagna
+080210,30,< 200,regione emilia romagna
+080021,527,≥ 500,regione emilia romagna
+080211,87,< 200,regione emilia romagna
+080212,100,< 200,regione emilia romagna
+080031,965,≥ 500,regione emilia romagna
+080096,230,200 - 500,regione emilia romagna
+080213,121,< 200,regione emilia romagna
+080214,35,< 200,regione emilia romagna
+080215,96,< 200,regione emilia romagna
+080216,24,< 200,regione emilia romagna
+080218,20,< 200,regione emilia romagna
+080053,1145,≥ 500,regione emilia romagna
+080153,109,< 200,regione emilia romagna
+080219,99,< 200,regione emilia romagna
+080220,78,< 200,regione emilia romagna
+080221,181,< 200,regione emilia romagna
+080222,68,< 200,regione emilia romagna
+080223,73,< 200,regione emilia romagna
+080224,2,< 200,regione emilia romagna
+080227,38,< 200,regione emilia romagna
+080229,98,< 200,regione emilia romagna
+080231,22,< 200,regione emilia romagna
+080044,337,200 - 500,regione emilia romagna
+080068,454,200 - 500,regione emilia romagna
+080235,29,< 200,regione emilia romagna
+080236,87,< 200,regione emilia romagna
+080072,522,≥ 500,regione emilia romagna
+080079,221,200 - 500,regione emilia romagna
+080082,228,200 - 500,regione emilia romagna
+080085,414,200 - 500,regione emilia romagna
+080091,465,200 - 500,regione emilia romagna
+080095,603,≥ 500,regione emilia romagna
+080100,241,200 - 500,regione emilia romagna
+080237,94,< 200,regione emilia romagna
+080238,118,< 200,regione emilia romagna
+080239,179,< 200,regione emilia romagna
+080240,125,< 200,regione emilia romagna
+080242,25,< 200,regione emilia romagna
+080243,70,< 200,regione emilia romagna
+080244,106,< 200,regione emilia romagna
+080245,132,< 200,regione emilia romagna
+080246,107,< 200,regione emilia romagna
+080247,41,< 200,regione emilia romagna
+080249,89,< 200,regione emilia romagna
+080252,46,< 200,regione emilia romagna
+080921,64,< 200,regione emilia romagna
+080902,1031,≥ 500,regione emilia romagna
+080903,764,≥ 500,regione emilia romagna
+080904,662,≥ 500,regione emilia romagna
+080908,1494,≥ 500,regione emilia romagna
+080909,633,≥ 500,regione emilia romagna
+080960,298,200 - 500,regione emilia romagna
+090601,98,< 200,regione toscana
+090602,390,200 - 500,regione toscana
+090204,65,< 200,regione toscana
+090205,66,< 200,regione toscana
+090206,40,< 200,regione toscana
+090603,140,< 200,regione toscana
+090604,385,200 - 500,regione toscana
+090207,32,< 200,regione toscana
+090606,404,200 - 500,regione toscana
+090607,248,200 - 500,regione toscana
+090210,79,< 200,regione toscana
+090608,525,≥ 500,regione toscana
+090231,8,< 200,regione toscana
+090232,31,< 200,regione toscana
+090609,57,< 200,regione toscana
+090610,265,200 - 500,regione toscana
+090234,20,< 200,regione toscana
+090612,136,< 200,regione toscana
+090613,421,200 - 500,regione toscana
+090614,128,< 200,regione toscana
+090615,70,< 200,regione toscana
+090239,30,< 200,regione toscana
+090634,8,< 200,regione toscana
+090637,36,< 200,regione toscana
+090638,162,< 200,regione toscana
+090639,150,< 200,regione toscana
+090236,65,< 200,regione toscana
+090237,80,< 200,regione toscana
+090618,63,< 200,regione toscana
+090619,63,< 200,regione toscana
+090621,401,200 - 500,regione toscana
+090641,162,< 200,regione toscana
+090643,67,< 200,regione toscana
+090623,66,< 200,regione toscana
+090624,99,< 200,regione toscana
+090625,27,< 200,regione toscana
+090626,319,200 - 500,regione toscana
+090215,32,< 200,regione toscana
+090216,75,< 200,regione toscana
+090218,131,< 200,regione toscana
+090219,20,< 200,regione toscana
+090220,120,< 200,regione toscana
+090228,24,< 200,regione toscana
+090230,69,< 200,regione toscana
+090240,46,< 200,regione toscana
+090627,123,< 200,regione toscana
+090629,359,200 - 500,regione toscana
+090632,431,200 - 500,regione toscana
+090235,60,< 200,regione toscana
+090642,400,200 - 500,regione toscana
+090202,96,< 200,regione toscana
+090640,353,200 - 500,regione toscana
+090901,1181,≥ 500,regione toscana
+090906,48,< 200,regione toscana
+090907,118,< 200,regione toscana
+090902,728,≥ 500,regione toscana
+090903,1287,≥ 500,regione toscana
+090904,245,200 - 500,regione toscana
+100701,30,< 200,regione umbria
+100702,71,< 200,regione umbria
+100703,50,< 200,regione umbria
+100704,59,< 200,regione umbria
+100801,235,200 - 500,regione umbria
+100803,221,200 - 500,regione umbria
+100810,135,< 200,regione umbria
+100602,11,< 200,regione umbria
+100705,30,< 200,regione umbria
+100805,146,< 200,regione umbria
+100806,140,< 200,regione umbria
+100807,124,< 200,regione umbria
+100809,293,200 - 500,regione umbria
+100901,746,≥ 500,regione umbria
+100902,497,200 - 500,regione umbria
+110001,215,200 - 500,regione marche
+110002,839,≥ 500,regione marche
+110003,741,≥ 500,regione marche
+110004,348,200 - 500,regione marche
+110005,489,200 - 500,regione marche
+110036,87,< 200,regione marche
+110038,45,< 200,regione marche
+110052,38,< 200,regione marche
+110054,98,< 200,regione marche
+110070,44,< 200,regione marche
+110072,78,< 200,regione marche
+110073,61,< 200,regione marche
+110074,48,< 200,regione marche
+110901,598,≥ 500,regione marche
+110905,908,≥ 500,regione marche
+110921,156,< 200,regione marche
+120034,26,< 200,regione lazio
+120037,10,< 200,regione lazio
+120072,349,200 - 500,regione lazio
+120079,67,< 200,regione lazio
+120083,25,< 200,regione lazio
+120084,107,< 200,regione lazio
+120105,29,< 200,regione lazio
+120281,4,< 200,regione lazio
+120104,25,< 200,regione lazio
+120132,109,< 200,regione lazio
+120165,240,200 - 500,regione lazio
+120166,137,< 200,regione lazio
+120267,421,200 - 500,regione lazio
+120066,524,≥ 500,regione lazio
+120076,233,200 - 500,regione lazio
+120089,29,< 200,regione lazio
+120116,25,< 200,regione lazio
+120143,25,< 200,regione lazio
+120155,30,< 200,regione lazio
+120157,81,< 200,regione lazio
+120169,34,< 200,regione lazio
+120061,277,200 - 500,regione lazio
+120075,118,< 200,regione lazio
+120103,102,< 200,regione lazio
+120113,136,< 200,regione lazio
+120171,155,< 200,regione lazio
+120173,51,< 200,regione lazio
+120191,30,< 200,regione lazio
+120026,290,200 - 500,regione lazio
+120030,19,< 200,regione lazio
+120071,420,200 - 500,regione lazio
+120073,155,< 200,regione lazio
+120074,208,200 - 500,regione lazio
+120097,30,< 200,regione lazio
+120115,68,< 200,regione lazio
+120159,35,< 200,regione lazio
+120163,80,< 200,regione lazio
+120180,190,< 200,regione lazio
+120911,183,< 200,regione lazio
+120045,123,< 200,regione lazio
+120059,67,< 200,regione lazio
+120140,16,< 200,regione lazio
+120046,135,< 200,regione lazio
+120049,71,< 200,regione lazio
+120051,105,< 200,regione lazio
+120052,76,< 200,regione lazio
+120053,215,200 - 500,regione lazio
+120043,177,< 200,regione lazio
+120044,189,< 200,regione lazio
+120047,170,< 200,regione lazio
+120048,120,< 200,regione lazio
+120054,145,< 200,regione lazio
+120055,6,< 200,regione lazio
+120070,210,200 - 500,regione lazio
+120082,40,< 200,regione lazio
+120096,69,< 200,regione lazio
+120134,105,< 200,regione lazio
+120176,98,< 200,regione lazio
+120280,75,< 200,regione lazio
+120002,8,< 200,regione lazio
+120003,100,< 200,regione lazio
+120007,121,< 200,regione lazio
+120012,20,< 200,regione lazio
+120014,24,< 200,regione lazio
+120271,423,200 - 500,regione lazio
+120914,13,< 200,regione lazio
+120019,359,200 - 500,regione lazio
+120200,454,200 - 500,regione lazio
+120204,179,< 200,regione lazio
+120206,169,< 200,regione lazio
+120209,117,< 200,regione lazio
+120212,269,200 - 500,regione lazio
+120213,50,< 200,regione lazio
+120215,146,< 200,regione lazio
+120216,307,200 - 500,regione lazio
+120217,100,< 200,regione lazio
+120226,200,200 - 500,regione lazio
+120228,234,200 - 500,regione lazio
+120230,32,< 200,regione lazio
+120234,44,< 200,regione lazio
+120235,25,< 200,regione lazio
+120236,20,< 200,regione lazio
+120277,30,< 200,regione lazio
+120901,950,≥ 500,regione lazio
+120902,694,≥ 500,regione lazio
+120903,474,200 - 500,regione lazio
+120904,791,≥ 500,regione lazio
+120905,1500,≥ 500,regione lazio
+120906,1273,≥ 500,regione lazio
+120908,298,200 - 500,regione lazio
+120910,30,< 200,regione lazio
+120915,247,200 - 500,regione lazio
+120918,208,200 - 500,regione lazio
+120919,453,200 - 500,regione lazio
+120920,450,200 - 500,regione lazio
+130001,328,200 - 500,regione abruzzo
+130002,146,< 200,regione abruzzo
+130003,201,200 - 500,regione abruzzo
+130005,40,< 200,regione abruzzo
+130010,85,< 200,regione abruzzo
+130012,62,< 200,regione abruzzo
+130039,31,< 200,regione abruzzo
+130040,57,< 200,regione abruzzo
+130026,402,200 - 500,regione abruzzo
+130028,172,< 200,regione abruzzo
+130029,188,< 200,regione abruzzo
+130030,52,< 200,regione abruzzo
+130031,45,< 200,regione abruzzo
+130032,104,< 200,regione abruzzo
+130034,59,< 200,regione abruzzo
+130035,72,< 200,regione abruzzo
+130018,583,≥ 500,regione abruzzo
+130019,76,< 200,regione abruzzo
+130020,40,< 200,regione abruzzo
+130022,106,< 200,regione abruzzo
+130024,104,< 200,regione abruzzo
+130014,445,200 - 500,regione abruzzo
+130015,130,< 200,regione abruzzo
+130016,136,< 200,regione abruzzo
+130017,119,< 200,regione abruzzo
+140001,318,200 - 500,regione molise
+140002,203,200 - 500,regione molise
+140003,209,200 - 500,regione molise
+140004,40,< 200,regione molise
+140005,54,< 200,regione molise
+140007,116,< 200,regione molise
+140911,100,< 200,regione molise
+150139,129,< 200,regione campania
+150140,129,< 200,regione campania
+150143,54,< 200,regione campania
+150144,20,< 200,regione campania
+150145,105,< 200,regione campania
+150146,40,< 200,regione campania
+150147,150,< 200,regione campania
+150148,116,< 200,regione campania
+150149,165,< 200,regione campania
+150150,46,< 200,regione campania
+150031,90,< 200,regione campania
+150032,239,200 - 500,regione campania
+150033,55,< 200,regione campania
+150034,72,< 200,regione campania
+150035,57,< 200,regione campania
+150004,69,< 200,regione campania
+150010,99,< 200,regione campania
+150013,213,200 - 500,regione campania
+150014,48,< 200,regione campania
+150016,130,< 200,regione campania
+150017,34,< 200,regione campania
+150018,50,< 200,regione campania
+150019,60,< 200,regione campania
+150020,100,< 200,regione campania
+150021,150,< 200,regione campania
+150022,50,< 200,regione campania
+150023,60,< 200,regione campania
+150025,82,< 200,regione campania
+150423,80,< 200,regione campania
+150437,111,< 200,regione campania
+150438,91,< 200,regione campania
+150439,2,< 200,regione campania
+150440,144,< 200,regione campania
+150073,204,200 - 500,regione campania
+150075,30,< 200,regione campania
+150078,220,200 - 500,regione campania
+150088,120,< 200,regione campania
+150092,55,< 200,regione campania
+150094,33,< 200,regione campania
+150095,150,< 200,regione campania
+150099,90,< 200,regione campania
+150104,47,< 200,regione campania
+150106,54,< 200,regione campania
+150109,96,< 200,regione campania
+150196,158,< 200,regione campania
+150418,525,≥ 500,regione campania
+150419,562,≥ 500,regione campania
+150057,123,< 200,regione campania
+150058,147,< 200,regione campania
+150070,75,< 200,regione campania
+150084,170,< 200,regione campania
+150097,50,< 200,regione campania
+150101,30,< 200,regione campania
+150116,110,< 200,regione campania
+150118,102,< 200,regione campania
+150189,9,< 200,regione campania
+150191,251,200 - 500,regione campania
+150082,50,< 200,regione campania
+150100,149,< 200,regione campania
+150102,40,< 200,regione campania
+150105,120,< 200,regione campania
+150107,37,< 200,regione campania
+150108,60,< 200,regione campania
+150110,100,< 200,regione campania
+150111,30,< 200,regione campania
+150113,115,< 200,regione campania
+150114,114,< 200,regione campania
+150117,36,< 200,regione campania
+150121,22,< 200,regione campania
+150415,155,< 200,regione campania
+150416,203,200 - 500,regione campania
+150417,197,< 200,regione campania
+150436,155,< 200,regione campania
+150154,385,200 - 500,regione campania
+150158,95,< 200,regione campania
+150160,206,200 - 500,regione campania
+150161,118,< 200,regione campania
+150162,153,< 200,regione campania
+150163,108,< 200,regione campania
+150164,36,< 200,regione campania
+150165,254,200 - 500,regione campania
+150166,154,< 200,regione campania
+150167,80,< 200,regione campania
+150170,105,< 200,regione campania
+150171,128,< 200,regione campania
+150173,90,< 200,regione campania
+150175,30,< 200,regione campania
+150176,99,< 200,regione campania
+150177,143,< 200,regione campania
+150178,160,< 200,regione campania
+150387,57,< 200,regione campania
+150901,860,≥ 500,regione campania
+150902,434,200 - 500,regione campania
+150903,886,≥ 500,regione campania
+150904,899,≥ 500,regione campania
+150905,567,≥ 500,regione campania
+150906,464,200 - 500,regione campania
+150907,464,200 - 500,regione campania
+150908,440,200 - 500,regione campania
+150909,835,≥ 500,regione campania
+150910,230,200 - 500,regione campania
+160101,58,< 200,regione puglia
+160161,156,< 200,regione puglia
+160162,122,< 200,regione puglia
+160170,602,≥ 500,regione puglia
+160074,98,< 200,regione puglia
+160075,107,< 200,regione puglia
+160111,96,< 200,regione puglia
+160112,40,< 200,regione puglia
+160114,77,< 200,regione puglia
+160115,30,< 200,regione puglia
+160116,114,< 200,regione puglia
+160146,10,< 200,regione puglia
+160149,8,< 200,regione puglia
+160168,106,< 200,regione puglia
+160172,491,200 - 500,regione puglia
+160191,65,< 200,regione puglia
+160174,227,200 - 500,regione puglia
+160177,253,200 - 500,regione puglia
+160178,254,200 - 500,regione puglia
+160180,30,< 200,regione puglia
+160078,560,≥ 500,regione puglia
+160086,119,< 200,regione puglia
+160087,159,< 200,regione puglia
+160091,70,< 200,regione puglia
+160094,31,< 200,regione puglia
+160098,26,< 200,regione puglia
+160100,22,< 200,regione puglia
+160140,74,< 200,regione puglia
+160145,33,< 200,regione puglia
+160147,95,< 200,regione puglia
+160157,147,< 200,regione puglia
+160158,454,200 - 500,regione puglia
+160159,163,< 200,regione puglia
+160160,159,< 200,regione puglia
+160169,311,200 - 500,regione puglia
+160047,195,< 200,regione puglia
+160102,20,< 200,regione puglia
+160105,38,< 200,regione puglia
+160106,20,< 200,regione puglia
+160125,30,< 200,regione puglia
+160148,16,< 200,regione puglia
+160163,278,200 - 500,regione puglia
+160164,134,< 200,regione puglia
+160181,76,< 200,regione puglia
+160062,247,200 - 500,regione puglia
+160063,234,200 - 500,regione puglia
+160080,354,200 - 500,regione puglia
+160107,52,< 200,regione puglia
+160108,32,< 200,regione puglia
+160109,38,< 200,regione puglia
+160110,44,< 200,regione puglia
+160150,98,< 200,regione puglia
+160165,161,< 200,regione puglia
+160166,179,< 200,regione puglia
+160167,254,200 - 500,regione puglia
+160171,630,≥ 500,regione puglia
+160901,130,< 200,regione puglia
+160902,97,< 200,regione puglia
+160905,837,≥ 500,regione puglia
+160906,30,< 200,regione puglia
+160907,1191,≥ 500,regione puglia
+160910,769,≥ 500,regione puglia
+170008,122,< 200,regione basilicata
+170009,56,< 200,regione basilicata
+170020,102,< 200,regione basilicata
+170024,116,< 200,regione basilicata
+170011,352,200 - 500,regione basilicata
+170025,139,< 200,regione basilicata
+170901,683,≥ 500,regione basilicata
+170910,85,< 200,regione basilicata
+180006,145,< 200,regione calabria
+180010,226,200 - 500,regione calabria
+180011,54,< 200,regione calabria
+180012,244,200 - 500,regione calabria
+180015,32,< 200,regione calabria
+180017,10,< 200,regione calabria
+180019,44,< 200,regione calabria
+180021,33,< 200,regione calabria
+180025,76,< 200,regione calabria
+180027,55,< 200,regione calabria
+180028,44,< 200,regione calabria
+180029,33,< 200,regione calabria
+180083,10,< 200,regione calabria
+180032,307,200 - 500,regione calabria
+180045,33,< 200,regione calabria
+180085,33,< 200,regione calabria
+180101,8,< 200,regione calabria
+180103,33,< 200,regione calabria
+180033,228,200 - 500,regione calabria
+180040,24,< 200,regione calabria
+180043,44,< 200,regione calabria
+180050,33,< 200,regione calabria
+180051,33,< 200,regione calabria
+180053,88,< 200,regione calabria
+180055,79,< 200,regione calabria
+180058,35,< 200,regione calabria
+180034,135,< 200,regione calabria
+180035,39,< 200,regione calabria
+180047,22,< 200,regione calabria
+180057,24,< 200,regione calabria
+180059,277,200 - 500,regione calabria
+180061,133,< 200,regione calabria
+180062,70,< 200,regione calabria
+180068,40,< 200,regione calabria
+180071,77,< 200,regione calabria
+180073,33,< 200,regione calabria
+180074,128,< 200,regione calabria
+180075,33,< 200,regione calabria
+180076,33,< 200,regione calabria
+180077,33,< 200,regione calabria
+180912,542,≥ 500,regione calabria
+180913,483,200 - 500,regione calabria
+180914,163,< 200,regione calabria
+180915,494,200 - 500,regione calabria
+180916,39,< 200,regione calabria
+190301,264,200 - 500,regione sicilia
+190302,106,< 200,regione sicilia
+190303,103,< 200,regione sicilia
+190304,34,< 200,regione sicilia
+190305,199,< 200,regione sicilia
+190503,64,< 200,regione sicilia
+190504,85,< 200,regione sicilia
+190306,338,200 - 500,regione sicilia
+190307,50,< 200,regione sicilia
+190308,15,< 200,regione sicilia
+190309,194,< 200,regione sicilia
+190310,20,< 200,regione sicilia
+190311,28,< 200,regione sicilia
+190505,23,< 200,regione sicilia
+190506,60,< 200,regione sicilia
+190312,129,< 200,regione sicilia
+190313,43,< 200,regione sicilia
+190314,45,< 200,regione sicilia
+190315,53,< 200,regione sicilia
+190316,61,< 200,regione sicilia
+190317,186,< 200,regione sicilia
+190318,56,< 200,regione sicilia
+190511,46,< 200,regione sicilia
+190512,16,< 200,regione sicilia
+190513,113,< 200,regione sicilia
+190515,27,< 200,regione sicilia
+190516,42,< 200,regione sicilia
+190519,88,< 200,regione sicilia
+190520,138,< 200,regione sicilia
+190522,28,< 200,regione sicilia
+190523,40,< 200,regione sicilia
+190554,90,< 200,regione sicilia
+190710,30,< 200,regione sicilia
+190711,25,< 200,regione sicilia
+190712,95,< 200,regione sicilia
+190715,7,< 200,regione sicilia
+190719,45,< 200,regione sicilia
+190723,45,< 200,regione sicilia
+190724,69,< 200,regione sicilia
+190725,42,< 200,regione sicilia
+190319,269,200 - 500,regione sicilia
+190320,65,< 200,regione sicilia
+190321,46,< 200,regione sicilia
+190322,99,< 200,regione sicilia
+190323,94,< 200,regione sicilia
+190324,22,< 200,regione sicilia
+190325,122,< 200,regione sicilia
+190326,212,200 - 500,regione sicilia
+190327,36,< 200,regione sicilia
+190328,121,< 200,regione sicilia
+190329,87,< 200,regione sicilia
+190524,175,< 200,regione sicilia
+190525,78,< 200,regione sicilia
+190526,66,< 200,regione sicilia
+190527,71,< 200,regione sicilia
+190528,85,< 200,regione sicilia
+190530,53,< 200,regione sicilia
+190531,40,< 200,regione sicilia
+190716,47,< 200,regione sicilia
+190179,196,< 200,regione sicilia
+190199,276,200 - 500,regione sicilia
+190330,39,< 200,regione sicilia
+190332,113,< 200,regione sicilia
+190333,37,< 200,regione sicilia
+190334,88,< 200,regione sicilia
+190335,146,< 200,regione sicilia
+190532,48,< 200,regione sicilia
+190533,94,< 200,regione sicilia
+190534,100,< 200,regione sicilia
+190536,65,< 200,regione sicilia
+190537,123,< 200,regione sicilia
+190538,141,< 200,regione sicilia
+190539,48,< 200,regione sicilia
+190540,40,< 200,regione sicilia
+190541,114,< 200,regione sicilia
+190542,90,< 200,regione sicilia
+190543,30,< 200,regione sicilia
+190545,44,< 200,regione sicilia
+190551,78,< 200,regione sicilia
+190602,11,< 200,regione sicilia
+190718,43,< 200,regione sicilia
+190720,58,< 200,regione sicilia
+190338,300,200 - 500,regione sicilia
+190339,33,< 200,regione sicilia
+190340,140,< 200,regione sicilia
+190341,26,< 200,regione sicilia
+190342,142,< 200,regione sicilia
+190552,49,< 200,regione sicilia
+190343,85,< 200,regione sicilia
+190344,60,< 200,regione sicilia
+190345,343,200 - 500,regione sicilia
+190346,89,< 200,regione sicilia
+190347,120,< 200,regione sicilia
+190348,2,< 200,regione sicilia
+190507,40,< 200,regione sicilia
+190508,57,< 200,regione sicilia
+190509,148,< 200,regione sicilia
+190550,39,< 200,regione sicilia
+190701,45,< 200,regione sicilia
+190349,56,< 200,regione sicilia
+190350,14,< 200,regione sicilia
+190351,262,200 - 500,regione sicilia
+190352,132,< 200,regione sicilia
+190353,135,< 200,regione sicilia
+190355,26,< 200,regione sicilia
+190501,50,< 200,regione sicilia
+190502,60,< 200,regione sicilia
+190549,33,< 200,regione sicilia
+190921,542,≥ 500,regione sicilia
+190922,615,≥ 500,regione sicilia
+190923,896,≥ 500,regione sicilia
+190924,509,≥ 500,regione sicilia
+190925,512,≥ 500,regione sicilia
+190926,626,≥ 500,regione sicilia
+190927,841,≥ 500,regione sicilia
+190928,532,≥ 500,regione sicilia
+190929,85,< 200,regione sicilia
+190950,88,< 200,regione sicilia
+190970,34,< 200,regione sicilia
+200001,338,200 - 500,regione sardegna
+200002,114,< 200,regione sardegna
+200003,106,< 200,regione sardegna
+200008,30,< 200,regione sardegna
+200013,101,< 200,regione sardegna
+200006,141,< 200,regione sardegna
+200011,36,< 200,regione sardegna
+200012,179,< 200,regione sardegna
+200017,355,200 - 500,regione sardegna
+200018,42,< 200,regione sardegna
+200020,38,< 200,regione sardegna
+200019,109,< 200,regione sardegna
+200023,32,< 200,regione sardegna
+200021,44,< 200,regione sardegna
+200052,233,200 - 500,regione sardegna
+200053,40,< 200,regione sardegna
+200054,174,< 200,regione sardegna
+200034,176,< 200,regione sardegna
+200028,172,< 200,regione sardegna
+200029,113,< 200,regione sardegna
+200030,38,< 200,regione sardegna
+200022,41,< 200,regione sardegna
+200025,40,< 200,regione sardegna
+200026,123,< 200,regione sardegna
+200031,360,200 - 500,regione sardegna
+200035,48,< 200,regione sardegna
+200036,199,< 200,regione sardegna
+200038,49,< 200,regione sardegna
+200039,15,< 200,regione sardegna
+200040,64,< 200,regione sardegna
+200041,40,< 200,regione sardegna
+200042,181,< 200,regione sardegna
+200044,73,< 200,regione sardegna
+200045,60,< 200,regione sardegna
+200055,69,< 200,regione sardegna
+200904,505,≥ 500,regione sardegna
+200905,512,≥ 500,regione sardegna
+200906,560,≥ 500,regione sardegna
