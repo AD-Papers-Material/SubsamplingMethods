@@ -56,7 +56,7 @@ of the procedures at
 
 ``` r
 
-str(SampleData) # Simulated sample data retaining the real sample characteristics
+str(Sample.Data) # Simulated sample data retaining the real sample characteristics
 #> 'data.frame':    143 obs. of  5 variables:
 #>  $ Region: chr  "regione piemonte" "regione piemonte" "regione piemonte" "regione piemonte" ...
 #>  $ Beds  : int  183 172 157 179 85 133 189 182 185 71 ...
@@ -64,7 +64,7 @@ str(SampleData) # Simulated sample data retaining the real sample characteristic
 #>  $ Class : chr  "< 200" "< 200" "< 200" "< 200" ...
 #>  $ Code  : int  1 2 3 4 5 6 7 8 9 10 ...
 
-str(ReferenceData) # Official list of Italian acute hospitals, updated to 2016
+str(Reference.Data) # Official list of Italian acute hospitals, updated to 2016
 #> 'data.frame':    963 obs. of  4 variables:
 #>  $ Code  : int  10007 10010 10012 10612 10653 10655 10003 10011 10013 10611 ...
 #>  $ Beds  : int  258 73 22 105 9 96 337 368 95 115 ...
@@ -114,17 +114,18 @@ This procedure sub-samples hospitals trying to obtain an equal
 proportion of hospitals in every block, by iteratively choosing one
 hospital from each block. This is the general implementation:
 
-  - hospitals in the sample are permuted or ordered by
-    ![QS](https://latex.codecogs.com/png.latex?QS "QS");
-  - the first hospital (random or with the lower, better,
-    ![QS](https://latex.codecogs.com/png.latex?QS "QS")) is selected;
-  - all other hospitals belonging to the same block are removed (the
-    block is not available anymore);
-  - a new hospital is chosen again randomly or by
-    ![QS](https://latex.codecogs.com/png.latex?QS "QS") for the
-    remaining blocks;
-  - once one hospital from each blocks has been chosen all the blocks
-    are made available again;
+  - a candidate list is created from the original sample;
+  - the hospitals in the list are permuted randomly or ordered in
+    ascending order by ![QS](https://latex.codecogs.com/png.latex?QS
+    "QS") (the lower the score, the higher the data quality);
+  - the first hospital is selected;
+  - all other hospitals belonging to the same block of the selected
+    hospital are removed from the candidate list;
+  - the process is repeated until there are still available blocks in
+    the candidate list;
+  - once one hospital from each blocks has been chosen, the hospitals
+    from all the blocks are made available again in the list, apart from
+    those already selected in the sample;
   - continue until
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
     "N_{required}") is reached.
@@ -134,40 +135,129 @@ quantiles since it was less relevant to build a precise discrete
 probability distribution.
 
 ``` r
-subsample.uniform <- function(InputSample, n.required, n.quantiles = 4, use.QS = T){
+subsample.uniform <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
     library(dplyr)
     library(Hmisc)
- 
-    Hospitals <- InputSample %>%
+    
+    Hospitals <- Input.Sample %>%
         transmute(Code, Region, Beds = Hmisc::cut2(Beds, g = n.quantiles), QS = if (use.QS) QS else 1) # Prepare data by discretizing continuous variables like the number of acute beds and by changing QS to a fixed value if not to be used
-
+    
     Selected.hospitals <- c()
-    Hospitals.temp <- data.frame()
-
+    Candidates <- data.frame()
+    
     for (i in 1:n.required) { # Until n.required is reached..
-        if (nrow(Hospitals.temp) == 0) { # If no hospitals are already selected store all sample hospital here
-            Hospitals.temp <- Hospitals %>%
+        if (nrow(Candidates) == 0) { # If the candidate list is empty, rebuilt it from the non-selected hospitals
+            Candidates <- Hospitals %>%
                 filter(!(Code %in% Selected.hospitals)) %>% # Remove already selected hospitals
                 sample_frac() %>% # Permute order, useful only if QS is not used
                 arrange(QS)
         }
-
+        
         # Extract the first hospital of the temporary list and add it to the list of selected hospitals
-        Extracted.hospital <- Hospitals.temp[1,]
+        Extracted.hospital <- Candidates[1,]
         Selected.hospitals <- c(Selected.hospitals, Extracted.hospital$Code)
-
+        
         # Remove from the temporary list all hospitals in the same location/size block of the extracted hospital
-        Hospitals.temp <- Hospitals.temp %>%
+        Candidates <- Candidates %>%
             filter(!(Region %in% Extracted.hospital$Region & Beds %in% Extracted.hospital$Beds))
     }
-
-    InputSample %>% filter(Code %in% Selected.hospitals) # Filter the initial data by the selected hospital codes
+    
+    Input.Sample %>% filter(Code %in% Selected.hospitals) # Filter the initial data by the selected hospital codes
 }
 
 ## Esamples
 # Create a subsample of 56 hospitals using the QS
-# subsample.uniform(SampleData, n.required = 56)
+# subsample.uniform(Sample.Data, n.required = 56)
 
 # The same but this time hospitals are chosen randomly
-# subsample.uniform(SampleData, n.required = 56)
+# subsample.uniform(Sample.Data, n.required = 56)
+```
+
+## Probability procedure
+
+This algorithm uses information from a population level list (Reference
+Data) to built a discrete probability distribution representative of the
+target population and then uses it to create a representative
+sub-sample. The hospitals are selected according to how representative
+is the block they belong to at the country level. The
+![QS](https://latex.codecogs.com/png.latex?QS "QS") is used to weight
+such representativeness. The weight of the
+![QS](https://latex.codecogs.com/png.latex?QS "QS") itself can be
+weighted.
+
+  - the blocks are identified in the Reference Data and for each block
+    ![p\_{i, country} = Pr(hospital|Region,
+    HSize)](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D%20%3D%20Pr%28hospital%7CRegion%2C%20HSize%29
+    "p_{i, country} = Pr(hospital|Region, HSize)") is computed as the
+    proportion of hospitals in the block over the total;
+  - these probabilities are assigned to the relative blocks in the
+    sample;
+  - a score is computer for each hospital
+    ![j](https://latex.codecogs.com/png.latex?j "j") as ![score\_j =
+    p\_{j, country}
+    (1-scaled.QS\_j)^w](https://latex.codecogs.com/png.latex?score_j%20%3D%20p_%7Bj%2C%20country%7D%20%281-scaled.QS_j%29%5Ew
+    "score_j = p_{j, country} (1-scaled.QS_j)^w") where:
+  - ![p\_{j,
+    country}](https://latex.codecogs.com/png.latex?p_%7Bj%2C%20country%7D
+    "p_{j, country}") is the probability of the block of the hospital
+    ![j](https://latex.codecogs.com/png.latex?j "j") at the country
+    level;
+  - ![scaled.QS\_j](https://latex.codecogs.com/png.latex?scaled.QS_j
+    "scaled.QS_j") is the ![QS](https://latex.codecogs.com/png.latex?QS
+    "QS") of the hospital ![j](https://latex.codecogs.com/png.latex?j
+    "j") after that all ![QS](https://latex.codecogs.com/png.latex?QS
+    "QS") have been rescaled to the range \[0,1\], with 1 representing
+    the worst quality score and 0 the best.
+    ![(1-scaled.QS\_j)](https://latex.codecogs.com/png.latex?%281-scaled.QS_j%29
+    "(1-scaled.QS_j)") reweighs the probability of being included of a
+    hospital using the quality of the data;
+  - ![w](https://latex.codecogs.com/png.latex?w "w") allows scaling the
+    importance of the ![QS](https://latex.codecogs.com/png.latex?QS
+    "QS") in the selection, with ![w
+    = 0](https://latex.codecogs.com/png.latex?w%20%3D%200 "w = 0")
+    removing its influence;
+  - finally, ![score\_j](https://latex.codecogs.com/png.latex?score_j
+    "score_j") is used to order the hospitals and the first
+    ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
+    "N_{required}") get selected. In alternative, the score can be used
+    as a weight for selecting the hospitals by random sampling.
+
+<!-- end list -->
+
+``` r
+
+subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.quantiles = 10, QS.weight = 1, method = c('arrange', 'random')){
+    
+    library(dplyr)
+    library(Hmisc)
+    library(magrittr)
+    library(scales)
+    
+    method <- match.arg(method)
+    
+    # Definition of quantiles in the distribution of number of beds according to reference data
+    quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>% round
+    
+    P_country <- Reference.Data %>% 
+        count(Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region)) %>% 
+        mutate(Prob = n / sum(n)) %>% 
+        with(magrittr::set_names(Prob, Block))
+    
+    Selection <- Input.Sample %>%
+        mutate(
+            Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region), # Identification of the country level blocks in the sample
+            Prob = P_country[Block], # Assoction of P_country to the hospital in the sample
+            QS.rescale = 1 - scales::rescale(QS), # Creation of the quality weight after rescaling of the QS
+            Score = Prob * QS.rescale^QS.weight # Definition of the final score
+        ) %>% 
+        filter(!is.na(Score)) # Remove blocks that do not appear in the national list
+    
+    if (method == 'arrange') {
+        Selection %>%
+            arrange(desc(Score)) %>% 
+            head(n.required)
+    } else {
+        slice_sample(Selection, n = n.required, weight_by = Score)
+    }
+}
 ```
