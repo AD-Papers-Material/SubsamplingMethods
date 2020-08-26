@@ -723,7 +723,16 @@ body {
 <span id="cb3-32"><a href="#cb3-32"></a>    } <span class="cf">else</span> {</span>
 <span id="cb3-33"><a href="#cb3-33"></a>        <span class="kw">slice_sample</span>(Selection, <span class="dt">n =</span> n.required, <span class="dt">weight_by =</span> Score)</span>
 <span id="cb3-34"><a href="#cb3-34"></a>    }</span>
-<span id="cb3-35"><a href="#cb3-35"></a>}</span></code></pre></div>
+<span id="cb3-35"><a href="#cb3-35"></a>}</span>
+<span id="cb3-36"><a href="#cb3-36"></a></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co"># Create a subsample of 56 hospitals</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co"># subsample.probability(Sample.Data, Reference.Data, n.required = 56)</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co"># Set QS.weight to 0 to not use the QS in the sampling</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co"># subsample.uniform(Sample.Data, Reference.Data, n.required = 56, QS.weight = 0)</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co"># Create a subsample of 56 hospitals with weighted random selection</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co"># subsample.probability(Sample.Data, Reference.Data, n.required = 56, method = &#39;random&#39;)</span></span></code></pre></div>
 
 </body>
 </html>

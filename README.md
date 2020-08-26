@@ -260,4 +260,13 @@ subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.qu
         slice_sample(Selection, n = n.required, weight_by = Score)
     }
 }
+
+# Create a subsample of 56 hospitals
+# subsample.probability(Sample.Data, Reference.Data, n.required = 56)
+
+# Set QS.weight to 0 to not use the QS in the sampling
+# subsample.uniform(Sample.Data, Reference.Data, n.required = 56, QS.weight = 0)
+
+# Create a subsample of 56 hospitals with weighted random selection
+# subsample.probability(Sample.Data, Reference.Data, n.required = 56, method = 'random')
 ```
