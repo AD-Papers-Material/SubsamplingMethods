@@ -55,41 +55,43 @@ of the procedures at
 <https://github.com/AD-Papers-Material/SubsamplingMethods>.
 
 ``` r
-
-str(Sample.Data) # Simulated sample data retaining the real sample characteristics
+# Simulated sample data retaining the real sample characteristics
+str(Sample.Data, vec.len = 3)
 #> 'data.frame':    143 obs. of  5 variables:
-#>  $ Region: chr  "regione piemonte" "regione piemonte" "regione piemonte" "regione piemonte" ...
-#>  $ Beds  : int  183 172 157 179 85 133 189 182 185 71 ...
-#>  $ QS    : num  100.8 628.2 147 108.7 23.3 ...
-#>  $ Class : chr  "< 200" "< 200" "< 200" "< 200" ...
-#>  $ Code  : int  1 2 3 4 5 6 7 8 9 10 ...
+#>  $ Region: chr  "regione piemonte" "regione piemonte" "regione piemonte" ...
+#>  $ Beds  : int  183 172 157 179 85 133 189 182 ...
+#>  $ QS    : num  101 628 147 109 ...
+#>  $ Class : chr  "< 200" "< 200" "< 200" ...
+#>  $ Code  : int  1 2 3 4 5 6 7 8 ...
 
-str(Reference.Data) # Official list of Italian acute hospitals, updated to 2016
+# Official list of Italian acute hospitals, updated to 2016
+str(Reference.Data, vec.len = 3)
 #> 'data.frame':    963 obs. of  4 variables:
-#>  $ Code  : int  10007 10010 10012 10612 10653 10655 10003 10011 10013 10611 ...
-#>  $ Beds  : int  258 73 22 105 9 96 337 368 95 115 ...
-#>  $ Class : chr  "200 - 500" "< 200" "< 200" "< 200" ...
-#>  $ Region: chr  "regione piemonte" "regione piemonte" "regione piemonte" "regione piemonte" ...
+#>  $ Code  : int  10007 10010 10012 10612 10653 10655 10003 10011 ...
+#>  $ Beds  : int  258 73 22 105 9 96 337 368 ...
+#>  $ Class : chr  "200 - 500" "< 200" "< 200" ...
+#>  $ Region: chr  "regione piemonte" "regione piemonte" "regione piemonte" ...
 ```
 
 ## General aspects and notation
 
-The procedures at the moment can utilize only categorical
-characteristics/features of a sample. Therefore continuous
-characteristics (specifically, hospital size in this case) are
-discretized in quantiles by the algorithms before use. The number of
+The procedures at the moment can utilize only **two characteristics** of
+a sample and these need to be **categorical variables**. Therefore
+continuous characteristics (specifically, hospital size in this case)
+are discretized in quantiles by the algorithms before use. The number of
 quantiles to split continuous features into is an input to the
-algorithms. The hospitals are then grouped into *blocks* according to
-the characteristics of interest: in this study, we used
-*location/hospital size blocks*, defined by the Italian region
+algorithms.  
+The hospitals are then grouped into *blocks* according to the
+characteristics of interest: in this study, we used *location/hospital
+size blocks*, defined by the Italian region
 (![Region](https://latex.codecogs.com/png.latex?Region "Region")) and
 the quantile of number of acute beds
 (![HSize](https://latex.codecogs.com/png.latex?HSize "HSize")) the
 hospitals fall into. The region and the hospital size quantile allow the
 definition of a joint discrete probability distribution which is used by
-the algorithms. For each block
-![block\_i](https://latex.codecogs.com/png.latex?block_i "block_i") a
-probability ![p\_{i} = Pr(hospital|Region,
+the algorithms.  
+For each block ![block\_i](https://latex.codecogs.com/png.latex?block_i
+"block_i") a probability ![p\_{i} = Pr(hospital|Region,
 HSize)](https://latex.codecogs.com/png.latex?p_%7Bi%7D%20%3D%20Pr%28hospital%7CRegion%2C%20HSize%29
 "p_{i} = Pr(hospital|Region, HSize)") is defined, either given a sample
 (![p\_{i,sample}](https://latex.codecogs.com/png.latex?p_%7Bi%2Csample%7D
@@ -135,37 +137,55 @@ quantiles since it was less relevant to build a precise discrete
 probability distribution.
 
 ``` r
-subsample.uniform <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
+uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
+    
     library(dplyr)
     library(Hmisc)
     
+    # Prepare data by discretizing continuous variables like the number of acute
+    # beds and by changing QS to a fixed value if not to be used
     Hospitals <- Input.Sample %>%
-        transmute(Code, Region, Beds = Hmisc::cut2(Beds, g = n.quantiles), QS = if (use.QS) QS else 1) # Prepare data by discretizing continuous variables like the number of acute beds and by changing QS to a fixed value if not to be used
+        transmute(
+            Code, Region,
+            Beds = Hmisc::cut2(Beds, g = n.quantiles),
+            QS = if (use.QS) QS else 1) 
     
     Selected.hospitals <- c()
     Candidates <- data.frame()
     
     for (i in 1:n.required) { # Until n.required is reached..
-        if (nrow(Candidates) == 0) { # If the candidate list is empty, rebuilt it from the non-selected hospitals
+        
+        # If the candidate list is empty, rebuilt it from the non-selected hospitals
+        if (nrow(Candidates) == 0) {
             Candidates <- Hospitals %>%
-                filter(!(Code %in% Selected.hospitals)) %>% # Remove already selected hospitals
-                sample_frac() %>% # Permute order, useful only if QS is not used
+                # Remove already selected hospitals
+                filter(!(Code %in% Selected.hospitals)) %>%
+                # Permute order, useful only if QS is not used
+                sample_frac() %>%
+                # Arrange by QS ascending, best hospitals first
                 arrange(QS)
         }
         
-        # Extract the first hospital of the temporary list and add it to the list of selected hospitals
+        # Extract the first hospital of the temporary list and add it to the list of
+        # selected hospitals
         Extracted.hospital <- Candidates[1,]
         Selected.hospitals <- c(Selected.hospitals, Extracted.hospital$Code)
         
-        # Remove from the temporary list all hospitals in the same location/size block of the extracted hospital
+        # Remove from the temporary list all hospitals in the same location/size block
+        # of the extracted hospital
         Candidates <- Candidates %>%
-            filter(!(Region %in% Extracted.hospital$Region & Beds %in% Extracted.hospital$Beds))
+            filter(
+                !(Region %in% Extracted.hospital$Region),
+                !(Beds %in% Extracted.hospital$Beds)
+                )
     }
     
-    Input.Sample %>% filter(Code %in% Selected.hospitals) # Filter the initial data by the selected hospital codes
+    # Filter the initial data by the selected hospital codes
+    Input.Sample %>% filter(Code %in% Selected.hospitals)
 }
 
-## Esamples
+## Examples
+
 # Create a subsample of 56 hospitals using the QS
 # subsample.uniform(Sample.Data, n.required = 56)
 
@@ -186,6 +206,7 @@ such representativeness. The weight of the
 weighted.
 
   - the blocks are identified in the Reference Data and for each block
+    ![i](https://latex.codecogs.com/png.latex?i "i") the probability
     ![p\_{i, country} = Pr(hospital|Region,
     HSize)](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D%20%3D%20Pr%28hospital%7CRegion%2C%20HSize%29
     "p_{i, country} = Pr(hospital|Region, HSize)") is computed as the
@@ -226,7 +247,9 @@ weighted.
 
 ``` r
 
-subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.quantiles = 10, QS.weight = 1, method = c('arrange', 'random')){
+probability.sampling <- function(Input.Sample, Reference.Data, n.required,
+    n.quantiles = 10, QS.weight = 1,
+    method = c('arrange', 'random')){
     
     library(dplyr)
     library(Hmisc)
@@ -235,8 +258,10 @@ subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.qu
     
     method <- match.arg(method)
     
-    # Definition of quantiles in the distribution of number of beds according to reference data
-    quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>% round
+    # Definition of quantiles in the distribution of number of beds according to
+    # reference data
+    quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>%
+        round
     
     P_country <- Reference.Data %>% 
         count(Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region)) %>% 
@@ -245,10 +270,14 @@ subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.qu
     
     Selection <- Input.Sample %>%
         mutate(
-            Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region), # Identification of the country level blocks in the sample
-            Prob = P_country[Block], # Assoction of P_country to the hospital in the sample
-            QS.rescale = 1 - scales::rescale(QS), # Creation of the quality weight after rescaling of the QS
-            Score = Prob * QS.rescale^QS.weight # Definition of the final score
+            # Identification of the country level blocks in the sample
+            Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region),
+            # Association of P_country to the hospital in the sample
+            Prob = P_country[Block],
+            # Creation of the quality weight after rescaling of the QS
+            QS.rescale = 1 - scales::rescale(QS),
+            # Definition of the final score
+            Score = Prob * QS.rescale^QS.weight
         ) %>% 
         filter(!is.na(Score)) # Remove blocks that do not appear in the national list
     
@@ -261,6 +290,8 @@ subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.qu
     }
 }
 
+## Examples
+
 # Create a subsample of 56 hospitals
 # subsample.probability(Sample.Data, Reference.Data, n.required = 56)
 
@@ -270,3 +301,77 @@ subsample.probability <- function(Input.Sample, Reference.Data, n.required, n.qu
 # Create a subsample of 56 hospitals with weighted random selection
 # subsample.probability(Sample.Data, Reference.Data, n.required = 56, method = 'random')
 ```
+
+## Distance procedure
+
+As with the Probability procedure, the aim is to produce sub-samples
+that try to reproduce the distributional characteristics of a target
+population. The advantage of this procedure is that it is particularly
+appropriate when the original sample is particularly distorted in
+relation of the characteristics of interest. That is, some blocks are
+too much underrepresented in the original sample compared to target
+population and therefore the Probability procedure cannot find enough
+units in them to reproduce their relative distribution at the population
+level.  
+This procedure attempts to solve the problem by oversampling blocks
+which are similar to the underrepresented ones: if a block cannot
+provide enough units as required by the expected representativeness at
+the population level, samples are collected from blocks with similar
+characteristics. Similarity is defined through ad-hoc distance measures
+between blocks for each characteristics.  
+The procedure considers the sample characteristics of interest
+sequentially, implicitly giving more weight to one or another. Such
+priority can be passed as an argument.
+
+This algortithm is more complex than the previous two procedure. Here’s
+the general implementation:
+
+  - for each ![i](https://latex.codecogs.com/png.latex?i "i") block the
+    expected number of sampled units is computed as ![N\_{i, expected} =
+    \\texttt{Round}(p\_{i, country} \\times
+    N\_{required})](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D%20%3D%20%5Ctexttt%7BRound%7D%28p_%7Bi%2C%20country%7D%20%5Ctimes%20N_%7Brequired%7D%29
+    "N_{i, expected} = \\texttt{Round}(p_{i, country} \\times N_{required})"),
+    with ![p\_{i,
+    country}](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D
+    "p_{i, country}") being the target level representativeness of a
+    block as defined above;
+  - in case
+    ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
+    "N_{required}") is not reached, i.e., ![(\\sum\_{j=1}^{n}N\_{i,
+    expected})\<N\_{required}](https://latex.codecogs.com/png.latex?%28%5Csum_%7Bj%3D1%7D%5E%7Bn%7DN_%7Bi%2C%20expected%7D%29%3CN_%7Brequired%7D
+    "(\\sum_{j=1}^{n}N_{i, expected})\<N_{required}"), the ![N\_{i,
+    expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
+    "N_{i, expected}") of specific blocks is increased by one unit until
+    ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
+    "N_{required}") is achieved. The units are added to blocks whose
+    fractional part of the unrounded ![N\_{i,
+    expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
+    "N_{i, expected}") is lower in absolute value then 0.5 (![|(p\_{i,
+    country} \\times N\_{required}) - N\_{i, expected}|
+    \< 0.5](https://latex.codecogs.com/png.latex?%7C%28p_%7Bi%2C%20country%7D%20%5Ctimes%20N_%7Brequired%7D%29%20-%20N_%7Bi%2C%20expected%7D%7C%20%3C%200.5
+    "|(p_{i, country} \\times N_{required}) - N_{i, expected}| \< 0.5")),
+    starting by those for which this value is closer to 0.5 (that is,
+    closer to be rounded up);
+  - blocks are arranged by decreasing ![p\_{i,
+    country}](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D
+    "p_{i, country}") and for each block, ![N\_{i,
+    sample}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20sample%7D
+    "N_{i, sample}") hospitals are sampled in order of increasing
+    ![QS](https://latex.codecogs.com/png.latex?QS "QS") (or randomly if
+    the ![QS](https://latex.codecogs.com/png.latex?QS "QS") is the same
+    for every hospital);
+  - if ![N\_{i, sample} \< N\_{i,
+    expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20sample%7D%20%3C%20N_%7Bi%2C%20expected%7D
+    "N_{i, sample} \< N_{i, expected}") (i.e., the block is
+    underrepresented), hospitals from similar blocks are *assigned* to
+    it, becoming not available for the other blocks and contributing to
+    the ![N\_{i,
+    assigned}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20assigned%7D
+    "N_{i, assigned}") of a block. Similarity is computed via
+    characteristic-specific algorithms (described below), and
+    characteristics are evaluated with a priority chosen by the user;
+    that is either hospital size similarity is considered followed by
+    location similarity or vice-versa. In case of ties, the
+    ![QS](https://latex.codecogs.com/png.latex?QS "QS") or a random
+    selection is used.
+  - At this point an initial sub-sample is achieved
