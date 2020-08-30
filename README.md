@@ -346,7 +346,7 @@ the general implementation:
     "N_{required}") is achieved. The units are added to blocks whose
     fractional part of the unrounded ![N\_{i,
     expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
-    "N_{i, expected}") is lower in absolute value than 0.5 (![|(p\_{i,
+    "N_{i, expected}") is lower in absolute value then 0.5 (![|(p\_{i,
     country} \\times N\_{required}) - N\_{i, expected}|
     \< 0.5](https://latex.codecogs.com/png.latex?%7C%28p_%7Bi%2C%20country%7D%20%5Ctimes%20N_%7Brequired%7D%29%20-%20N_%7Bi%2C%20expected%7D%7C%20%3C%200.5
     "|(p_{i, country} \\times N_{required}) - N_{i, expected}| \< 0.5")),
