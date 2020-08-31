@@ -341,7 +341,7 @@ the general implementation:
     expected})\<N\_{required}](https://latex.codecogs.com/png.latex?%28%5Csum_%7Bj%3D1%7D%5E%7Bn%7DN_%7Bi%2C%20expected%7D%29%3CN_%7Brequired%7D
     "(\\sum_{j=1}^{n}N_{i, expected})\<N_{required}"), the ![N\_{i,
     expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
-    "N_{i, expected}") of specific blocks is increased by one unit until
+    "N_{i, expected}") <img src="https://render.githubusercontent.com/render/math?math=N_{i, expected}"> of specific blocks is increased by one unit until
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
     "N_{required}") is achieved. The units are added to blocks whose the
     fractional part of ![N\_{i,
