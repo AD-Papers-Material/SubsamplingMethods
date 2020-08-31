@@ -13,8 +13,8 @@
 #' @param QS.weight Scaling factor of the influence of the QS in the algorithm.
 #'   Set to 0 to remove the effect of the QS.
 #' @param method Whether to select the hospitals in a deterministic way after
-#'   arranging them by their score, or probabilistically using the score as a
-#'   sampling weight.
+#'   arranging them by their score, or in a probabilistic way using the score as
+#'   a sampling weight.
 #'
 #' @import dplyr
 #' @import Hmisc
@@ -27,15 +27,15 @@
 #'
 #' @examples
 #'
-#' # Create a subsample of 56 hospitals
-#' subsample.probability(Sample.Data, Reference.Data, n.required = 56)
+#' # Create a subsample of 55 hospitals
+#' subsample.probability(Sample.Data, Reference.Data, n.required = 55)
 #'
 #' # Set QS.weight to 0 to not use the QS in the sampling
-#' subsample.uniform(Sample.Data, Reference.Data, n.required = 56, QS.weight = 0)
+#' subsample.uniform(Sample.Data, Reference.Data, n.required = 55, QS.weight = 0)
 #'
-#' # Create a subsample of 56 hospitals with weighted random selection
+#' # Create a subsample of 55 hospitals with weighted random selection
 #' subsample.probability(
-#'     Sample.Data, Reference.Data, n.required = 56, method = 'random'
+#'     Sample.Data, Reference.Data, n.required = 55, method = 'random'
 #' )
 
 probability.sampling <- function(Input.Sample, Reference.Data, n.required,
@@ -54,6 +54,7 @@ probability.sampling <- function(Input.Sample, Reference.Data, n.required,
 	quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>%
 		round()
 
+	# Definition of the distributional blocks at the target population level
 	P_country <- Reference.Data %>%
 		count(Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region)) %>%
 		mutate(Prob = n / sum(n)) %>%
