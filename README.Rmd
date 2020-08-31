@@ -49,7 +49,7 @@ str(Reference.Data, vec.len = 3)
 
 The procedures at the moment can utilize only **two characteristics** of a sample and these need to be **categorical variables**. Therefore continuous characteristics (specifically, hospital size in this case) are discretized in quantiles by the algorithms before use. The number of quantiles to split continuous features into is an input to the algorithms.  
 The hospitals are then grouped into *blocks* according to the characteristics of interest: in this study, we used *location/hospital size blocks*, defined by the Italian region ($Region$) and the quantile of number of acute beds ($HSize$) the hospitals fall into. The region and the hospital size quantile allow the definition of a joint discrete probability distribution which is used by the algorithms.  
-For each block $block_i$ a probability $p_{i} = Pr(hospital|Region, HSize)$ is defined, either given a sample ($p_{i,sample}$) or the whole country ($p_{i,country}$) which indicate the fraction of hospital in a block over the total. All the algorithms are costrained by a parameter $N_{required}$ which defines the size of the final sub-sample. As mentioned above, the algorithms may use the Quality Score $QS$ as further discriminant in the selection; to avoid using the $QS$ without code modification is sufficient to assign the same value (a positive number) to all hospitals. Note that lower $QS$ implies better data quality.
+For each block $block_i$ a probability $p_{i} = Pr(hospital|Region, HSize)$ is defined, either given a sample ($p_{i,sample}$) or the whole country ($p_{i,country}$) which indicate the fraction of hospital in a block over the total. All the algorithms are constrained by a parameter $N_{required}$ which defines the size of the final sub-sample. As mentioned above, the algorithms may use the Quality Score $QS$ as further discriminant in the selection; to avoid using the $QS$ without code modification is sufficient to assign the same value (a positive number) to all hospitals. Note that lower $QS$ implies better data quality.
 
 ## Unformity procedure
 
@@ -115,11 +115,11 @@ uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS =
 
 ## Examples
 
-# Create a subsample of 56 hospitals using the QS
-# subsample.uniform(Sample.Data, n.required = 56)
+# Create a subsample of 55 hospitals using the QS
+# subsample.uniform(Sample.Data, n.required = 55)
 
 # The same but this time hospitals are chosen randomly
-# subsample.uniform(Sample.Data, n.required = 56)
+# subsample.uniform(Sample.Data, n.required = 55)
 ```
 
 ## Probability procedure
@@ -181,14 +181,14 @@ probability.sampling <- function(Input.Sample, Reference.Data, n.required,
 
 ## Examples
 
-# Create a subsample of 56 hospitals
-# subsample.probability(Sample.Data, Reference.Data, n.required = 56)
+# Create a subsample of 55 hospitals
+# subsample.probability(Sample.Data, Reference.Data, n.required = 55)
 
 # Set QS.weight to 0 to not use the QS in the sampling
-# subsample.uniform(Sample.Data, Reference.Data, n.required = 56, QS.weight = 0)
+# subsample.uniform(Sample.Data, Reference.Data, n.required = 55, QS.weight = 0)
 
-# Create a subsample of 56 hospitals with weighted random selection
-# subsample.probability(Sample.Data, Reference.Data, n.required = 56, method = 'random')
+# Create a subsample of 55 hospitals with weighted random selection
+# subsample.probability(Sample.Data, Reference.Data, n.required = 55, method = 'random')
 
 ```
 
@@ -198,10 +198,278 @@ As with the Probability procedure, the aim is to produce sub-samples that try to
 This procedure attempts to solve the problem by oversampling blocks which are similar to the underrepresented ones: if a block cannot provide enough units as required by the expected representativeness at the population level, samples are collected from blocks with similar characteristics. Similarity is defined through ad-hoc distance measures between blocks for each characteristics.  
 The procedure considers the sample characteristics of interest sequentially, implicitly giving more weight to one or another. Such priority can be passed as an argument.
 
-This algortithm is more complex than the previous two procedure. Here's the general implementation:
+This algorithm is more complex than the previous two procedures. Here's the general implementation:
 
-* for each $i$ block the expected number of sampled units is computed as $N_{i, expected} = \texttt{Round}(p_{i, country} \times N_{required})$, with $p_{i, country}$ being the target level representativeness of a block as defined above; 
-* in case $N_{required}$ is not reached, i.e., $(\sum_{j=1}^{n}N_{i, expected})<N_{required}$, the $N_{i, expected}$ of specific blocks is increased by one unit until $N_{required}$ is achieved. The units are added to blocks whose fractional part of the unrounded $N_{i, expected}$ is lower in absolute value then 0.5 ($|(p_{i, country} \times N_{required}) - N_{i, expected}| < 0.5$), starting by those for which this value is closer to 0.5 (that is, closer to be rounded up);
-* blocks are arranged by decreasing $p_{i, country}$ and for each block, $N_{i, sample}$ hospitals are sampled in order of increasing $QS$ (or randomly if the $QS$ is the same for every hospital);
-* if $N_{i, sample} < N_{i, expected}$ (i.e., the block is underrepresented), hospitals from similar blocks are *assigned* to it, becoming not available for the other blocks and contributing to the $N_{i, assigned}$ of a block. Similarity is computed via characteristic-specific algorithms (described below), and characteristics are evaluated with a priority chosen by the user; that is either hospital size similarity is considered followed by location similarity or vice-versa. In case of ties, the $QS$ or a random selection is used.
-* At this point an initial sub-sample is achieved
+* for each $i$ block the expected number of sampled units is computed as $N_{i, expected} = \texttt{Round}(p_{i, country} \times N_{required})$, with $p_{i, country}$ being the target population level representativeness of a location/size block; 
+* in case $N_{required}$ is not reached, i.e., $(\sum_{j=1}^{n}N_{i, expected})<N_{required}$, the $N_{i, expected}$ of specific blocks is increased by one unit until $N_{required}$ is achieved. The units are added to blocks whose the fractional part of $N_{i, expected}$ before rounding is higher than zero ($(p_{i, country} \times N_{required}) - N_{i, expected} > 0$), starting by the higher values (that is, those closer to be rounded up);
+* for each block, starting by those requiring more hospitals, $N_{i, sample}$ hospitals belonging to it are selected;
+* if $N_{i, sample} < N_{i, expected}$ (i.e., the block is underrepresented), hospitals from similar blocks are *assigned* to it, becoming not available for the other blocks. The final number of hospital assigned to a block is $N_{i, assigned}$ and may comprise hospitals actually belonging to other blocks, for example a hospital from the Piedmont region is assigned to the Lumbardy region since it is a close region. Similarity is computed via characteristic-specific algorithms (check R code online at https://github.com/AD-Papers-Material/SubsamplingMethods), and is evaluated with a priority chosen by the user; that is either hospital size similarity is considered followed by location similarity or vice-versa. In case of ties, the $QS$ is used or random selection if the $QS$ is equal.
+
+At this point an initial sub-sample is achieved, in which a block is assigned to each hospital to be included in the sub-sample, while the "unassigned" label is assigned to those not to include. The initial sample may have an overrepresentativeness of blocks with more hospitals, since they will tend to cede more hospitals to underrepresented blocks. A random process attempts at further improve the sample by avoid reducing unbalance in favor of oversampling blocks, by swapping hospitals in and out of the sample if the swaps decreases the distance between the actual and the assigned block of an hospitals. The swaps are only accepted though if the overall fit of the subsample with the target population does not decrease:
+
+* for a chosen number of iteration, a random hospital is chosen and the set of candidates hospitals to swap is generated from those with opposite assignment status (i.e.: if a hospital included in the initial sub-sample is randomly selected, than the candidates are chosen among those not included and vice-versa);
+* For each candidate swap, the assigned region and size class are inverted with the randomly selected hospital and the distance between the new assigned block and the actual block of the hospitals is computed. Unassigned hospitals are always at distance of one from the actual block;
+* It is chosen the candidate swap that minimize the sum of distances arranged by size and location (with order according to priority) providing an improvement in the distance in at least one of the characteristics or a decrease of the $QS$ in the subsample. For example (considering only location for simplicity), if the random chosen hospital is from region Tuscany but is assigned to Sicily (distance: 2) and the candidate is a hospital from Sicily but unassigned (distance: 1), the swap would unassign the first hospital (distance: 1) and the other to Sicily (distance: 0): the final distance is (1 + 0) - (2 + 1) = -2, therefore implying an overall improvement of the sample;
+* the swap is finally accepted if the fit of the subsample after the swap does not decrease. The fit is evaluated as described in the statistical analysis section of the manuscript and the relative implementation is presented online.
+
+
+```{r distance}
+subsample.distance <- function(Input.Sample, Reference.Data, n.required,
+	 n.quantiles = 10, priority = c('size', 'location'),
+	 method = c('logLik', 'spearman'), reallocate = T,
+	 realloc.steps = 2000, steps.to.try = 2 * n.required){
+
+	library(dplyr)
+	library(Hmisc)
+	library(pbapply)
+	library(parallel)
+
+	priority <- match.arg(priority)
+	method <- match.arg(method)
+
+	# Definition of quantiles in the distribution of number of beds according to
+	# reference data
+	quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>%
+		round()
+
+	Hospitals <- Input.Sample %>%
+		transmute(
+			Code, QS,
+
+			# Hospital size is quantized according to reference data and location/size
+			# blocks are defined
+			Region,
+			Size.class = Hmisc::cut2(Beds, quantiles),
+			Block = paste(Size.class, '-', Region),
+
+			# To each hospital is assigned a fictitious region and size class, the
+			# initial value is 'unassigned' which means not selected in the sample
+			Region.assigned = 'unassigned',
+			Size.class.assigned = factor('unassigned',
+				levels = c(levels(Size.class), 'unassigned')),
+
+			# The distance associated to the 'unassigned' status is 1
+			Distance = 1,
+			Size.diff = 1
+		)
+
+	# Blocks are identified in the refernce data too
+	Reference.Data <- Reference.Data %>% mutate(
+		Size.class = Hmisc::cut2(Beds, quantiles),
+		Block = paste(Size.class, '-', Region)
+	)
+
+	# For each block the expected number or required hospital is computed,
+	# translating the target population proportion to the required sample size
+	Blocks <- count(Reference.Data, Block, name = 'N.country') %>%
+		mutate(
+			F.expected = N.country/sum(N.country) * n.required,
+			N.expected = round(F.expected),
+
+			# If the required sample size is not reached, additional units are added
+			# to blocks closer to be rounded up
+			N.expected = if (sum(N.expected) == n.required) N.expected else {
+				delta <- (F.expected - N.expected)
+				rank <- row_number(-delta) # rank blocks by fractional part
+				missing <- 1:(n.required - sum(N.expected))
+				case_when(
+					rank %in% missing & delta > 0 ~ N.expected + 1,
+					T ~ N.expected
+				)
+			}
+		) %>%
+		# Join the expected block numerosity with the Reference data, to associate
+		# information about region and size class
+		left_join(Reference.Data[,c('Region', 'Size.class', 'Block')], by = 'Block') %>%
+		distinct %>%
+		# Blocks that need more hospital first
+		arrange(desc(F.expected))
+
+	## Reservoir of available hospitals to assign
+	Available.hospitals <- Hospitals %>%
+		slice_sample(prop = 1)
+
+	# First assignment: associate hospitals to block until N_expected is reached;
+	# if not enough hospitals for a block are available in the sample, uses
+	# hospitals from "similar" blocks.
+	Hospitals.reassigned <- pblapply(which(Blocks$N.expected != 0), function(i) {
+		Block <- Blocks[i,]
+
+		if (Block$N.expected == 0) return(NULL) # No hospitals required for this block
+
+		# Compute "distances" of the block with all hospitals
+		Available.hospitals$Distance <- get.location.distance(
+			rep(Block$Region, nrow(Available.hospitals)),
+			Available.hospitals$Region
+		)
+		Available.hospitals$Size.diff <- get.onedim.distance(
+			rep(Block$Size.class, nrow(Available.hospitals)),
+			Available.hospitals$Size.class
+		)
+
+		# Arrange hospitals by distance from the block, prioritizing the
+		# chosen characteristic. Hospitals belonging to the block will have
+		# zero distance and will be prioritize. QS is used in case of ties
+		Selected.hospitals <- Available.hospitals %>% {
+			if (priority == 'size') {
+				arrange(., Size.diff, Distance, QS)
+			} else {
+				arrange(., Distance, Size.diff, QS)
+			}
+		} %>%
+			# Select the N_expected hospitals for the block, ordered by distance.
+			head(Block$N.expected) %>%
+			# "Assign" the block size location to the selected hospitals
+			mutate(
+				Region.assigned = !!Block$Region,
+				Size.class.assigned = !!Block$Size.class
+				)
+
+		# Remove the selected hospitals from those still available for sampling
+		Available.hospitals <<- Available.hospitals %>%
+			filter(!(Code %in% Selected.hospitals$Code))
+
+		Selected.hospitals
+	}) %>% bind_rows()
+
+	score <- get.distr.fit(Hospitals.reassigned, Reference.Data, method = method)
+	message('First distribution score: ', score)
+
+	# Rebuild the dataset with assigned and not hospitals
+	Hospitals <- bind_rows(
+		Hospitals.reassigned,
+		Hospitals %>% filter(!(Code %in% Hospitals.reassigned$Code))
+	)
+
+	if (reallocate) {
+		message('Reallocation')
+
+		# Windows doesn't support forking for parallelization, and socketing is
+		# actually slower
+		options(mc.cores =  if (Sys.info()[['sysname']] == 'Windows') {
+			1
+		} else parallel::detectCores())
+
+		steps.wo.improvements <- 0
+
+		# Initiate random swapping of hospitals to improve the fit
+		pblapply(1:realloc.steps, function(step) {
+
+			steps.wo.improvements <<- steps.wo.improvements + 1
+
+			# iI too many steps are gone without improvement, stops
+			if (steps.wo.improvements > steps.to.try) {
+				return()
+			}
+
+			# Select a random hospital
+			Evaluated.hospital <- slice_sample(Hospitals, n = 1)
+
+			# Evaluate swaps with hospital in the opposite assignment status
+			Candidate.swaps <- Hospitals %>%
+				filter(if (Evaluated.hospital$Region.assigned == 'unassigned') {
+					Region.assigned != 'unassigned'
+				} else Region.assigned == 'unassigned')
+
+			# Evaluate all candidate swaps, computing the change in distance between
+			# the assigned and the actual block. mclapply allows parallel looping on
+			# Unix OS, but reverts to lapply on Windows
+			Best.swap <- mclapply(1:nrow(Candidate.swaps), function(i) {
+				Candidates <- bind_rows(Evaluated.hospital, Candidate.swaps[i,])
+
+				# Compute the distances after swapping
+				Candidates$swapped.dist <- get.location.distance(
+					Candidates$Region, rev(Candidates$Region.assigned)
+				)
+				Candidates$swapped.size.diff <- get.onedim.distance(
+					Candidates$Size.class, rev(Candidates$Size.class.assigned)
+				)
+				Candidates$swapped.QS <- rev(Candidates$QS)
+
+				data.frame(
+					Evaluated = Candidates$Code[1],
+					Candidate = Candidates$Code[2],
+
+					# Compute the delta in the distances, a negative value
+					# means improvement
+					delta.location = with(Candidates, sum(swapped.dist) - sum(Distance)),
+					delta.size = with(Candidates, sum(swapped.size.diff) - sum(Size.diff)),
+					delta.QS = with(
+						filter(Candidates, Region.assigned != 'unassigned'),
+						swapped.QS - QS
+					)
+				)
+			}) %>% bind_rows() %>%
+				# Arrange the swaps according to priority
+				{
+					if (priority == 'size') {
+						arrange(., delta.size, delta.location, delta.QS)
+					} else {
+						arrange(., delta.location, delta.size, delta.QS)
+					}
+				} %>% head(1) # And select the best swap
+
+			# If at least one of the distances real/assigned blocks is imporoved proceed
+			if (with(Best.swap, delta.location < 0 | delta.size < 0 | delta.QS < 0)) {
+
+				# Select the hospitals of the best swap and invert their assigned
+				# blocks. Then recompute the distances
+				Best.swap.hospitals <- Hospitals %>%
+					filter(Code %in% unlist(Best.swap[,1:2])) %>%
+					mutate(
+						across(c(Region.assigned, Size.class.assigned), rev),
+						Distance = get.location.distance(Region, Region.assigned),
+						Size.diff = get.onedim.distance(Size.class, Size.class.assigned)
+					)
+
+				# Remove the swapped hospitals from the sample and add them again with
+				# the updated assignment
+				Hospital.proposal <- Hospitals %>%
+					filter(Code %nin% Best.swap.hospitals$Code) %>%
+					rbind(Best.swap.hospitals)
+
+				# Compute the fit with the target population before and after the swap
+				score_before <- get.distr.fit(
+					filter(Hospitals, Region.assigned != 'unassigned'),
+					Reference.Data, method = method)
+				score_after <- get.distr.fit(
+					filter(Hospital.proposal, Region.assigned != 'unassigned'),
+					Reference.Data, method = method)
+
+				# If the the swap didn't decrease the fit, the swap is accepted
+				if (score_after >= score_before) {
+
+					message('\nStep: ', step)
+					message('Improvement after ', steps.wo.improvements, ' steps')
+					message('Score after reassignment:', score_after)
+
+					steps.wo.improvements <<- 0
+
+					Hospitals <<- Hospital.proposal
+				}
+			}
+		})
+
+	}
+
+	# Return the subampled data
+	Input.Sample %>%
+		filter(Code %in% filter(Hospitals, Region.assigned != 'unassigned')$Code)
+}
+
+## Examples
+
+# Create a subsample of 55 hospitals prioritizing hospital size, without
+# reallocation after the initial sampling
+
+# subsample.distance(Sample.Data, Reference.Data, n.required = 55,
+#   reallocate = F)
+
+# This time prioritize location and perform reallocation. (Warning: it takes
+# time!)
+
+# subsample.distance(Sample.Data, Reference.Data, n.required = 55,
+#     priority = 'location')
+
+```
+
