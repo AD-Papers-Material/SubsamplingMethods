@@ -11,8 +11,9 @@
 #'
 #' @import dplyr
 #' @import arm
+#' @import broom
 #'
-#' @return A numeneric score. Higher values indicate better distributional
+#' @return A numeric score. Higher values indicate better distributional
 #' similarity between sample and reference data.
 #' @export
 #'
@@ -37,10 +38,11 @@
 #' get.distr.fit(results, Reference.Data)
 #'
 
-get.distr.fit <- function(Sample, Reference, var = 'Block', method = c('logLik', 'spearman')) {
+get.distr.fit <- function(Sample, Reference, var = 'Block', method = c('logLik', 'spearman', 'dbinom')) {
 
 	library(dplyr)
 	library(arm)
+	library(broom)
 
 	if (!(var %in% colnames(Sample) & var %in% colnames(Reference))) stop(paste(var, 'must be in both sample and reference data'))
 
@@ -81,6 +83,16 @@ get.distr.fit <- function(Sample, Reference, var = 'Block', method = c('logLik',
 		# Estimate the correlation between these two frequencies
 		cor(freq.sample, freq.reference, method = 'spearman')
 	}
+	## WIP: a divergence measure estimated on the Reference Data, similar to KL divergence
+	else if (method == 'dbinom') {
+		Blocks <- count(Sample, Block, name = 'Freq', .drop = F) %>% mutate(Tot = sum(Freq))
+		Blocks.ref <- count(Reference, Block, name = 'Freq', .drop = F) %>% mutate(Tot = sum(Freq))
+		model <- arm::bayesglm(cbind(Freq, Tot - Freq) ~ Block, quasibinomial(), Blocks)
 
-	##TODO: add a divergence measure estimated on the Reference Data, like KL divergence
+		left_join(
+			Blocks.ref,
+			broom::augment(model) %>% dplyr::transmute(Block, P = invlogit(.fitted)),
+			by = 'Block') %>% mutate(LH = dbinom(Freq, Tot, P, log = T)) %>%
+			with(sum(LH))
+	}
 }
