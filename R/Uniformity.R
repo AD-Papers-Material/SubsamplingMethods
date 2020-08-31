@@ -19,11 +19,11 @@
 #'
 #' @examples
 #'
-#' # Create a subsample of 56 hospitals using the QS
-#' subsample.uniform(Sample.Data, n.required = 56)
+#' # Create a subsample of 55 hospitals using the QS
+#' subsample.uniform(Sample.Data, n.required = 55)
 #'
 #' # The same but this time hospitals are chosen randomly
-#' subsample.uniform(Sample.Data, n.required = 56)
+#' subsample.uniform(Sample.Data, n.required = 55)
 
 uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
 
