@@ -38,7 +38,7 @@ get.location.distance <- function(reg1, reg2, zones = read.csv(file.path('Data',
 		# Zero if same region
 		if (row[1] == row[2]) result <- 0
 		# Special case for the distance procedure
-		else if ('deposit' %in% row) result <- 1
+		else if ('unassigned' %in% row) result <- 1
 		else {
 			zones <- c(zones$Zone[zones$Region == row[1]], zones$Zone[zones$Region == row[2]])
 
@@ -85,283 +85,293 @@ get.onedim.distance <- function(reg1, reg2) {
 	if (length(reg1) != length(reg2)) stop('Region lists should have equal length!')
 
 	case_when(
-		# special case for the distance procedure
-		as.character(reg1) == 'deposit' | as.character(reg2) == 'deposit' ~ 1,
+		# special case for unassigned hospitals
+		as.character(reg1) == 'unassigned' | as.character(reg2) == 'unassigned' ~ 1,
+		# simple absolute difference for the rest
 		T ~ abs(as.numeric(reg1) - as.numeric(reg2))
 	)
 }
 
+#' Distance sub-sampling procedure
+#'
+#' @param Input.Sample A data frame with the initial sample that needs subs-
+#'   sampling. It needs to have the columns: Code, Region, Beds, QS.
+#' @param Reference.Data Target population level reference data, with
+#'   information on number of Beds and Region of all hospitals.
+#' @param n.required  The size of the final sub-sample.
+#' @param n.quantiles Number of quantiles into which categorize continuous
+#'   variables, like the hospital size.
+#' @param priority Whether to prioritize adjustment of hospital size or location
+#'   bias.
+#' @param method Statistical method to evaluate the fit between the subsample
+#'   and the target population.
+#' @param reallocate Option to perform the random reallocation after the first
+#'   subsample is created.
+#' @param realloc.steps How many reallocation steps to try.
+#' @param steps.to.try Number of steps after which to stop if no useful swaps
+#'   have been found. Defaults to 2 * the required subsample size.
+#'
+#' @import dplyr
+#' @import Hmisc
+#' @import pbapply
+#' @import parallel
+#'
+#' @return A subset of the data frame passed in Input.Sample with n.required
+#'   rows
+#' @export
+#'
+#' @examples
+#'
+#' # Create a subsample of 55 hospitals prioritizing hospital size, without
+#' # reallocation after the initial sampling
+#' subsample.distance(Sample.Data, Reference.Data, n.required = 55,
+#'     reallocate = F)
+#'
+#' # This time prioritize location and perform reallocation (Warning: it takes
+#' # time!)
+#' ## Not run:
+#' subsample.distance(Sample.Data, Reference.Data, n.required = 55,
+#'     priority = 'location')
+#' ## End(Not run)
+
 subsample.distance <- function(Input.Sample, Reference.Data, n.required,
 															 n.quantiles = 10, priority = c('size', 'location'),
-															 fit.method = c('logLik', 'spearman')){
+															 method = c('logLik', 'spearman'), reallocate = T,
+															 realloc.steps = 2000, steps.to.try = 2 * n.required){
 
 	library(dplyr)
 	library(Hmisc)
+	library(pbapply)
+	library(parallel)
 
 	priority <- match.arg(priority)
 	method <- match.arg(method)
 
+	# Definition of quantiles in the distribution of number of beds according to
+	# reference data
 	quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>%
 		round()
 
-	# split.points <- Reference.Data$Beds %>% Hmisc::cut2(g = n.quantiles, onlycuts = T)
-	#
-	# class.levels <- cut.by.splits(Beds.Data$Dimensione, split.points, ordered = F) %>% levels() %>% c('deposit')
-
-
-	message('Starting point')
-
 	Hospitals <- Input.Sample %>%
 		transmute(
-			Code, Beds, Region,
-			Region.assigned = 'deposit',
-			Beds = as.numeric.robust(Beds),
-			Class.orig = cut.by.splits(Beds, split.points, ordered = F) %>% factor(levels = class.levels),
-			Class.actual = 'deposit',
-			Class.ref = cut.by.splits(Beds, ecdc.cut.points, ordered = F),
-			HAI.risk = if ('HAI.risk' %in% names(.)) HAI.risk else NULL,
-			HAI.risk.QS = if ('HAI.risk.QS' %in% names(.)) HAI.risk.QS else NULL,
-			Quality.score = as.numeric.robust(Quality.score),
+			Code, QS,
+
+			# Hospital size is quantized according to reference data and location/size
+			# blocks are defined
+			Region,
+			Size.class = Hmisc::cut2(Beds, quantiles),
+			Block = paste(Size.class, '-', Region),
+
+			# To each hospital is assigned a fictitious region and size class, the
+			# initial value is 'unassigned' which means not selected in the sample
+			Region.assigned = 'unassigned',
+			Size.class.assigned = factor('unassigned',
+																	 levels = c(levels(Size.class), 'unassigned')),
+
+			# The distance associated to the 'unassigned' status is 1
 			Distance = 1,
 			Size.diff = 1
 		)
 
-	Beds.Data <- Beds.Data %>% mutate(
-		Class = cut.by.splits(Dimensione, split.points, ordered = F),
-		Class.ref = cut.by.splits(Dimensione, ecdc.cut.points, ordered = F),
-		HAI.risk = if ('HAI.risk' %in% names(.)) HAI.risk else NULL,
-		HAI.risk.QS = if ('HAI.risk.QS' %in% names(.)) HAI.risk.QS else NULL
+	# Blocks are identified in the refernce data too
+	Reference.Data <- Reference.Data %>% mutate(
+		Size.class = Hmisc::cut2(Beds, quantiles),
+		Block = paste(Size.class, '-', Region)
 	)
 
-	Regions <- as.data.frame(table(Beds.Data$Class, Beds.Data$Descrizione.Regione) / nrow(Beds.Data) * 55, stringsAsFactors = F) %>%
+	# For each block the expected number or required hospital is computed,
+	# translating the target population proportion to the required sample size
+	Blocks <- count(Reference.Data, Block, name = 'N.country') %>%
 		mutate(
-			Prob = Freq/sum(Freq),
-			N = round(Freq),
-			mod = modify_if(Freq %% 1 - .5, ~ .x > 0, ~ NA),
-			order = row_number(-mod),
-			N = if (sum(N) < to.select) case_when(order %in% 1:(to.select - sum(N)) ~ N + 1, T ~ N) else N
+			F.expected = N.country/sum(N.country) * n.required,
+			N.expected = round(F.expected),
+
+			# If the required sample size is not reached, additional units are added
+			# to blocks closer to be rounded up
+			N.expected = if (sum(N.expected) == n.required) N.expected else {
+				delta <- (F.expected - N.expected)
+				rank <- row_number(-delta) # rank blocks by fractional part
+				missing <- 1:(n.required - sum(N.expected))
+				case_when(
+					rank %in% missing & delta > 0 ~ N.expected + 1,
+					T ~ N.expected
+				)
+			}
 		) %>%
-		select(Class = Var1, Region = Var2, Theor.size = N, Prob) %>%
-		mutate(Class = factor(Class, levels = class.levels)) %>%
-		arrange(desc(Prob))
+		# Join the expected block numerosity with the Reference data, to associate
+		# information about region and size class
+		left_join(Reference.Data[,c('Region', 'Size.class', 'Block')], by = 'Block') %>%
+		distinct %>%
+		# Blocks that need more hospital first
+		arrange(desc(F.expected))
 
-	# starting.score <- compute.score.summary(Hospitals %>% mutate(Region.actual = Region.orig, Class.actual = Class.orig), Beds.Data, Regions)
-	#
-	# print(starting.score %>% as.data.frame())
+	## Reservoir of available hospitals to assign
+	Available.hospitals <- Hospitals %>%
+		slice_sample(prop = 1)
 
-	codes <- Hospitals$Code ## Leave it! will be updated by the loop!
+	# First assignment: associate hospitals to block until N_expected is reached;
+	# if not enough hospitals for a block are available in the sample, uses
+	# hospitals from "similar" blocks.
+	Hospitals.reassigned <- pblapply(which(Blocks$N.expected != 0), function(i) {
+		Block <- Blocks[i,]
 
-	message('First distribution')
-	Hospitals.reassigned <- pblapply(1:nrow(Regions), function(i) {
-		region <- Regions[i,]
+		if (Block$N.expected == 0) return(NULL) # No hospitals required for this block
 
-		if (region$Theor.size == 0) return(NULL)
-
-		hospitals.in.class <- Hospitals %>% filter(Code %in% codes)
-
-		hospitals.in.class$Distance <- get.distance(rep(region$Region, nrow(hospitals.in.class)), hospitals.in.class$Region.orig)
-		hospitals.in.class$Size.diff <- get.size.diff(rep(region$Class, nrow(hospitals.in.class)), hospitals.in.class$Class.orig)
-
-		hospitals.in.class <- hospitals.in.class %>%
-			#arrange(Distance, Size.diff, Quality.score) %>%
-			arrange(Size.diff, Distance, Quality.score) %>%
-			head(region$Theor.size) %>%
-			mutate(Region.actual = region$Region, Class.actual = region$Class)
-
-		codes <<- setdiff(codes, hospitals.in.class$Code)
-
-		hospitals.in.class
-	}) %>% bind_rows()
-
-	Hospitals.reassigned <- bind_rows(Hospitals.reassigned, Hospitals %>% filter(Code %nin% Hospitals.reassigned$Code)) %>%
-		mutate_at(vars(Class.orig, Class.actual), ~ factor(., levels = class.levels))
-
-	#print(compute.score.summary(Hospitals.reassigned, Beds.Data, Regions) %>% as.data.frame())
-
-	# Hospitals.unif <- Hospitals %>% mutate(Region = Region.orig, Class = Class.orig, Region.actual = Region.orig, Class.actual = Class.orig) %>% sample.hospitals.uniform(to.select = to.select)
-	# Hospitals.prob <- sample.hospitals.probability(Sample.Hospitals, Beds.Data, to.select = to.select) %>% mutate(Class.ref = cut.by.splits(Beds, ecdc.cut.points, ordered = F))
-
-	# rbind(
-	# 	get.cor.score(Hospitals.reassigned, Beds.Data, Regions, method = 'all'),
-	# 	get.cor.score(Hospitals.unif, Beds.Data, Regions, method = 'all')
-	# ) %>%
-	# 	do(rbind(., summarise_all(., ~ .[1] - .[2]))) %>% print
-
-	starting.score <- compute.score.summary(Hospitals.reassigned, Beds.Data)
-	print(starting.score)
-
-	message('Reallocation')
-
-	steps <- 2000
-
-	steps.wo.improvements <- 0
-
-	pb <- txtProgressBar(min = 0, max = steps, initial = 1, style = 3)
-
-	for (step in 1:steps) {
-
-		steps.wo.improvements <- steps.wo.improvements + 1
-
-		if (steps.wo.improvements > to.select) {
-			cat('\n')
-			print(step)
-			print('Break')
-			break()
-		}
-
-		first.candidate <- sample_n(Hospitals.reassigned, 1)
-
-		second.candidates <- Hospitals.reassigned %>%
-			filter(
-				# Region.actual != first.candidate$Region.actual
-				# & Class.actual != first.candidate$Class.actual
-				if (first.candidate$Region.actual == 'deposit') Region.actual != 'deposit' else Region.actual == 'deposit'
-			)
-
-		cases <- lapply(1:nrow(second.candidates), function(i) {
-			candidates <- bind_rows(first.candidate, second.candidates[i,])
-
-			candidates$swapped.dist <- get.distance(candidates$Region.orig, rev(candidates$Region.actual))
-			candidates$swapped.size.diff <- get.size.diff(candidates$Class.orig, rev(candidates$Class.actual))
-			candidates$swapped.quality <- rev(candidates$Quality.score)
-
-			data.frame(
-				first = candidates$Code[1],
-				second = candidates$Code[2],
-				first.actual = candidates$Region.actual[1],
-				second.actual = candidates$Region.actual[2],
-				first.theoric = candidates$Region.orig[1],
-				second.theoric = candidates$Region.orig[2],
-				delta.dist = sum(candidates$swapped.dist - candidates$Distance),
-				delta.size.dist = sum(candidates$swapped.size.diff - candidates$Size.diff),
-				delta.quality = with(candidates[candidates$Region.actual != 'deposit',], sum(swapped.quality) - sum(Quality.score)) # Actually I don't remember why I used a different code for the sum from the one used for the distance
-			)
-		}) %>% bind_rows()
-
-		#cases <- cases %>% arrange(delta.dist, delta.size.dist, delta.quality) %>% head(1)
-		cases <- cases %>% arrange(delta.size.dist, delta.dist, delta.quality) %>% head(1)
-
-		candidates <- Hospitals.reassigned %>% filter(Code %in% c(first.candidate$Code, cases$second)) %>%
-			mutate_at(vars(Region.actual, Class.actual, Quality.score), rev) %>%
-			mutate(
-				Distance = get.distance(Region.orig, rev(Region.actual)),
-				Size.diff = get.size.diff(Class.orig, rev(Class.actual))
-			)
-
-		score_before <- get.cor.score(Hospitals.reassigned, Beds.Data, method = mtd)
-
-		Hospital.proposal <- Hospitals.reassigned %>% filter(Code %nin% candidates$Code) %>% rbind(candidates)
-
-		score_after <- get.cor.score(Hospital.proposal, Beds.Data, method = mtd)
-
-		condition <- case_when(
-			score_after > score_before ~ F,
-			score_after < score_before ~ T,
-			cases$delta.dist >= 0 & cases$delta.size.dist >= 0 & cases$delta.quality >= 0 ~ F,
-			T ~ T
+		# Compute "distances" of the block with all hospitals
+		Available.hospitals$Distance <- get.location.distance(
+			rep(Block$Region, nrow(Available.hospitals)),
+			Available.hospitals$Region
+		)
+		Available.hospitals$Size.diff <- get.onedim.distance(
+			rep(Block$Size.class, nrow(Available.hospitals)),
+			Available.hospitals$Size.class
 		)
 
-		# score.diff <- rbind(
-		# 	get.cor.score(Hospitals.reassigned, Beds.Data, Regions, all = T),
-		# 	get.cor.score(Hospital.proposal, Beds.Data, Regions, all = T)
-		# ) %>%
-		# 	{
-		# 		DF <- .
-		# 		set_colnames(DF, DF[1,] %>% str_remove(':.*'))
-		# 	} %>%
-		# 	as.data.frame() %>%
-		# 	mutate_all(~ str_remove(., '.* ') %>% as.numeric()) %>%
-		# 	summarise_all(~ diff(.))
-		#
-		# score.diff.vec <- bind_rows(
-		# 	if (exists('score.diff.vec')) score.diff.vec else NULL,
-		# 	score.diff
-		# )
+		# Arrange hospitals by distance from the block, prioritizing the
+		# chosen characteristic. Hospitals belonging to the block will have
+		# zero distance and will be prioritize. QS is used in case of ties
+		Selected.hospitals <- Available.hospitals %>% {
+			if (priority == 'size') {
+				arrange(., Size.diff, Distance, QS)
+			} else {
+				arrange(., Distance, Size.diff, QS)
+			}
+		} %>%
+			# Select the N_expected hospitals for the block, ordered by distance.
+			head(Block$N.expected) %>%
+			# "Assign" the block size location to the selected hospitals
+			mutate(
+				Region.assigned = !!Block$Region,
+				Size.class.assigned = !!Block$Size.class
+			)
 
-		# score.vec <- bind_rows(
-		# 	if (exists('score.vec')) score.vec else NULL,
-		# 	get.cor.score(Hospital.proposal, Beds.Data, Regions, all = T) %>% lapply(function(x) {
-		# 		nm <- str_remove(x, ':.*')
-		# 		val <- str_remove(x, '.* ') %>% as.numeric()
-		# 		data.frame(val) %>% set_colnames(nm)
-		# 	}) %>% bind_cols()
-		# )
+		# Remove the selected hospitals from those still available for sampling
+		Available.hospitals <<- Available.hospitals %>%
+			filter(!(Code %in% Selected.hospitals$Code))
 
-		if (condition) {
+		Selected.hospitals
+	}) %>% bind_rows()
 
-			#print(steps.wo.improvements)
+	score <- get.distr.fit(Hospitals.reassigned, Reference.Data, method = method)
+	message('First distribution score: ', score)
 
-			steps.wo.improvements <- 0
+	# Rebuild the dataset with assigned and not hospitals
+	Hospitals <- bind_rows(
+		Hospitals.reassigned,
+		Hospitals %>% filter(!(Code %in% Hospitals.reassigned$Code))
+	)
 
-			Hospitals.reassigned <- Hospital.proposal
+	if (reallocate) {
+		message('Reallocation')
 
-			# Hospitals[c(first.candidate$Code, cases$second),]$Region.actual <- rev(candidates$Region.actual)
-			# Hospitals[c(first.candidate$Code, cases$second),]$Distance <- get.distance(rev(candidates$Region.actual), candidates$Region.orig)
-		}
+		# Windows doesn't support forking for parallelization, and socketing is
+		# actually slower
+		options(mc.cores =  if (Sys.info()[['sysname']] == 'Windows') {
+			1
+		} else parallel::detectCores())
 
-		setTxtProgressBar(pb, step)
+		steps.wo.improvements <- 0
+
+		# Initiate random swapping of hospitals to improve the fit
+		pblapply(1:realloc.steps, function(step) {
+
+			steps.wo.improvements <<- steps.wo.improvements + 1
+
+			# iI too many steps are gone without improvement, stops
+			if (steps.wo.improvements > steps.to.try) {
+				return()
+			}
+
+			# Select a random hospital
+			Evaluated.hospital <- slice_sample(Hospitals, n = 1)
+
+			# Evaluate swaps with hospital in the opposite assignment status
+			Candidate.swaps <- Hospitals %>%
+				filter(if (Evaluated.hospital$Region.assigned == 'unassigned') {
+					Region.assigned != 'unassigned'
+				} else Region.assigned == 'unassigned')
+
+			# Evaluate all candidate swaps, computing the change in distance between
+			# the assigned and the actual block
+			Best.swap <- mclapply(1:nrow(Candidate.swaps), function(i) {
+				Candidates <- bind_rows(Evaluated.hospital, Candidate.swaps[i,])
+
+				# Compute the distances after swapping
+				Candidates$swapped.dist <- get.location.distance(
+					Candidates$Region, rev(Candidates$Region.assigned)
+				)
+				Candidates$swapped.size.diff <- get.onedim.distance(
+					Candidates$Size.class, rev(Candidates$Size.class.assigned)
+				)
+				Candidates$swapped.QS <- rev(Candidates$QS)
+
+				data.frame(
+					Evaluated = Candidates$Code[1],
+					Candidate = Candidates$Code[2],
+
+					# Compute the delta in the distances, a negative value
+					# means improvement
+					delta.location = with(Candidates, sum(swapped.dist) - sum(Distance)),
+					delta.size = with(Candidates, sum(swapped.size.diff) - sum(Size.diff)),
+					delta.QS = with(
+						filter(Candidates, Region.assigned != 'unassigned'),
+						swapped.QS - QS
+					)
+				)
+			}) %>% bind_rows() %>%
+				# Arrange the swaps according to priority
+				{
+					if (priority == 'size') {
+						arrange(., delta.size, delta.location, delta.QS)
+					} else {
+						arrange(., delta.location, delta.size, delta.QS)
+					}
+				} %>% head(1) # And select the best swap
+
+			# If at least one of the distances real/assigned blocks is imporoved proceed
+			if (with(Best.swap, delta.location < 0 | delta.size < 0 | delta.QS < 0)) {
+
+				# Select the hospitals of the best swap and invert their assigned
+				# blocks. Then recompute the distances
+				Best.swap.hospitals <- Hospitals %>%
+					filter(Code %in% unlist(Best.swap[,1:2])) %>%
+					mutate(
+						across(c(Region.assigned, Size.class.assigned), rev),
+						Distance = get.location.distance(Region, Region.assigned),
+						Size.diff = get.onedim.distance(Size.class, Size.class.assigned)
+					)
+
+				# Remove the swapped hospitals from the sample and add them again with
+				# the updated assignment
+				Hospital.proposal <- Hospitals %>%
+					filter(Code %nin% Best.swap.hospitals$Code) %>%
+					rbind(Best.swap.hospitals)
+
+				# Compute the fit with the target population before and after the swap
+				score_before <- get.distr.fit(
+					filter(Hospitals, Region.assigned != 'unassigned'),
+					Reference.Data, method = method)
+				score_after <- get.distr.fit(
+					filter(Hospital.proposal, Region.assigned != 'unassigned'),
+					Reference.Data, method = method)
+
+				# If the the swap didn't decrease the fit, the swap is accepted
+				if (score_after >= score_before) {
+
+					message('\nStep: ', step)
+					message('Improvement after ', steps.wo.improvements, ' steps')
+					message('Score after reassignment:', score_after)
+
+					steps.wo.improvements <<- 0
+
+					Hospitals <<- Hospital.proposal
+				}
+			}
+		})
+
 	}
 
-	Hospitals.reassigned <- Hospitals.reassigned %>% filter(Region.actual != 'deposit')
-
-	# res <- rbind(
-	# 	get.cor.score(Hospitals.reassigned, Beds.Data, Regions, method = 'all'),
-	# 	get.cor.score(Hospitals %>% mutate(Region.actual = Region.orig, Class.actual = Class.orig), Beds.Data, Regions, method = 'all')
-	# ) %>%
-	# 	summarise_all(., ~ .[1] / .[2]) %>%
-	# 	mutate(
-	# 		pop.risk = mean(Beds.Data$HAI.risk), pop.risk.w = with(Beds.Data, weighted.mean(HAI.risk, Dimensione)),
-	# 		sample.risk = mean(Sample.Hospitals$HAI.risk), sample.risk.w = with(Sample.Hospitals, weighted.mean(HAI.risk, Beds)),
-	# 		subsample.risk = mean(Hospitals.reassigned$HAI.risk), subsample.risk.w = with(Hospitals.reassigned, weighted.mean(HAI.risk, Beds)),
-	# 		method = method, groups = n_groups, steps = step, score_change = 1 - score_after/score_before
-	# 	)
-	#
-	# print(res)
-	#
-	# return(res)
-
-	final.score <- compute.score.summary(Hospitals.reassigned, Beds.Data)
-
-	message('After reassignment:')
-	print(final.score)
-
-	Scores <- rbind(
-		final.score %>% mutate(Status = 'Final'),
-		starting.score %>% mutate(Status = 'Starting')
-	)
-
-	Scores <- Scores %>%
-		group_by(Class.ref) %>%
-		summarise_if(is.numeric, ~ sprintf('%g -> %g (%s)', .[2], .[1], percent(.[1]/.[2] - 1))) %>%
-		lapply(function(x) x %>% set_names(Scores$Class.ref %>% levels)) %>%
-		tail(-1)
-	# rbind(
-	# 	get.cor.score(Hospitals.reassigned, Beds.Data, Regions, method = 'all'),
-	# 	get.cor.score(Hospitals.rnd, Beds.Data, Regions, method = 'all'),
-	# ) %>%
-	# 	do(rbind(., summarise_all(., ~ .[1] - .[2])))
-
-	# message(sprintf('Distance: %d (%.3g)', sum(Hospitals.final$Distance[Hospitals.final$Region.actual != 'deposit']), sum(Hospitals.final$Distance[Hospitals.final$Region.actual != 'deposit']) / sum(Hospitals$Distance[Hospitals$Region.actual != 'deposit'])))
-	# message(sprintf('Quality: %.4g (%.3g)', sum(Hospitals.final$Quality.score[Hospitals.final$Region.actual != 'deposit']), sum(Hospitals.final$Quality.score[Hospitals.final$Region.actual != 'deposit']) / sum(Hospitals$Quality.score[Hospitals$Region.actual != 'deposit'])))
-	# message('Assigned: ', Hospitals %>% filter(Region.actual != 'deposit') %>% nrow)
-	# message(sprintf('Travelers: %d (%.3g)', Hospitals.final %>% filter(Region.actual != 'deposit' & Region.actual != Region.orig) %>% nrow, nrow(Hospitals.final %>% filter(Region.actual != 'deposit' & Region.actual != Region.orig)) / nrow(Hospitals %>% filter(Region.actual != 'deposit' & Region.actual != Region.orig))))
-	# print(
-	# 	(ggplot(Hospitals, aes(Region.orig)) + ggtitle('Sample')) /
-	# 		(ggplot(Beds.Data, aes(Descrizione.Regione)) + ggtitle('Ref')) /
-	# 		(ggplot(Hospitals.reassigned, aes(Region.orig)) + ggtitle('Sample')) &
-	# 		geom_bar(aes(y = stat(count) / sum(stat(count)), fill = Class.ref), position = position_dodge(preserve = 'single'), show.legend = F) &
-	# 		theme.obligue.x.axis
-	# )
-	#
-	# data.frame(
-	# 	Sample = with(Hospitals, table(Region.orig, Class.ref)) %>% as.data.frame(),
-	# 	Reg = with(Beds.Data, table(Descrizione.Regione, Class.ref)) %>% as.data.frame() %>% select(3),
-	# 	Subsample = with(Hospitals.reassigned, table(Region.orig, Class.ref)) %>% as.data.frame() %>% select(3)
-	# ) %>% mutate_at(vars(matches('Freq'), ~ . / sum(.))) %>% View
-	#
-	#
-	list(
-		Hospitals = Hospitals.reassigned,
-		Scores = Scores
-	)
+	# Return the susampled data
+	Input.Sample %>%
+		filter(Code %in% filter(Hospitals, Region.assigned != 'unassigned')$Code)
 }
