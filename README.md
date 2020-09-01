@@ -1,30 +1,35 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<!-- # Supplemental Material S2. Code implementation of the subsampling algorithms. -->
+
 # Code implementation of the subsampling algorithms.
+
+**Acronyms**: Healthcare Associated Infections (HAI), Antimicrobial/s
+(AM), Antimicrobial Usage (AMU), Microorganism (MO), Alcoholic Hand Rub
+(AHR), Point Prevalence Study (PPS), Likelihood Ratio Test (LRT).
 
 ## Introduction
 
-We implemented 3 algorithms, defined “Distance procedure”, the
+We implemented three algorithms, defined “Distance procedure”, the
 “Probability procedure”, and the “Uniformity procedure” with the aim
-of producing sub-samples with specific distributional properties
-starting from an initial, collection of data which is possibly biased in
-terms of generalizability to a target population. In the following
-document we present the R code to implement the algorithms. The specific
+of producing subsamples with specific distributional properties starting
+from an initial collection of data which is possibly biased in terms of
+generalizability to the target population. In the following document we
+present the R code to implement the algorithms. The specific
 implementation described here is focused on the Italian PPS study on
-HAI/AMU prevalence in acute care hospitals but can easily translated to
-different settings.
+HAI/AMU prevalence in acute care hospitals but can be easily translated
+to different settings.
 
 The methods try to change the distributional characteristics of a sample
-by producing a sub-sample whose units are chosen according to some
-characteristics of interest. Two of these methods, the Distance
+by producing a subsample whose units are chosen using information on
+some characteristics of interest. Two of these methods, the Distance
 procedure and the Probability procedure, are aimed at generating a
 representative sample of a target population, by using reference data at
 the population level with information on the distribution of relevant
-characteristics of the observational units. The Uniformity procedure
-instead generate a sample which is uniform in relation to such
-characteristics, therefore it does not require population reference
-data.
+characteristics. The Uniformity procedure instead generate a sample
+which is uniform in relation to such characteristics, therefore it does
+not require population reference data.
 
 This document and all the relative material is available at
 <https://github.com/AD-Papers-Material/SubsamplingMethods>.
@@ -32,27 +37,28 @@ This document and all the relative material is available at
 ## Input data
 
 The algorithms take as input a database with a statistical unit for each
-row and the characteristics of interest as columns. Furthermore, a
-column with an unique ID for each unit is useful for post-hoc checks and
-mandatory for the Distance procedure. Our algorithms also accept the
-Quality Score (![QS](https://latex.codecogs.com/png.latex?QS "QS"), cfr.
-Methods) as additional characteristics, but they can be easily modified
-to remove such feature.
+row and the characteristics of interest as columns. In addition, a
+column with an unique ID for each unit is needed. Our algorithms also
+accept a Quality Score (![QS](https://latex.codecogs.com/png.latex?QS
+"QS"), cfr. Methods and Supplemental material S1) as additional
+characteristic.
 
-The Probability and the Distance procedures also requires population
-level reference data, with the same structure. If individual level data
-is not available at the population, simulated data can be generated
-given access to the joint distribution of the considered
-characteristics, ensuring that the simulated dataset is large enough to
-limit random variation.
+The Probability and the Distance procedures require population level
+reference data with information for on same characteristics. If
+individual unit data is not available at the population level, simulated
+data can be generated given access to the joint distribution of the
+considered characteristics, ensuring that the simulated dataset is large
+enough to limit random variation.
 
-Our test case data use acute care hospitals as observational units and
+Our study data use acute care hospitals as observational units and
 hospital size (number of acute care beds) and region of location as
-characteristics of interest. As a reference, the hospital are also
-grouped in three hospital size categories; the same categorization is
-used in the manuscript. We provide simulated sample data for the testing
-of the procedures at
-<https://github.com/AD-Papers-Material/SubsamplingMethods>.
+characteristics of interest. We also used the official Italian national
+database of acute care hospital as population level data. We provide
+simulated sample data and the population level data for the testing of
+the procedures at
+<https://github.com/AD-Papers-Material/SubsamplingMethods>. These two
+datasets also provide hospital size grouped in three categories as used
+in the manuscript.
 
 ``` r
 # Simulated sample data retaining the real sample characteristics
@@ -75,8 +81,8 @@ str(Reference.Data, vec.len = 3)
 
 ## General aspects and notation
 
-The procedures at the moment can utilize only **two characteristics** of
-a sample and these need to be **categorical variables**. Therefore
+The procedures at the moment can utilize only **two characteristics** at
+once and these need to be **categorical variables**. Therefore
 continuous characteristics (specifically, hospital size in this case)
 are discretized in quantiles by the algorithms before use. The number of
 quantiles to split continuous features into is an input to the
@@ -93,41 +99,45 @@ the algorithms.
 For each block ![block\_i](https://latex.codecogs.com/png.latex?block_i
 "block_i") a probability ![p\_{i} = Pr(hospital|Region,
 HSize)](https://latex.codecogs.com/png.latex?p_%7Bi%7D%20%3D%20Pr%28hospital%7CRegion%2C%20HSize%29
-"p_{i} = Pr(hospital|Region, HSize)") is defined, either given a sample
+"p_{i} = Pr(hospital|Region, HSize)") is defined, both for the sample
 (![p\_{i,sample}](https://latex.codecogs.com/png.latex?p_%7Bi%2Csample%7D
-"p_{i,sample}")) or the whole country
+"p_{i,sample}")) or and the target population
 (![p\_{i,country}](https://latex.codecogs.com/png.latex?p_%7Bi%2Ccountry%7D
-"p_{i,country}")) which indicate the fraction of hospital in a block
+"p_{i,country}")) which indicates the fraction of hospital in a block
 over the total. All the algorithms are constrained by a parameter
 ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
-"N_{required}") which defines the size of the final sub-sample. As
-mentioned above, the algorithms may use the Quality Score
-![QS](https://latex.codecogs.com/png.latex?QS "QS") as further
-discriminant in the selection; to avoid using the
-![QS](https://latex.codecogs.com/png.latex?QS "QS") without code
-modification is sufficient to assign the same value (a positive number)
-to all hospitals. Note that lower
-![QS](https://latex.codecogs.com/png.latex?QS "QS") implies better data
-quality.
+"N_{required}") which defines the size of the final subsample.  
+The algorithms employ the Quality Score
+![QS](https://latex.codecogs.com/png.latex?QS "QS") as a further
+discriminant in sampling; to avoid using it without code modification it
+is sufficient to assign the same value (a positive number) to all units.
+Note that a lower ![QS](https://latex.codecogs.com/png.latex?QS "QS")
+implies better data quality.
 
 ## Unformity procedure
 
-This procedure sub-samples hospitals trying to obtain an equal
-proportion of hospitals in every block, by iteratively choosing one
-hospital from each block. This is the general implementation:
+This procedure subsamples hospitals trying to obtain an equal number of
+units in every block, by iteratively choosing one hospital from each
+block. This is the general implementation:
 
   - a candidate list is created from the original sample;
+
   - the hospitals in the list are permuted randomly or ordered in
     ascending order by ![QS](https://latex.codecogs.com/png.latex?QS
-    "QS") (the lower the score, the higher the data quality);
+    "QS");
+
   - the first hospital is selected;
+
   - all other hospitals belonging to the same block of the selected
     hospital are removed from the candidate list;
+
   - the process is repeated until there are still available blocks in
     the candidate list;
+
   - once one hospital from each blocks has been chosen, the hospitals
     from all the blocks are made available again in the list, apart from
     those already selected in the sample;
+
   - continue until
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
     "N_{required}") is reached.
@@ -138,23 +148,23 @@ probability distribution.
 
 ``` r
 uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
-    
+
     library(dplyr)
     library(Hmisc)
-    
+
     # Prepare data by discretizing continuous variables like the number of acute
     # beds and by changing QS to a fixed value if not to be used
     Hospitals <- Input.Sample %>%
         transmute(
             Code, Region,
             Beds = Hmisc::cut2(Beds, g = n.quantiles),
-            QS = if (use.QS) QS else 1) 
-    
+            QS = if (use.QS) QS else 1)
+
     Selected.hospitals <- c()
     Candidates <- data.frame()
-    
+
     for (i in 1:n.required) { # Until n.required is reached..
-        
+
         # If the candidate list is empty, rebuilt it from the non-selected hospitals
         if (nrow(Candidates) == 0) {
             Candidates <- Hospitals %>%
@@ -165,21 +175,21 @@ uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS =
                 # Arrange by QS ascending, best hospitals first
                 arrange(QS)
         }
-        
+
         # Extract the first hospital of the temporary list and add it to the list of
         # selected hospitals
         Extracted.hospital <- Candidates[1,]
         Selected.hospitals <- c(Selected.hospitals, Extracted.hospital$Code)
-        
+
         # Remove from the temporary list all hospitals in the same location/size block
         # of the extracted hospital
         Candidates <- Candidates %>%
             filter(
                 !(Region %in% Extracted.hospital$Region),
                 !(Beds %in% Extracted.hospital$Beds)
-                )
+            )
     }
-    
+
     # Filter the initial data by the selected hospital codes
     Input.Sample %>% filter(Code %in% Selected.hospitals)
 }
@@ -196,52 +206,62 @@ uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS =
 ## Probability procedure
 
 This algorithm uses information from a population level list (Reference
-Data) to built a discrete probability distribution representative of the
-target population and then uses it to create a representative
-sub-sample. The hospitals are selected according to how representative
-is the block they belong to at the country level. The
-![QS](https://latex.codecogs.com/png.latex?QS "QS") is used to weight
-such representativeness. The weight of the
-![QS](https://latex.codecogs.com/png.latex?QS "QS") itself can be
-weighted.
+Data) to built a discrete probability distribution of the target
+population which is then used to drive the creation of a representative
+subsample. The hospitals are selected according to how relevant, in term
+of number hospitals over the total, is the block they belong to at the
+country level. The ![QS](https://latex.codecogs.com/png.latex?QS "QS")
+is used to weight such representativeness. The weight of the
+![QS](https://latex.codecogs.com/png.latex?QS "QS") itself can be tuned.
 
   - the blocks are identified in the Reference Data and for each block
     ![i](https://latex.codecogs.com/png.latex?i "i") the probability
-    ![p\_{i, country} = Pr(hospital|Region,
-    HSize)](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D%20%3D%20Pr%28hospital%7CRegion%2C%20HSize%29
-    "p_{i, country} = Pr(hospital|Region, HSize)") is computed as the
-    proportion of hospitals in the block over the total;
+    ![p\_{i, country} = Pr(hospital|Region, Hospital.Size) =
+    \\frac{N\_{hospitals} |
+    block\_i}{N\_{hospitals}}](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D%20%3D%20Pr%28hospital%7CRegion%2C%20Hospital.Size%29%20%3D%20%5Cfrac%7BN_%7Bhospitals%7D%20%7C%20block_i%7D%7BN_%7Bhospitals%7D%7D
+    "p_{i, country} = Pr(hospital|Region, Hospital.Size) = \\frac{N_{hospitals} | block_i}{N_{hospitals}}")
+    is computed as the proportion of hospitals in the block over the
+    total;
+
   - these probabilities are assigned to the relative blocks in the
     sample;
-  - a score is computer for each hospital
+
+  - a score is computed for each hospital
     ![j](https://latex.codecogs.com/png.latex?j "j") as ![score\_j =
     p\_{j, country}
     (1-scaled.QS\_j)^w](https://latex.codecogs.com/png.latex?score_j%20%3D%20p_%7Bj%2C%20country%7D%20%281-scaled.QS_j%29%5Ew
     "score_j = p_{j, country} (1-scaled.QS_j)^w") where:
-  - ![p\_{j,
-    country}](https://latex.codecogs.com/png.latex?p_%7Bj%2C%20country%7D
-    "p_{j, country}") is the probability of the block of the hospital
-    ![j](https://latex.codecogs.com/png.latex?j "j") at the country
-    level;
-  - ![scaled.QS\_j](https://latex.codecogs.com/png.latex?scaled.QS_j
-    "scaled.QS_j") is the ![QS](https://latex.codecogs.com/png.latex?QS
-    "QS") of the hospital ![j](https://latex.codecogs.com/png.latex?j
-    "j") after that all ![QS](https://latex.codecogs.com/png.latex?QS
-    "QS") have been rescaled to the range \[0,1\], with 1 representing
-    the worst quality score and 0 the best.
-    ![(1-scaled.QS\_j)](https://latex.codecogs.com/png.latex?%281-scaled.QS_j%29
-    "(1-scaled.QS_j)") reweighs the probability of being included of a
-    hospital using the quality of the data;
-  - ![w](https://latex.codecogs.com/png.latex?w "w") allows scaling the
-    importance of the ![QS](https://latex.codecogs.com/png.latex?QS
-    "QS") in the selection, with ![w
-    = 0](https://latex.codecogs.com/png.latex?w%20%3D%200 "w = 0")
-    removing its influence;
+    
+      - ![p\_{j,
+        country}](https://latex.codecogs.com/png.latex?p_%7Bj%2C%20country%7D
+        "p_{j, country}") is the probability of the block of the
+        hospital ![j](https://latex.codecogs.com/png.latex?j "j") at the
+        country level;
+    
+      - ![scaled.QS\_j](https://latex.codecogs.com/png.latex?scaled.QS_j
+        "scaled.QS_j") is the
+        ![QS](https://latex.codecogs.com/png.latex?QS "QS") of the
+        hospital ![j](https://latex.codecogs.com/png.latex?j "j") after
+        that all hospital ![QS](https://latex.codecogs.com/png.latex?QS
+        "QS") have been rescaled to the range \[0,1\], with 1
+        representing the worst quality score and 0 the best. The term
+        ![(1-scaled.QS\_j)](https://latex.codecogs.com/png.latex?%281-scaled.QS_j%29
+        "(1-scaled.QS_j)") reweighs the sampling probability of a
+        hospital using the quality of its data;
+    
+      - ![w](https://latex.codecogs.com/png.latex?w "w") allows scaling
+        the importance of the
+        ![QS](https://latex.codecogs.com/png.latex?QS "QS") in the
+        selection, with ![w
+        = 0](https://latex.codecogs.com/png.latex?w%20%3D%200 "w = 0")
+        removing its influence;
+
   - finally, ![score\_j](https://latex.codecogs.com/png.latex?score_j
-    "score_j") is used to order the hospitals and the first
+    "score_j") is used to arrange the hospitals and the first
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
-    "N_{required}") get selected. In alternative, the score can be used
-    as a weight for selecting the hospitals by random sampling.
+    "N_{required}") with the higher score get selected. In alternative,
+    the score can be used as a weight for selecting the hospitals by
+    weighted random sampling.
 
 <!-- end list -->
 
@@ -250,24 +270,25 @@ weighted.
 probability.sampling <- function(Input.Sample, Reference.Data, n.required,
     n.quantiles = 10, QS.weight = 1,
     method = c('arrange', 'random')){
-    
+
     library(dplyr)
     library(Hmisc)
     library(magrittr)
     library(scales)
-    
+
     method <- match.arg(method)
-    
+
     # Definition of quantiles in the distribution of number of beds according to
     # reference data
     quantiles <- quantile(Reference.Data$Beds, seq(0, 1, length.out = n.quantiles)) %>%
-        round
-    
-    P_country <- Reference.Data %>% 
-        count(Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region)) %>% 
-        mutate(Prob = n / sum(n)) %>% 
+        round()
+
+    # Definition of the distributional blocks at the target population level
+    P_country <- Reference.Data %>%
+        count(Block = Hmisc::cut2(Beds, quantiles) %>% paste('-', Region)) %>%
+        mutate(Prob = n / sum(n)) %>%
         with(magrittr::set_names(Prob, Block))
-    
+
     Selection <- Input.Sample %>%
         mutate(
             # Identification of the country level blocks in the sample
@@ -278,12 +299,12 @@ probability.sampling <- function(Input.Sample, Reference.Data, n.required,
             QS.rescale = 1 - scales::rescale(QS),
             # Definition of the final score
             Score = Prob * QS.rescale^QS.weight
-        ) %>% 
+        ) %>%
         filter(!is.na(Score)) # Remove blocks that do not appear in the national list
-    
+
     if (method == 'arrange') {
         Selection %>%
-            arrange(desc(Score)) %>% 
+            arrange(desc(Score)) %>%
             head(n.required)
     } else {
         slice_sample(Selection, n = n.required, weight_by = Score)
@@ -304,21 +325,20 @@ probability.sampling <- function(Input.Sample, Reference.Data, n.required,
 
 ## Distance procedure
 
-As with the Probability procedure, the aim is to produce sub-samples
-that try to reproduce the distributional characteristics of a target
-population. The advantage of this procedure is that it is particularly
-appropriate when the original sample is particularly distorted in
-relation of the characteristics of interest. That is, some blocks are
-too much underrepresented in the original sample compared to target
-population and therefore the Probability procedure cannot find enough
-units in them to reproduce their relative distribution at the population
-level.  
-This procedure attempts to solve the problem by oversampling blocks
-which are similar to the underrepresented ones: if a block cannot
-provide enough units as required by the expected representativeness at
-the population level, samples are collected from blocks with similar
-characteristics. Similarity is defined through ad-hoc distance measures
-between blocks for each characteristics.  
+As with the Probability procedure, the aim of this algorithm is to
+produce subsamples that are representative of the target population. The
+advantage of this procedure is that it is particularly appropriate when
+the original sample is particularly distorted in relation of the
+characteristics of interest. That is, some blocks are too much
+underrepresented compared to target population and therefore the
+Probability procedure cannot find enough units to reproduce their
+representativeness at the population level.  
+This procedure attempts to solve the problem by taking units from blocks
+which are similar to the underrepresented ones and have an excess of
+hospitals: if a block cannot provide enough units as required, samples
+are collected from blocks with similar characteristics. *Similarity* is
+defined through ad-hoc distance measures between blocks for each
+characteristics.  
 The procedure considers the sample characteristics of interest
 sequentially, implicitly giving more weight to one or another. Such
 priority can be passed as an argument.
@@ -327,23 +347,24 @@ This algorithm is more complex than the previous two procedures. Here’s
 the general implementation:
 
   - for each ![i](https://latex.codecogs.com/png.latex?i "i") block the
-    expected number of sampled units is computed as ![N\_{i, expected} =
-    \\texttt{Round}(p\_{i, country} \\times
+    expected number of sampled units give population data is computed as
+    ![N\_{i, expected} = \\texttt{Round}(p\_{i, country} \\times
     N\_{required})](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D%20%3D%20%5Ctexttt%7BRound%7D%28p_%7Bi%2C%20country%7D%20%5Ctimes%20N_%7Brequired%7D%29
     "N_{i, expected} = \\texttt{Round}(p_{i, country} \\times N_{required})"),
     with ![p\_{i,
     country}](https://latex.codecogs.com/png.latex?p_%7Bi%2C%20country%7D
     "p_{i, country}") being the target population level
-    representativeness of a location/size block;
+    representativeness of a location/size block, as defined above;
+
   - in case
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
     "N_{required}") is not reached, i.e., ![(\\sum\_{j=1}^{n}N\_{i,
     expected})\<N\_{required}](https://latex.codecogs.com/png.latex?%28%5Csum_%7Bj%3D1%7D%5E%7Bn%7DN_%7Bi%2C%20expected%7D%29%3CN_%7Brequired%7D
     "(\\sum_{j=1}^{n}N_{i, expected})\<N_{required}"), the ![N\_{i,
     expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
-    "N_{i, expected}") <img src="https://render.githubusercontent.com/render/math?math=N_{i, expected}"> of specific blocks is increased by one unit until
+    "N_{i, expected}") of specific blocks is increased by one unit until
     ![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
-    "N_{required}") is achieved. The units are added to blocks whose the
+    "N_{required}") is achieved. Units are added to blocks for which the
     fractional part of ![N\_{i,
     expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
     "N_{i, expected}") before rounding is higher than zero (![(p\_{i,
@@ -352,67 +373,87 @@ the general implementation:
     "(p_{i, country} \\times N_{required}) - N_{i, expected} \> 0")),
     starting by the higher values (that is, those closer to be rounded
     up);
+
   - for each block, starting by those requiring more hospitals, ![N\_{i,
     sample}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20sample%7D
     "N_{i, sample}") hospitals belonging to it are selected;
+
   - if ![N\_{i, sample} \< N\_{i,
     expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20sample%7D%20%3C%20N_%7Bi%2C%20expected%7D
     "N_{i, sample} \< N_{i, expected}") (i.e., the block is
     underrepresented), hospitals from similar blocks are *assigned* to
-    it, becoming not available for the other blocks. The final number of
-    hospital assigned to a block is ![N\_{i,
+    it and included in the subsample, becoming not available for the
+    other blocks. The final number of hospitals assigned to a block is
+    ![N\_{i,
     assigned}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20assigned%7D
     "N_{i, assigned}") and may comprise hospitals actually belonging to
-    other blocks, for example a hospital from the Piedmont region is
-    assigned to the Lumbardy region since it is a close region.
-    Similarity is computed via characteristic-specific algorithms (check
-    R code online at
+    other blocks: for example a hospital from the Piedmont region could
+    be inserted in the subsample but assigned to the Lombardy region
+    since it is a close region. Similarity is computed via
+    characteristic-specific algorithms (check the R code online at
     <https://github.com/AD-Papers-Material/SubsamplingMethods>), and is
-    evaluated with a priority chosen by the user; that is either
+    evaluated with a priority chosen by the user, that is either
     hospital size similarity is considered followed by location
     similarity or vice-versa. In case of ties, the
-    ![QS](https://latex.codecogs.com/png.latex?QS "QS") is used or
-    random selection if the
+    ![QS](https://latex.codecogs.com/png.latex?QS "QS") is used while
+    random selection if also the
     ![QS](https://latex.codecogs.com/png.latex?QS "QS") is equal.
 
-At this point an initial sub-sample is achieved, in which a block is
-assigned to each hospital to be included in the sub-sample, while the
-“unassigned” label is assigned to those not to include. The initial
-sample may have an overrepresentativeness of blocks with more hospitals,
-since they will tend to cede more hospitals to underrepresented blocks.
-A random process attempts at further improve the sample by avoid
-reducing unbalance in favor of oversampling blocks, by swapping
-hospitals in and out of the sample if the swaps decreases the distance
-between the actual and the assigned block of an hospitals. The swaps are
-only accepted though if the overall fit of the subsample with the target
-population does not decrease:
+At this point, an initial subsample is achieved, with
+![N\_{required}](https://latex.codecogs.com/png.latex?N_%7Brequired%7D
+"N_{required}") hospitals each representing a block (not necessarily the
+actual block they belong to); hospitals not included in the sample are
+labeled as “unassigned” to any block. The initial subsample may have a
+bias due to the order in which block are evaluated, which depends on
+![N\_{i,
+expected}](https://latex.codecogs.com/png.latex?N_%7Bi%2C%20expected%7D
+"N_{i, expected}"): some block may not access their hospitals anymore
+since they were already assigned to a block evaluated earlier.  
+A *random search* attempts to reduce this bias by finding solutions
+which decrease the overall distance between the hospital *assigned*
+blocks and the real ones, while improving the fit with the population
+data.  
+This is done by randomly selecting a hospital inside or outside the
+subsample and evaluating possible swaps with other hospitals. All the
+swaps are evaluated and the best one, in term of lower real-assigned
+block distance, is accepted if the subsample overall distance for one of
+the characteristic or the overall
+![QS](https://latex.codecogs.com/png.latex?QS "QS") decrease, and the
+swap does not impact negatively its target population
+representativeness:
 
-  - for a chosen number of iteration, a random hospital is chosen and
-    the set of candidates hospitals to swap is generated from those with
-    opposite assignment status (i.e.: if a hospital included in the
-    initial sub-sample is randomly selected, than the candidates are
-    chosen among those not included and vice-versa);
+  - for a chosen number of iteration, a random hospital is chosen and a
+    set of candidate hospitals to swap is generated from those with the
+    opposite assignment status (i.e.: if the hospital is included in the
+    subsample, than the candidates are chosen among those not included
+    and vice-versa);
+
   - For each candidate swap, the assigned region and size class are
-    inverted with the randomly selected hospital and the distance
-    between the new assigned block and the actual block of the hospitals
-    is computed. Unassigned hospitals are always at distance of one from
-    the actual block;
-  - It is chosen the candidate swap that minimize the sum of distances
-    arranged by size and location (with order according to priority)
+    inverted with those of the randomly selected hospital and the
+    distance between the new assigned block and the real block of the
+    hospitals is computed. Unassigned hospitals are always at distance
+    of one from their real block;
+
+  - It is chosen the candidate swap that minimizes the sum of distances
+    arranged by size and location (in order according to priority)
     providing an improvement in the distance in at least one of the
-    characteristics or a decrease of the
+    characteristics or a decrease of the overall
     ![QS](https://latex.codecogs.com/png.latex?QS "QS") in the
     subsample. For example (considering only location for simplicity),
-    if the random chosen hospital is from region Tuscany but is assigned
-    to Sicily (distance: 2) and the candidate is a hospital from Sicily
-    but unassigned (distance: 1), the swap would unassign the first
-    hospital (distance: 1) and the other to Sicily (distance: 0): the
-    final distance is (1 + 0) - (2 + 1) = -2, therefore implying an
-    overall improvement of the sample;
-  - the swap is finally accepted if the fit of the subsample after the
-    swap does not decrease. The fit is evaluated as described in the
-    statistical analysis section of the manuscript and the relative
-    implementation is presented online.
+    if the random chosen hospital is from the Tuscany region but is
+    assigned to Sicily (distance: 2) and the candidate is a hospital
+    from Sicily but unassigned (distance: 1), the swap would unassign
+    out of the subsample the first hospital (distance: 1) and include
+    the other assigning it to Sicily (distance: 0): the final distance
+    is (1 + 0) - (2 + 1) = -2, therefore implying an overall improvement
+    of the distances;
+
+  - the swap is finally accepted if the target population
+    representativeness of the subsample after the swap does not
+    decrease. The representativeness is evaluated through a
+    log-likelihood based score as described in the statistical analysis
+    section of the manuscript. The code to compute such score is
+    available online.
 
 <!-- end list -->
 
@@ -456,7 +497,7 @@ subsample.distance <- function(Input.Sample, Reference.Data, n.required,
             Size.diff = 1
         )
 
-    # Blocks are identified in the refernce data too
+    # Blocks are identified in the reference data too
     Reference.Data <- Reference.Data %>% mutate(
         Size.class = Hmisc::cut2(Beds, quantiles),
         Block = paste(Size.class, '-', Region)
@@ -612,7 +653,7 @@ subsample.distance <- function(Input.Sample, Reference.Data, n.required,
                     }
                 } %>% head(1) # And select the best swap
 
-            # If at least one of the distances real/assigned blocks is imporoved proceed
+            # If at least one of the distances real/assigned blocks is improved proceed
             if (with(Best.swap, delta.location < 0 | delta.size < 0 | delta.QS < 0)) {
 
                 # Select the hospitals of the best swap and invert their assigned
@@ -655,7 +696,7 @@ subsample.distance <- function(Input.Sample, Reference.Data, n.required,
 
     }
 
-    # Return the subampled data
+    # Return the subsampled data
     Input.Sample %>%
         filter(Code %in% filter(Hospitals, Region.assigned != 'unassigned')$Code)
 }

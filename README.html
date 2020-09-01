@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+@font-face {
+font-family: octicons-link;
+src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+body {
+-webkit-text-size-adjust: 100%;
+text-size-adjust: 100%;
+color: #333;
+font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 16px;
+line-height: 1.6;
+word-wrap: break-word;
+}
+a {
+background-color: transparent;
+}
+a:active,
+a:hover {
+outline: 0;
+}
+strong {
+font-weight: bold;
+}
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+img {
+border: 0;
+}
+hr {
+box-sizing: content-box;
+height: 0;
+}
+pre {
+overflow: auto;
+}
+code,
+kbd,
+pre {
+font-family: monospace, monospace;
+font-size: 1em;
+}
+input {
+color: inherit;
+font: inherit;
+margin: 0;
+}
+html input[disabled] {
+cursor: default;
+}
+input {
+line-height: normal;
+}
+input[type="checkbox"] {
+box-sizing: border-box;
+padding: 0;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+td,
+th {
+padding: 0;
+}
+* {
+box-sizing: border-box;
+}
+input {
+font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+a {
+color: #4078c0;
+text-decoration: none;
+}
+a:hover,
+a:active {
+text-decoration: underline;
+}
+hr {
+height: 0;
+margin: 15px 0;
+overflow: hidden;
+background: transparent;
+border: 0;
+border-bottom: 1px solid #ddd;
+}
+hr:before {
+display: table;
+content: "";
+}
+hr:after {
+display: table;
+clear: both;
+content: "";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 15px;
+margin-bottom: 15px;
+line-height: 1.1;
+}
+h1 {
+font-size: 30px;
+}
+h2 {
+font-size: 21px;
+}
+h3 {
+font-size: 16px;
+}
+h4 {
+font-size: 14px;
+}
+h5 {
+font-size: 12px;
+}
+h6 {
+font-size: 11px;
+}
+blockquote {
+margin: 0;
+}
+ul,
+ol {
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+}
+ol ol,
+ul ol {
+list-style-type: lower-roman;
+}
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+list-style-type: lower-alpha;
+}
+dd {
+margin-left: 0;
+}
+code {
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+font-size: 12px;
+}
+pre {
+margin-top: 0;
+margin-bottom: 0;
+font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.select::-ms-expand {
+opacity: 0;
+}
+.octicon {
+font: normal normal normal 16px/1 octicons-link;
+display: inline-block;
+text-decoration: none;
+text-rendering: auto;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.octicon-link:before {
+content: '\f05c';
+}
+.markdown-body:before {
+display: table;
+content: "";
+}
+.markdown-body:after {
+display: table;
+clear: both;
+content: "";
+}
+.markdown-body>*:first-child {
+margin-top: 0 !important;
+}
+.markdown-body>*:last-child {
+margin-bottom: 0 !important;
+}
+a:not([href]) {
+color: inherit;
+text-decoration: none;
+}
+.anchor {
+display: inline-block;
+padding-right: 2px;
+margin-left: -18px;
+}
+.anchor:focus {
+outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 1em;
+margin-bottom: 16px;
+font-weight: bold;
+line-height: 1.4;
+}
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+color: #000;
+vertical-align: middle;
+visibility: hidden;
+}
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+text-decoration: none;
+}
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+visibility: visible;
+}
+h1 {
+padding-bottom: 0.3em;
+font-size: 2.25em;
+line-height: 1.2;
+border-bottom: 1px solid #eee;
+}
+h1 .anchor {
+line-height: 1;
+}
+h2 {
+padding-bottom: 0.3em;
+font-size: 1.75em;
+line-height: 1.225;
+border-bottom: 1px solid #eee;
+}
+h2 .anchor {
+line-height: 1;
+}
+h3 {
+font-size: 1.5em;
+line-height: 1.43;
+}
+h3 .anchor {
+line-height: 1.2;
+}
+h4 {
+font-size: 1.25em;
+}
+h4 .anchor {
+line-height: 1.2;
+}
+h5 {
+font-size: 1em;
+}
+h5 .anchor {
+line-height: 1.1;
+}
+h6 {
+font-size: 1em;
+color: #777;
+}
+h6 .anchor {
+line-height: 1.1;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+margin-top: 0;
+margin-bottom: 16px;
+}
+hr {
+height: 4px;
+padding: 0;
+margin: 16px 0;
+background-color: #e7e7e7;
+border: 0 none;
+}
+ul,
+ol {
+padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-top: 0;
+margin-bottom: 0;
+}
+li>p {
+margin-top: 16px;
+}
+dl {
+padding: 0;
+}
+dl dt {
+padding: 0;
+margin-top: 16px;
+font-size: 1em;
+font-style: italic;
+font-weight: bold;
+}
+dl dd {
+padding: 0 16px;
+margin-bottom: 16px;
+}
+blockquote {
+padding: 0 15px;
+color: #777;
+border-left: 4px solid #ddd;
+}
+blockquote>:first-child {
+margin-top: 0;
+}
+blockquote>:last-child {
+margin-bottom: 0;
+}
+table {
+display: block;
+width: 100%;
+overflow: auto;
+word-break: normal;
+word-break: keep-all;
+}
+table th {
+font-weight: bold;
+}
+table th,
+table td {
+padding: 6px 13px;
+border: 1px solid #ddd;
+}
+table tr {
+background-color: #fff;
+border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+background-color: #f8f8f8;
+}
+img {
+max-width: 100%;
+box-sizing: content-box;
+background-color: #fff;
+}
+code {
+padding: 0;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+margin: 0;
+font-size: 85%;
+background-color: rgba(0,0,0,0.04);
+border-radius: 3px;
+}
+code:before,
+code:after {
+letter-spacing: -0.2em;
+content: "\00a0";
+}
+pre>code {
+padding: 0;
+margin: 0;
+font-size: 100%;
+word-break: normal;
+white-space: pre;
+background: transparent;
+border: 0;
+}
+.highlight {
+margin-bottom: 16px;
+}
+.highlight pre,
+pre {
+padding: 16px;
+overflow: auto;
+font-size: 85%;
+line-height: 1.45;
+background-color: #f7f7f7;
+border-radius: 3px;
+}
+.highlight pre {
+margin-bottom: 0;
+word-break: normal;
+}
+pre {
+word-wrap: normal;
+}
+pre code {
+display: inline;
+max-width: initial;
+padding: 0;
+margin: 0;
+overflow: initial;
+line-height: inherit;
+word-wrap: normal;
+background-color: transparent;
+border: 0;
+}
+pre code:before,
+pre code:after {
+content: normal;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font-size: 11px;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.pl-c {
+color: #969896;
+}
+.pl-c1,
+.pl-s .pl-v {
+color: #0086b3;
+}
+.pl-e,
+.pl-en {
+color: #795da3;
+}
+.pl-s .pl-s1,
+.pl-smi {
+color: #333;
+}
+.pl-ent {
+color: #63a35c;
+}
+.pl-k {
+color: #a71d5d;
+}
+.pl-pds,
+.pl-s,
+.pl-s .pl-pse .pl-s1,
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sra,
+.pl-sr .pl-sre {
+color: #183691;
+}
+.pl-v {
+color: #ed6a43;
+}
+.pl-id {
+color: #b52a1d;
+}
+.pl-ii {
+background-color: #b52a1d;
+color: #f8f8f8;
+}
+.pl-sr .pl-cce {
+color: #63a35c;
+font-weight: bold;
+}
+.pl-ml {
+color: #693a17;
+}
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+color: #1d3e81;
+font-weight: bold;
+}
+.pl-mq {
+color: #008080;
+}
+.pl-mi {
+color: #333;
+font-style: italic;
+}
+.pl-mb {
+color: #333;
+font-weight: bold;
+}
+.pl-md {
+background-color: #ffecec;
+color: #bd2c00;
+}
+.pl-mi1 {
+background-color: #eaffea;
+color: #55a532;
+}
+.pl-mdr {
+color: #795da3;
+font-weight: bold;
+}
+.pl-mo {
+color: #1d3e81;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.task-list-item {
+list-style-type: none;
+}
+.task-list-item+.task-list-item {
+margin-top: 3px;
+}
+.task-list-item input {
+margin: 0 0.35em 0.25em -1.6em;
+vertical-align: middle;
+}
+:checked+.radio-label {
+z-index: 1;
+position: relative;
+border-color: #4078c0;
+}
+.sourceLine {
+display: inline-block;
+}
+code .kw { color: #000000; }
+code .dt { color: #ed6a43; }
+code .dv { color: #009999; }
+code .bn { color: #009999; }
+code .fl { color: #009999; }
+code .ch { color: #009999; }
+code .st { color: #183691; }
+code .co { color: #969896; }
+code .ot { color: #0086b3; }
+code .al { color: #a61717; }
+code .fu { color: #63a35c; }
+code .er { color: #a61717; background-color: #e3d2d2; }
+code .wa { color: #000000; }
+code .cn { color: #008080; }
+code .sc { color: #008080; }
+code .vs { color: #183691; }
+code .ss { color: #183691; }
+code .im { color: #000000; }
+code .va {color: #008080; }
+code .cf { color: #000000; }
+code .op { color: #000000; }
+code .bu { color: #000000; }
+code .ex { color: #000000; }
+code .pp { color: #999999; }
+code .at { color: #008080; }
+code .do { color: #969896; }
+code .an { color: #008080; }
+code .cv { color: #008080; }
+code .in { color: #008080; }
+</style>
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- # Supplemental Material S2. Code implementation of the subsampling algorithms. -->
+
+<h1 id="code-implementation-of-the-subsampling-algorithms">Code implementation of the subsampling algorithms.</h1>
+<p><strong>Acronyms</strong>: Healthcare Associated Infections (HAI), Antimicrobial/s (AM), Antimicrobial Usage (AMU), Microorganism (MO), Alcoholic Hand Rub (AHR), Point Prevalence Study (PPS), Likelihood Ratio Test (LRT).</p>
+<h2 id="introduction">Introduction</h2>
+<p>We implemented three algorithms, defined “Distance procedure”, the “Probability procedure”, and the “Uniformity procedure” with the aim of producing subsamples with specific distributional properties starting from an initial collection of data which is possibly biased in terms of generalizability to the target population. In the following document we present the R code to implement the algorithms. The specific implementation described here is focused on the Italian PPS study on HAI/AMU prevalence in acute care hospitals but can be easily translated to different settings.</p>
+<p>The methods try to change the distributional characteristics of a sample by producing a subsample whose units are chosen using information on some characteristics of interest. Two of these methods, the Distance procedure and the Probability procedure, are aimed at generating a representative sample of a target population, by using reference data at the population level with information on the distribution of relevant characteristics. The Uniformity procedure instead generate a sample which is uniform in relation to such characteristics, therefore it does not require population reference data.</p>
+<p>This document and all the relative material is available at <a href="https://github.com/AD-Papers-Material/SubsamplingMethods">https://github.com/AD-Papers-Material/SubsamplingMethods</a>.</p>
+<h2 id="input-data">Input data</h2>
+<p>The algorithms take as input a database with a statistical unit for each row and the characteristics of interest as columns. In addition, a column with an unique ID for each unit is needed. Our algorithms also accept a Quality Score (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed>, cfr. Methods and Supplemental material S1) as additional characteristic.</p>
+<p>The Probability and the Distance procedures require population level reference data with information for on same characteristics. If individual unit data is not available at the population level, simulated data can be generated given access to the joint distribution of the considered characteristics, ensuring that the simulated dataset is large enough to limit random variation.</p>
+<p>Our study data use acute care hospitals as observational units and hospital size (number of acute care beds) and region of location as characteristics of interest. We also used the official Italian national database of acute care hospital as population level data. We provide simulated sample data and the population level data for the testing of the procedures at <a href="https://github.com/AD-Papers-Material/SubsamplingMethods">https://github.com/AD-Papers-Material/SubsamplingMethods</a>. These two datasets also provide hospital size grouped in three categories as used in the manuscript.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Simulated sample data retaining the real sample characteristics</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">str</span>(Sample.Data, <span class="dt">vec.len =</span> <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; &#39;data.frame&#39;:    143 obs. of  5 variables:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;  $ Region: chr  &quot;regione piemonte&quot; &quot;regione piemonte&quot; &quot;regione piemonte&quot; ...</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;  $ Beds  : int  183 172 157 179 85 133 189 182 ...</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;  $ QS    : num  101 628 147 109 ...</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt;  $ Class : chr  &quot;&lt; 200&quot; &quot;&lt; 200&quot; &quot;&lt; 200&quot; ...</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt;  $ Code  : int  1 2 3 4 5 6 7 8 ...</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Official list of Italian acute hospitals, updated to 2016</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">str</span>(Reference.Data, <span class="dt">vec.len =</span> <span class="dv">3</span>)</span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; &#39;data.frame&#39;:    963 obs. of  4 variables:</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt;  $ Code  : int  10007 10010 10012 10612 10653 10655 10003 10011 ...</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#&gt;  $ Beds  : int  258 73 22 105 9 96 337 368 ...</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt;  $ Class : chr  &quot;200 - 500&quot; &quot;&lt; 200&quot; &quot;&lt; 200&quot; ...</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt;  $ Region: chr  &quot;regione piemonte&quot; &quot;regione piemonte&quot; &quot;regione piemonte&quot; ...</span></span></code></pre></div>
+<h2 id="general-aspects-and-notation">General aspects and notation</h2>
+<p>The procedures at the moment can utilize only <strong>two characteristics</strong> at once and these need to be <strong>categorical variables</strong>. Therefore continuous characteristics (specifically, hospital size in this case) are discretized in quantiles by the algorithms before use. The number of quantiles to split continuous features into is an input to the algorithms.<br />
+The hospitals are then grouped into <em>blocks</em> according to the characteristics of interest: in this study, we used <em>location/hospital size blocks</em>, defined by the Italian region (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAARBAMAAACVyRntAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid2ZuxCrzWZUMiJ270Sf5u5eAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABJklEQVQYGXWPPUjDUBRGT1Nr82frD0jFxdkpRRe3ugguklGH0owODhl1i0IrgkNRpEE6xNFBrJNbyKaLkFEcRNzVQHFpF9+bkhS80znfd+G9C8wPFzZt/psph6Kblp8pSqp6aKM0ClOUdD/A/M1HGXuBppfxPG6xtwPaWUSp1rZvLegfB9rzbieQe0N/XXz5gG8e7Wa7+0YxMuLwztMaotTHmC7qCsscUQ2NhFMYdU8wHdGaMWqCsn3+UUn4omDxSmlEnelItPLcmNZA7LksMhMYY7n+TlVE8lzFLbUEFS0OuajoCeVIPNCriOwnoNwIlYBrzVHHzKms0kF1qatQWNtA3/eMJd+m1o+5ueLB9zA9SfkpOHnPm9LNe9ae6GV1gi/92YnkDx14S/0dMQ3DAAAAAElFTkSuQmCC" title="Region"></embed>) and the quantile of number of acute beds (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAANBAMAAAAUI1C9AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid2ZVBDvRLvNq3ZmMiIARFEQAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABA0lEQVQYGVWQO0sDQRSFv4mbTDC7cVcXJChxEbSwyk8IWAkqEdLHIqAgwnRKKgsLK7W2sotgkzpB3CKQIs2UdqawFCKkEnzdjc3mNHPnPO4ZBlicVA82l0GvrL4zi/wF3AkVoo/QUVpc6MCXhCoQUTRp6dWif2AuBj/Ny/wM6hDy9zCSaxoP/7Tz+QTetsSbnsXpSw3HQbAWy/nyu0E9Zxme9+CRMyh+g9QJ9BZmnGyNcSPK4H5M65KeHVgSyxtkLocG5m/hSlpkbMGphC00xAg5H06gUIU2TmTYp0AjURibaZ283e2g/NjpDq7JWPZQN+1saWJQKpB/9MJaPbsu5nC39gdQrDtFelYT2wAAAABJRU5ErkJggg==" title="HSize"></embed>) the hospitals fall into. The region and the hospital size quantile allow the definition of a joint discrete probability distribution which is used by the algorithms.<br />
+For each block <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAQBAMAAACfEoDkAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAIqsyZrt270RUEIndzZm1YPYEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQYGWNg1BdgYNjzgAEGmOMXgJn2QJJ3AkyUgaEdwnQFUvwLEMKbIEw1INWDEGW4AmFXAKl9SMKfwWzGn9MmgFRwpmxmYJgyU4DjA7MbUIKlkKGK4SMDwzMGcQYmB6YN3AHG5kBhpg0MFRwFDCwXGPgNchk4F/BubljJMIWBvYHhM7cCA7sDw3qDL0Bl/BFAgoFhPQPnB14HBnkBBn/GX0B+v3UASFiGgSmBX9AA6KlrzB8YGBZsZTjBzKLAwMPQy7CehYHHAMg+yMAicIXhMKfDKQaOnQkM3B4MjDtdGBikZ3oxnGKYNoHxAsgcDMDtgCEEEuBZglWYzxEAzAY1dQH5/1EAAAAASUVORK5CYII=" title="block_i"></embed> a probability <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAAATBAMAAACEgm6uAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAVHYiZpkQRO+Jq7vdMs3/9KjfAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAENUlEQVRIDYVVXWgcVRT+Zmd2Zv93ul371LRrqmgVZEAhtIidJjViFd1C1Ya+TLVoBWGnSDHFalcolT4EIqbg2lAGqQg+SFoD0ooYXyp9KJ0+iPVBskoR+iBdTRu1GPA7d5M6s9lkP8Ldc873zblnzpx7A/TCy70ESPZUrCxIrESlr4zs/WaRDJD/1ltJCExWkSU7efvk+VVUSF/ZZU6e8IHDm4fcSDazGnFi5gVgo6MiCT42GuPEOQK82g4WbFVCNkCy2Y7ISr4DXwOFAEjbGPWjdLlDd9e9BdRc5RW4fnw3vmQMAOfadtFTJRRdaAtLLEC+A38C1OAQkIvRkr8b8sw2aytGqrzeTbO4Id9XPsSsg8R8N9liTDIeZV93sxExGdvSFUYL2OMp6kuuc11E+Xo7eLJdwoPAAbeLbCmUYMaP6PAL60sx9WsFQGnTjmosSCczBWsMh9+c8FEHzbLong5h7BjS+h97Eler1ukbLvr7HOmQdOEC9n0FaNsrMCeGvavMSL123/6dIUmCGWV7bPyVAaH32D8rOTcw192S7hDJzwXjYqamBzd7WHspHWCGnRvDNJIVvY4yJvbV3OSwPYasy79MUzokJdwu7/WAT/AWnvAOCC/6gWuuxq0FqfONBgeMp+tfzyRtPHCuouRowbLqHDf54hFs8+lorx23HL3JSa7gOzwHLOB06PmjSH+mt1B08Awy43xaSsjPIdGEMYMP8QuKA+RFbz+LRMBMxLYQMg7EkcAircNoy3EcIvpUcZHlebHNNPuVb3KSHczjGMwFPP63jYeQqZLhQT2GlM8+SQmJOjg/ubODvtUiRV7pR5CpMBPBjDIOnAOtKTR0W8mBi0xg47227P/1C2XyyMOckWvBaOpzsge2tHAWKTsVsnMMzaLgqhKyvBbqqDncqEkqFbb170v5CsyYnQJ+5GQFpIF3eOwVV+c7etaMEVAXmYVL6rGax5+6XAtZt6/F71Gw6c7zYllv4brJ0MNW8dFQusAjn2uaNeqTVU7oeisvejZ8g8UYcYLjUAHu5WD68rjmoCJytcGsVwhddiMC/Q/lbJD1N7kWiq/4l7ETGViV/Dx+R8PA5QTq5g2jZqguHA1RmBrIhejTAmNO8dQbTYwY2Oqx7X+pcZBDMQihS2fedkQOnb25f/smyNBFcOqOLV6/LKz7ItJrsKXswjpYRmJ3ycFP61Bai0NrfhhOPyUlpF/YhfwZV/+g7GGiVBde9AlXrGsucOqO//rNl4DxRsMHg6b9xvdQcoPsNHjs+LsCtnbEeRg7wQ8RhUxoDOp9YpGIk/XaV19ufyQYN0USRdGJesruKCHXuWWnH0vAV+TccIaGYuGoo1ejHv8ZxF3xYiU8AjVCEZUWsZebLwLv/rM8HIscjHnWzfGYL06shHvKnYJVSzDCZemWB3ib9EC+B78azez/AfL+Ca9eYGPqAAAAAElFTkSuQmCC" title="p_{i} = Pr(hospital|Region, HSize)"></embed> is defined, both for the sample (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAAAOBAMAAABjvHmeAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAVHYiZpkQRO+Jq7vdMs3/9KjfAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABC0lEQVQYGWNgEFJ2CWDACdjEvjCE4JRlYGdvYJjFIIKpoMIALMa0gGEppiQDAwdEkFuAoRGb9C2IIH8C+wGWBUC2owPDRBU2zcJgxwlJIZ4MSgxMQgkMDPcT+C44HGNg4J3gy31Bk4X/gjbDAYc2rgt7GZazFzAwqDoqMzA/AEr/unCHIZzhNsNytgO8G7gLGpg/CgHN3ALEnA5A4maDK8MxoJnHGANYFDhyNzCCg+MzUIYnhZnhFsMCSeZjAmvZDnCVcBV4skzkXcBwgYH3A1Ca1ZlbIaXkAqvgIoYNvBOYdHkcFZgDGaYAQ6PuJ1AaCAQgFITMQeaA2GxARyJAKYIJYTEiC7DtToByAXDeOpeOpeiYAAAAAElFTkSuQmCC" title="p_{i,sample}"></embed>) or and the target population (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAOBAMAAABqV9nkAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAVHYiZpkQRO+Jq7vdMs3/9KjfAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABD0lEQVQYGWNgEFJ2CWDAA9jEvjCE4JFnYGdvYJjFIIKuhA0hwLSAYSmCB2NxG8BYDNwCDI1wDpzBAWcx8CewH2BZAOSruDEoTmdZwHRNszCMN86BaaI7kHOBgeF+At8Fh2MMDFwC07kKeByO8ZnwX5jIoMQg0CsE5ABtUnVUZmB+wMBwB4T4mR9wMNxmWMuwl8F4A1AYZNMWIOZ0YGBwBaE6pgm3gbobgJBFgYFlwi2g5Gcg5klhZhBlSBdl2MspMElgLfvisgcOXAUMQA4DA+8HoAJWZ24FTkcBTqcLvOGuAhvYljAEXuAGygWeZWCo+wlUAAQCEAqNPADnsxXAmQiGNdAdMMAIYyDTLE4MDAAyoDeqJoJoxQAAAABJRU5ErkJggg==" title="p_{i,country}"></embed>) which indicates the fraction of hospital in a block over the total. All the algorithms are constrained by a parameter <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> which defines the size of the final subsample.<br />
+The algorithms employ the Quality Score <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> as a further discriminant in sampling; to avoid using it without code modification it is sufficient to assign the same value (a positive number) to all units. Note that a lower <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> implies better data quality.</p>
+<h2 id="unformity-procedure">Unformity procedure</h2>
+<p>This procedure subsamples hospitals trying to obtain an equal number of units in every block, by iteratively choosing one hospital from each block. This is the general implementation:</p>
+<ul>
+<li><p>a candidate list is created from the original sample;</p></li>
+<li><p>the hospitals in the list are permuted randomly or ordered in ascending order by <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed>;</p></li>
+<li><p>the first hospital is selected;</p></li>
+<li><p>all other hospitals belonging to the same block of the selected hospital are removed from the candidate list;</p></li>
+<li><p>the process is repeated until there are still available blocks in the candidate list;</p></li>
+<li><p>once one hospital from each blocks has been chosen, the hospitals from all the blocks are made available again in the list, apart from those already selected in the sample;</p></li>
+<li><p>continue until <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> is reached.</p></li>
+</ul>
+<p>For the uniform procedure, we discretized the number of beds only into 4 quantiles since it was less relevant to build a precise discrete probability distribution.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>uniform.sampling &lt;-<span class="st"> </span><span class="cf">function</span>(Input.Sample, n.required, <span class="dt">n.quantiles =</span> <span class="dv">4</span>, <span class="dt">use.QS =</span> T){</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">library</span>(Hmisc)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="co"># Prepare data by discretizing continuous variables like the number of acute</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="co"># beds and by changing QS to a fixed value if not to be used</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    Hospitals &lt;-<span class="st"> </span>Input.Sample <span class="op">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="st">        </span><span class="kw">transmute</span>(</span>
+<span id="cb2-10"><a href="#cb2-10"></a>            Code, Region,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>            <span class="dt">Beds =</span> Hmisc<span class="op">::</span><span class="kw">cut2</span>(Beds, <span class="dt">g =</span> n.quantiles),</span>
+<span id="cb2-12"><a href="#cb2-12"></a>            <span class="dt">QS =</span> <span class="cf">if</span> (use.QS) QS <span class="cf">else</span> <span class="dv">1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    Selected.hospitals &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    Candidates &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n.required) { <span class="co"># Until n.required is reached..</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a>        <span class="co"># If the candidate list is empty, rebuilt it from the non-selected hospitals</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>        <span class="cf">if</span> (<span class="kw">nrow</span>(Candidates) <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>            Candidates &lt;-<span class="st"> </span>Hospitals <span class="op">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="st">                </span><span class="co"># Remove already selected hospitals</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="st">                </span><span class="kw">filter</span>(<span class="op">!</span>(Code <span class="op">%in%</span><span class="st"> </span>Selected.hospitals)) <span class="op">%&gt;%</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="st">                </span><span class="co"># Permute order, useful only if QS is not used</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="st">                </span><span class="kw">sample_frac</span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="st">                </span><span class="co"># Arrange by QS ascending, best hospitals first</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="st">                </span><span class="kw">arrange</span>(QS)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>        }</span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a>        <span class="co"># Extract the first hospital of the temporary list and add it to the list of</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>        <span class="co"># selected hospitals</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>        Extracted.hospital &lt;-<span class="st"> </span>Candidates[<span class="dv">1</span>,]</span>
+<span id="cb2-33"><a href="#cb2-33"></a>        Selected.hospitals &lt;-<span class="st"> </span><span class="kw">c</span>(Selected.hospitals, Extracted.hospital<span class="op">$</span>Code)</span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a>        <span class="co"># Remove from the temporary list all hospitals in the same location/size block</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>        <span class="co"># of the extracted hospital</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>        Candidates &lt;-<span class="st"> </span>Candidates <span class="op">%&gt;%</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="st">            </span><span class="kw">filter</span>(</span>
+<span id="cb2-39"><a href="#cb2-39"></a>                <span class="op">!</span>(Region <span class="op">%in%</span><span class="st"> </span>Extracted.hospital<span class="op">$</span>Region),</span>
+<span id="cb2-40"><a href="#cb2-40"></a>                <span class="op">!</span>(Beds <span class="op">%in%</span><span class="st"> </span>Extracted.hospital<span class="op">$</span>Beds)</span>
+<span id="cb2-41"><a href="#cb2-41"></a>            )</span>
+<span id="cb2-42"><a href="#cb2-42"></a>    }</span>
+<span id="cb2-43"><a href="#cb2-43"></a></span>
+<span id="cb2-44"><a href="#cb2-44"></a>    <span class="co"># Filter the initial data by the selected hospital codes</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>    Input.Sample <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Code <span class="op">%in%</span><span class="st"> </span>Selected.hospitals)</span>
+<span id="cb2-46"><a href="#cb2-46"></a>}</span>
+<span id="cb2-47"><a href="#cb2-47"></a></span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="co">## Examples</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a></span>
+<span id="cb2-50"><a href="#cb2-50"></a><span class="co"># Create a subsample of 55 hospitals using the QS</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="co"># subsample.uniform(Sample.Data, n.required = 55)</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a></span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="co"># The same but this time hospitals are chosen randomly</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a><span class="co"># subsample.uniform(Sample.Data, n.required = 55)</span></span></code></pre></div>
+<h2 id="probability-procedure">Probability procedure</h2>
+<p>This algorithm uses information from a population level list (Reference Data) to built a discrete probability distribution of the target population which is then used to drive the creation of a representative subsample. The hospitals are selected according to how relevant, in term of number hospitals over the total, is the block they belong to at the country level. The <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> is used to weight such representativeness. The weight of the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> itself can be tuned.</p>
+<ul>
+<li><p>the blocks are identified in the Reference Data and for each block <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMBAMAAACzedEdAAAAJFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHJj5lAAAAC3RSTlMARN0iMlSZEO+JZpCQXvYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAvSURBVAgdY2BgVGBgYBZggAGWMAaGUg4HBgFroMg0IG5hYGBVEGDgnLCAgWVqAQBJtQUoavjM8QAAAABJRU5ErkJggg==" title="i"></embed> the probability <embed src="data:image/png;base64,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" title="p_{i, country} = Pr(hospital|Region, Hospital.Size) = \frac{N_{hospitals} | block_i}{N_{hospitals}}"></embed> is computed as the proportion of hospitals in the block over the total;</p></li>
+<li><p>these probabilities are assigned to the relative blocks in the sample;</p></li>
+<li><p>a score is computed for each hospital <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAQBAMAAAA2ZkhwAAAAJFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHJj5lAAAAC3RSTlMAIu8QVESZq2bdiaoDY/wAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABESURBVAgdY2BgYBACYgYGEzCJRIQkADmsAiVAkoNhCkiCeTOIZJkAItkSQCSnA4i0NgCRkSCCoQqIjQSVgSR7mwADAwABUwZabWIS0gAAAABJRU5ErkJggg==" title="j"></embed> as <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAAUCAMAAAB72TL/AAAAM1BMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxgEwMAAAAEHRSTlMAZiJUic0yEN3vq0R2mbuvh9d0iAAAAAlwSFlzAAAOxAAADsQBlSsOGwAABFxJREFUWAnNWIuWqyAM5CWooNf//9o7Ewh1rXbd3scu56y1IcAkJJN0jflBI5VvAvNd594xd76jdKUTxuUwFdfNdVEqxZYlte85lGCd1dlUl1oAWJIbVPwTPksWFHmIb6EZ/HFZnrrErvSHm6pXAlXzVM+jjqd/rBmTwZKVkp8y5IZcidt7Ttk0DLo9pYdeaIbWz1wDY+yKxtSzBxOh2ANoN/9dr3JbPPw9p+S9jdWGVc3LLUKM3zizVHmoWvKU2LHFWAifIm6n979fVyWA95wSjpQC7+qOk3qnRuFaI0hnaWimCJ4J1niJOItBBW+9l89iAyI4h+yCZd5h4gY/+1Kctc/QsMGt0QngtVOOaEvxkaiHarhihdjrjkHigyC85JjfhnJMUeq64O3ihWkYtnCQmfmH6FngAAcd78ZgAjw4Q5AfpMTNzTL30aIw+bRhhxaaovS1Rw//l045omWKzGSEGhaKVcRKKWOnzqW6B3VpA6nuR/dbFQawPRQKd0boWOGcLfrETMzOWKINEmt98/127T2DzqkoSF4pVv2PkCB7VMKXTjmi5Um8ylppFKsVsYb3pi9mVD+Z3F4VqbJORWfcuE3gFl4zh+Rf2mIyLUvH1dtWLavG1VPIfr6ZP51BdLcol8FvD6fktY+G7hQta2u9DMUqRkwtRdKm1JklnOR+je/nCYJD4DCXNuNaRXOyzjKaauFPna5k8YvHyrPp3ztD873rpnvpc4I2Clh6TbGKESKW7TvPSn8XKxMItfbT2Z/shpg+mbZFqp8DAi5VN6WebUK/beUzp+CGkRJSGLtisZaJ6UM27BZLTCVkj74yLuTFAmLLdQLbdliPSNnBbK9naMtqMijFgQUaVjFCxLJsmQ0a2ggi5NdSr22mbzrSx+mygooZPhgZVahCI4KOQHt8UWB8NDb5xqn4fjIincJutCvOKHHZ8PRRusUBjTUsZk9QcKI3U/S/2EYOUj6UZrZ6lSdHgD4g3aOFJ9MQcOQmPZdiVbFxM3ZNY8QVWFIPRi3I6El2SI1TbhEV1BUvbRPqkee9si5JAhM3h04ks7xMjbKgctM6VYySEPJEeiKFAZUd4wzHrfhzgqRN6A2mMG8DO4LzcUSbF+/jAty1eVCsXRwnYZAw20LP8wtKKoY4XpHCPWLy+ZmvpXKhlyq9f0S8CJLas/CZB6SKOISeZp7wz9TbwoSEtZPn5fZ/PIHt09Otqkny0+itI8SSy5U7QoYi3OLhjgQKkbhgt4hsRpTk2eU0MNolrWVCNn0f2CWm/QTS9LkyNpPevxCG/vV4kL2ExIqQCGiR+WT7GJeMbpG/QBO7xAUkVX+OxsULE8CPz5ivj/v6zDiyfHwcalL/n8LH6RvflGROVfOwdRoWxadIPV0mQi3G+Qtrrne7minTc342k+wlh11t1uSlMcUnaiBMUUwvSsh+C5CtUIvIhIr2s//2vZv09rlrq++f4qyKty/dPnzy6dZ/WeHKpN/yjRxjpvoGowAAAABJRU5ErkJggg==" title="score_j = p_{j, country} (1-scaled.QS_j)^w"></embed> where:</p>
+<ul>
+<li><p><embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAOBAMAAABtFQfxAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAVHYiZpkQRO+Jq7vdMs3/9KjfAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABGUlEQVQYGX2Qv0rDUBTGf0nT/GmaGkUFQSFaHToUujkIUiVLnSL4ANFFcJAKTg4S38BCQehUB+kaqg/QwQe4DpkcFOoDFHRxEMwVScFKPw6c73fOB/dyYK7sB0yRvvjBwZQ9hhHRgfhvJswGape7DMbmPrO2y1UGYxNldiY0BjQEqH6oLjX3qB7dLITJG5V5CfASloR2eA23VrPHYzEc1r8sV/UU82k9BdjYKaPnXZyBrNE2kRMXhC1yW5ACPMjHSjW0IC3jteLEqmdiwi40nC68y4BJTQn0s8AWLWu1IC42TzV60LI8nJEMPNOnPUu7SnK+b3NSz6/I0yTLgstPGVhDkW1Cxd+JN+R4Ygm5OP3Hj/ou7j8BfI9vR0I72MmipmgAAAAASUVORK5CYII=" title="p_{j, country}"></embed> is the probability of the block of the hospital <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAQBAMAAAA2ZkhwAAAAJFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHJj5lAAAAC3RSTlMAIu8QVESZq2bdiaoDY/wAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABESURBVAgdY2BgYBACYgYGEzCJRIQkADmsAiVAkoNhCkiCeTOIZJkAItkSQCSnA4i0NgCRkSCCoQqIjQSVgSR7mwADAwABUwZabWIS0gAAAABJRU5ErkJggg==" title="j"></embed> at the country level;</p></li>
+<li><p><embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAATBAMAAAD8GDcmAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAZiJUic0yEN3vq0R2u5miby3cAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABu0lEQVQoFYWQP0gbURzHP3f5c0kuaoyFiFi4QaSblwbapZBIdRFEazs6XLuWNgdScHBw0lJoiV0culyh4npgh7pIxC7VWOIkiKDSzaVHHGyhQ3+v7Qt2UH/w7vf9vc/3/d7vHVyM+Jt/VfLIUWpu86sv6ePnfE6V/8VDXa0rYexjLkPcZT3UoJ3PtdpWYvzv2oCU3m9ne17LPRG2dKQMJ9JY77dz/FjLloi0GrDqcQDmn32jO0+s5zbZrSckBBbvQaNUEzaheNmnPO0pJYhh3vOBPVbocsjU7bAjlwmEvFb4OySPfvhKMur52UnuGk2xy7t7iTs35YCQXwq/Up9PATTh1k+3S+6Vwd4xJq2KOyyR9sA6E5PdUnPGJkVKDERD0n/ISUY8wJL3mC2qCizJSh3zVA4Eqk641ARYVbLNsDVoRTJbxK4t6NRqeKewBZmQGx4Z7HrKIZ/mRaUQ5Vgg5tWsR4a5yuxj+iqof9WPMVPBXiti3i/69rc7J/5wyECpwEbpeSH5Fsb6p3CojIyEWJ2u3HNVBJZ2JJyrfMIWO7UhrcVl+eW0Js+0uCx/CTRpaHFtrk9da9GGQ5ff9fpgqNqSp/sAAAAASUVORK5CYII=" title="scaled.QS_j"></embed> is the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> of the hospital <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAQBAMAAAA2ZkhwAAAAJFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHJj5lAAAAC3RSTlMAIu8QVESZq2bdiaoDY/wAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABESURBVAgdY2BgYBACYgYGEzCJRIQkADmsAiVAkoNhCkiCeTOIZJkAItkSQCSnA4i0NgCRkSCCoQqIjQSVgSR7mwADAwABUwZabWIS0gAAAABJRU5ErkJggg==" title="j"></embed> after that all hospital <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> have been rescaled to the range [0,1], with 1 representing the worst quality score and 0 the best. The term <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAAAUBAMAAABYJUOTAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHarRM1UZrsi790ymYmFLq+pAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACK0lEQVQ4EaWRz2sTURDHP+tukm5MNosHL1UMsWoRlfgfBPUgLZXQg1IosnhILkK2VYiiiNWD3roXQQ9KvVg8ipeKgntQ9CIt9ODRQEEEta3iD4IenHltWiM11Dowb75v3ny/7808sPJs3AzX7sx/P7N8nhmPFG3Zs9+XcOzA+VDCdk31gDOsYG1LBK18n4LUGO5d8AL6SrJNqkwZd99PiX+xnN5obKeu75Z8ADabZHlZpYNCvynU5Zq4I/dTg9fyDM3xFroiiR0UPppCXZriaX31dMxVcDXHYclp/EOhXo+oViIKpyNOyHH1FBQqE4IWxKn51AZjRYZu2mlXSIZeaId2oyu0y3qznXdKgotCmFLWG8iM//AVkoMbGtsVvGGLXST9c9gNZwIu4EWC81L4WZyHuvSL4GV5g89z3RqFo9fFdFzu03t8lzhJuuRJ4VS1R3EM1jdJO02dQbIsUH7Ep1tj+xtwF9xPItRkmkSIJY0YLIWTSprhmeiItJiMcY1JHiedWYRti/Q6uVuxJVj2vY4QZq1CPAu7ZTglLsWGnvDl4Iv4qhU5xCNS0YR1MrUjBU9Ixordg3S/4EwD/cxRUlsF3YRNAdbc1w+rfDhSCblTGWGg8mrEO8sKztyHudEhIhrz8yWsbAB16XCpn98VOuOiJURjiQjGBKn/iz3ItqplhOb+263EOuPjwVbhS8jqFJ2glVlf3LvSdgEuGo50syHLDyFD/R+7Ehj2L4lyf/mGpi1AAAAAAElFTkSuQmCC" title="(1-scaled.QS_j)"></embed> reweighs the sampling probability of a hospital using the quality of its data;</p></li>
+<li><p><embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAIBAMAAADQCGj8AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAMlSZEO8i3c1EdomrZrtpo7NTAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQklEQVQIHWNgVGZgVnBNYHBiF2AV4JjAMCGfIZ+BK4GBYQ/DPQZeBgaGSoZTYPoLkJUI5IexBDFcANKT78rccmAAAGC1DLIvAY6OAAAAAElFTkSuQmCC" title="w"></embed> allows scaling the importance of the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> in the selection, with <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAMBAMAAAAAMfkHAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAMlSZEO8i3c1EdomrZrtpo7NTAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAlUlEQVQYGWNgwAJm3Z6ARZSBgbGBoQ2rBJ8Cw2KsEvwCDFOB+pQZmBVcE5BVyCcwyDswOLELsApwgCyzOQMEp4GM+UCJBIYJ+Qz5DFzoOoByDHsY7jHwAtUhQL4Ag74DA0Mlwyk0Cf4JDKpAZV+AUokg5XA7+C4wrAHyw1iCGC6AJOCA8wHYg5PvytxygAuCGVraExgANBojG9jIkWIAAAAASUVORK5CYII=" title="w = 0"></embed> removing its influence;</p></li>
+</ul></li>
+<li><p>finally, <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAOBAMAAABN+VgMAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAZiJUic0yEN3vq0R2mbvQvSoYAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVQYGWNgYBQUYmAWNmJgPujGsGWT4wYGQxsGMDBkcGRYyLCE4Q6DJoNRC8sCrgPcG8ASrgkFPAEM5owBDPzJ1dO5FSQYWBQY+IBSGj8N+AUYGDgFGOrTWS4wMPQZnoYYxaDyQb+AgUFfgUGegdWAgf0TVBjInpDPwMAOxDEM9QUM7B+AEoxuDAxcDNwHOBQYhDgSGBcwmAIF2xiYE8RNGBi4NxsyMDkbFjA5CzIwnAFKqBiLMxRcBjKwgiCsokDBCTgk2B7gkOA5gF2Ch1UBuwTfYQYGAMAXJdY6NYgsAAAAAElFTkSuQmCC" title="score_j"></embed> is used to arrange the hospitals and the first <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> with the higher score get selected. In alternative, the score can be used as a weight for selecting the hospitals by weighted random sampling.</p></li>
+</ul>
+<!-- end list -->
+
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a>probability.sampling &lt;-<span class="st"> </span><span class="cf">function</span>(Input.Sample, Reference.Data, n.required,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">n.quantiles =</span> <span class="dv">10</span>, <span class="dt">QS.weight =</span> <span class="dv">1</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&#39;arrange&#39;</span>, <span class="st">&#39;random&#39;</span>)){</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="kw">library</span>(dplyr)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">library</span>(Hmisc)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">library</span>(magrittr)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">library</span>(scales)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a>    method &lt;-<span class="st"> </span><span class="kw">match.arg</span>(method)</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="co"># Definition of quantiles in the distribution of number of beds according to</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="co"># reference data</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(Reference.Data<span class="op">$</span>Beds, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> n.quantiles)) <span class="op">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="st">        </span><span class="kw">round</span>()</span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="co"># Definition of the distributional blocks at the target population level</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>    P_country &lt;-<span class="st"> </span>Reference.Data <span class="op">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="st">        </span><span class="kw">count</span>(<span class="dt">Block =</span> Hmisc<span class="op">::</span><span class="kw">cut2</span>(Beds, quantiles) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(<span class="st">&#39;-&#39;</span>, Region)) <span class="op">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">Prob =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="st">        </span><span class="kw">with</span>(magrittr<span class="op">::</span><span class="kw">set_names</span>(Prob, Block))</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>    Selection &lt;-<span class="st"> </span>Input.Sample <span class="op">%&gt;%</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="st">        </span><span class="kw">mutate</span>(</span>
+<span id="cb3-26"><a href="#cb3-26"></a>            <span class="co"># Identification of the country level blocks in the sample</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>            <span class="dt">Block =</span> Hmisc<span class="op">::</span><span class="kw">cut2</span>(Beds, quantiles) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(<span class="st">&#39;-&#39;</span>, Region),</span>
+<span id="cb3-28"><a href="#cb3-28"></a>            <span class="co"># Association of P_country to the hospital in the sample</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>            <span class="dt">Prob =</span> P_country[Block],</span>
+<span id="cb3-30"><a href="#cb3-30"></a>            <span class="co"># Creation of the quality weight after rescaling of the QS</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>            <span class="dt">QS.rescale =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>scales<span class="op">::</span><span class="kw">rescale</span>(QS),</span>
+<span id="cb3-32"><a href="#cb3-32"></a>            <span class="co"># Definition of the final score</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>            <span class="dt">Score =</span> Prob <span class="op">*</span><span class="st"> </span>QS.rescale<span class="op">^</span>QS.weight</span>
+<span id="cb3-34"><a href="#cb3-34"></a>        ) <span class="op">%&gt;%</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="st">        </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Score)) <span class="co"># Remove blocks that do not appear in the national list</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a></span>
+<span id="cb3-37"><a href="#cb3-37"></a>    <span class="cf">if</span> (method <span class="op">==</span><span class="st"> &#39;arrange&#39;</span>) {</span>
+<span id="cb3-38"><a href="#cb3-38"></a>        Selection <span class="op">%&gt;%</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Score)) <span class="op">%&gt;%</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="st">            </span><span class="kw">head</span>(n.required)</span>
+<span id="cb3-41"><a href="#cb3-41"></a>    } <span class="cf">else</span> {</span>
+<span id="cb3-42"><a href="#cb3-42"></a>        <span class="kw">slice_sample</span>(Selection, <span class="dt">n =</span> n.required, <span class="dt">weight_by =</span> Score)</span>
+<span id="cb3-43"><a href="#cb3-43"></a>    }</span>
+<span id="cb3-44"><a href="#cb3-44"></a>}</span>
+<span id="cb3-45"><a href="#cb3-45"></a></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">## Examples</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co"># Create a subsample of 55 hospitals</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co"># subsample.probability(Sample.Data, Reference.Data, n.required = 55)</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co"># Set QS.weight to 0 to not use the QS in the sampling</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co"># subsample.uniform(Sample.Data, Reference.Data, n.required = 55, QS.weight = 0)</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co"># Create a subsample of 55 hospitals with weighted random selection</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co"># subsample.probability(Sample.Data, Reference.Data, n.required = 55, method = &#39;random&#39;)</span></span></code></pre></div>
+<h2 id="distance-procedure">Distance procedure</h2>
+<p>As with the Probability procedure, the aim of this algorithm is to produce subsamples that are representative of the target population. The advantage of this procedure is that it is particularly appropriate when the original sample is particularly distorted in relation of the characteristics of interest. That is, some blocks are too much underrepresented compared to target population and therefore the Probability procedure cannot find enough units to reproduce their representativeness at the population level.<br />
+This procedure attempts to solve the problem by taking units from blocks which are similar to the underrepresented ones and have an excess of hospitals: if a block cannot provide enough units as required, samples are collected from blocks with similar characteristics. <em>Similarity</em> is defined through ad-hoc distance measures between blocks for each characteristics.<br />
+The procedure considers the sample characteristics of interest sequentially, implicitly giving more weight to one or another. Such priority can be passed as an argument.</p>
+<p>This algorithm is more complex than the previous two procedures. Here’s the general implementation:</p>
+<ul>
+<li><p>for each <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMBAMAAACzedEdAAAAJFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHJj5lAAAAC3RSTlMARN0iMlSZEO+JZpCQXvYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAvSURBVAgdY2BgVGBgYBZggAGWMAaGUg4HBgFroMg0IG5hYGBVEGDgnLCAgWVqAQBJtQUoavjM8QAAAABJRU5ErkJggg==" title="i"></embed> block the expected number of sampled units give population data is computed as <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAAAUBAMAAAAXXRdqAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEbklEQVRIDa1VYWhbVRT+Xl5ecpP30sapzFEK/VGVWcUw0CmD9jHopoZu788YWxkNONiEiU/3Q7oyfEXHVre6MBR/OFgER0ZReMMVSutsUDpQnH0T6+pqMSCIoGMVS6szs577bpKmeS+xxV2S3HO+75zvnNx3bgLcrRW07pYS6QitdX8g2HPgf8tG16QgPZ5A54JZK6fTJdg7wOplx5f+yXn0zsWB4x60LjBgAJmaETGbU+oGIFkzpppg+acK1RgUKpP3oHWBi2kE3fL+Ua7aVx0ODvvzPqiawl4PLBkQ39LD1AK0z+8gnKjFAs2cshtSxYmrHbjMUGe7lr2iRZ2F6pQpx8t0tszkroqfwcq41zjCISs2v6bOkgXIL9xET0vkd+mhT29TlY1DBiJA7MSWYW+NFcgNoN8FGH7U63VGcvyG/gl7Rb6Ps3eI1vtEqEtLFp59vdcOp7ErOP7oJhsD3542EAC6dtrKfwipBou76gyNlupTpwQ1kiGb2ENPfKaEVey6awcPVkBQ851pnIc2p6VxPyZzNPyLCBloB8xeSBnvvAmVosbwMWFshpKuGu7lzG0WIpRFnU/2FfOqtueFn62Eac4KeBg4KzqDZGhz/G5+TUFvImpUxgq7qCKcaIvYbWiLNc83aiKg00QCgQsivPozLYDiJhzq7F08BhTczr7gnaV5Z1uJfhERp1oDWJE+LMaMD/Yj9PZfNGR8zqgz9jfUDJmDb4Snjl46NhYnCycvTfwKNq1L03milueMOrt3COE5Oqrz4J0FCwi4NwDzeAWjFMzGdHbNHMWpZ9ZP6aTSP8MdIlCeMws4bXOCV5iJqxmWG+Uur9z8luiMniRp2630R2C+moweb4roH5IVddYzC9mweYjFuWZpsTx+OdtxX68VXEze1l+DksG6wz0foEGHNo/f1IAOfCSZWbQF9J/sguQwKxa5epIc0KK7eQ/fwzawM0eEJSrYrQ1bAl3kUuVQjs71SUA5Qw/AgJwHOmYtvSGBKzhA1mdAKCffmdZaFJNrldb4Ar5PyS+1AQMLGx5cWjz3F9jG7jNgDlj3dILfBK2Fv+bakdZS0RypUBlySEHOABKX20PzoIAIUcGR8xG08zi38m5gjILEkmxgisyt0EfwNln0yxRBzKDzD+gipP4nFQ2RBpr4I6NXON+vpZgV4RMzAlzUMj75I6UKLH6FMinOrUzPb385OpCU8SW0we9iiawaJ2sK23eoJHc1vqmrHFXP2I/GBPGtdiJmBI8aoVyzNBjNHdm8QwVd7mbJ8knOwq3wNCTnAafVpjiqfE1udfjhFpfycciSLtt9L19H2zTIki47yg9omsG+G1YpqO7+BCY53504iKZZNJ3CRN++EJ6zSSUFTHyT42zVStEZU4UhaLuHne4EuVRZmb0ARa+MdIQTbKkEV2+Hr9+Ku9Ex3xz6j6i5TniYTyqRoCm8sFGJrsFOFGO3++TIKZqhmuuQhylpuUTpq25bHj5PwqoAxy9qzPJDBRZ7z4/7FxcIOLy3wnh5AAAAAElFTkSuQmCC" title="N_{i, expected} = \texttt{Round}(p_{i, country} \times N_{required})"></embed>, with <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAOBAMAAABqV9nkAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAVHYiZpkQRO+Jq7vdMs3/9KjfAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABD0lEQVQYGWNgEFJ2CWDAA9jEvjCE4JFnYGdvYJjFIIKuhA0hwLSAYSmCB2NxG8BYDNwCDI1wDpzBAWcx8CewH2BZAOSruDEoTmdZwHRNszCMN86BaaI7kHOBgeF+At8Fh2MMDFwC07kKeByO8ZnwX5jIoMQg0CsE5ABtUnVUZmB+wMBwB4T4mR9wMNxmWMuwl8F4A1AYZNMWIOZ0YGBwBaE6pgm3gbobgJBFgYFlwi2g5Gcg5klhZhBlSBdl2MspMElgLfvisgcOXAUMQA4DA+8HoAJWZ24FTkcBTqcLvOGuAhvYljAEXuAGygWeZWCo+wlUAAQCEAqNPADnsxXAmQiGNdAdMMAIYyDTLE4MDAAyoDeqJoJoxQAAAABJRU5ErkJggg==" title="p_{i, country}"></embed> being the target population level representativeness of a location/size block, as defined above;</p></li>
+<li><p>in case <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> is not reached, i.e., <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMoAAAA1BAMAAADyj2lXAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHarRM1UZrsi790ymYmFLq+pAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADpUlEQVRYCe1WT0gUYRT/zey647rutofS/lCMUtahREqIQGigSOoQ3sJLDGulh6S1IgsqNukSRG2H6I+EBkHQH7JTx4QopJKMwEMQjhQKBUZRWVFNb75vvpnRnXY97GwX32He7733+7033zc7+w3ATarf9tKGATplweBEgO1F6yE0CRigr0V/gN1F66bwJk3g4HxG2hhc8/nO8ztQih2oMG8xM03zS3DzFDPDm1/a/D24KTg/bTeXxrIBjZFULDVF88jI3Kaoc6O5rBAQNgdEPG6BDz8gjZ0WKT+/fHaykGQlCT7+nqGS7wI0PI9F0rOKhSQtxC8zda9KeQ9UexO52FJ5rYCE3ZV074dX8rxPx3ZvIhe7B+sFViwgKc9arANfvY3SZRmo3kQu3iJSj/jnQgFJBaPHTUPIyKuRT4WmcBnQUcN1BSQxznrofetVfMbsx+u5CQsuYLG0Rmeebiy/5CKn9f1M2nwgquF1OIt2J+ECTpJ6UGGh6KtBu2RLXCIhR0/0x7yimA0ORQFeNDvRDHCGR42IWVN2aKKYR0KURiyziZt1oYAMxNY70QzQz6N+sOfiriWPhBQ2ndBurreuJJGnoViLq6sJd27rWtdtEMLqruFdkFPJRKqFT4H0VicSGZfIE4dZvd04hLVKgwiJXmYtnV51q6dttFvSL6TvU1bbWh1aOVmRbCIU0t/JKhrD2lnZwGWbe1RlgEv0Oylen4wlW9P3ndCArDPaKnZll/htSo0g2gL07VOTZVkM4TShZ0D5YPRbqnIgrqFb8LeME7IlVzLgdf0i+qMtTqghyhYRoRufZYk00Em5ZUgexHVCJ0D7RH/aygg9+lMOm7/7LFRUUa+vzCTSbgjOf5p1VALEqqN4hMq6jki2UTEIdWLhIqWyAU+M3ip+b4IqfEgDq1/FRKIuVi3C3irgGnGiNwTR9fFj5WriSLp55x48SIFQ4oge34/Jdoy2qfGkS3RROUGrvgHDzaOkt8M2lQ4XnX64tDvcDAEsr/NAGuDecz3uwbmwNjcF2qxzIq2MCERe0ngQ9iZ5ijR57KxvLZ6x09KY5iFEbLzYfdSe6r9h5KZvzf4ZL2k+/9O3XpRkmD7EbPtTlIa+TeQ3jvEjyZc1n/wPO5BhM6WOUoyO7C3FFNgfAQHNOjnIGwc6RakyVkxNTY0HuxYprpdgLaBTl1mgO0YnLd+xXj4soOsQ7xt+fyygAayt3+FW9Hlqa9Fb+jTs0X2SxUz9BSXF8nTGiGXOAAAAAElFTkSuQmCC" title="(\sum_{j=1}^{n}N_{i, expected})&lt;N_{required}"></embed>, the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAATBAMAAADBilZAAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABRklEQVQoFY2QMUvDYBCGnzZJkzZtKS4iXTq4uRT/QIODDkXJ6iAKCnVwqDg4FCGD4iAFEd271cEhYAVBCiLoIIpdqsEquDvqIKjgmbaTofGGu5f3Hu7u+4ChN9T5EoPDOIDEYATMESiGQTeFFmthkJtewAmDnNT7PyA+cEMmKWVm9TydAMzyPXVZHgd3lQBCrMWuXQcDoofB0G7XliKQ8YlZE6O6qbc3GltnGVHsNC5fMTwr4r2ArFK/cEfl28vrxcR2Nm4diUq0hg2Hul5eMTJoey2wUQQvPDtWOs8VJVEXEDtXvr1kTivLEj8iLrRFTWCdsi/qBOKkbEw7avmEpGhR4Zpk9T6Vr5sZUW2mZsxkjdvM+HQf0o5jTqTpVlYfGPMQFWm2tCeyHeYenT4kVW77DTXnl+Ck9u7T7eC+76Z6vcmlP9APZvVPl8AO58MAAAAASUVORK5CYII=" title="N_{i, expected}"></embed> of specific blocks is increased by one unit until <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> is achieved. Units are added to blocks for which the fractional part of <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAATBAMAAADBilZAAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABRklEQVQoFY2QMUvDYBCGnzZJkzZtKS4iXTq4uRT/QIODDkXJ6iAKCnVwqDg4FCGD4iAFEd271cEhYAVBCiLoIIpdqsEquDvqIKjgmbaTofGGu5f3Hu7u+4ChN9T5EoPDOIDEYATMESiGQTeFFmthkJtewAmDnNT7PyA+cEMmKWVm9TydAMzyPXVZHgd3lQBCrMWuXQcDoofB0G7XliKQ8YlZE6O6qbc3GltnGVHsNC5fMTwr4r2ArFK/cEfl28vrxcR2Nm4diUq0hg2Hul5eMTJoey2wUQQvPDtWOs8VJVEXEDtXvr1kTivLEj8iLrRFTWCdsi/qBOKkbEw7avmEpGhR4Zpk9T6Vr5sZUW2mZsxkjdvM+HQf0o5jTqTpVlYfGPMQFWm2tCeyHeYenT4kVW77DTXnl+Ck9u7T7eC+76Z6vcmlP9APZvVPl8AO58MAAAAASUVORK5CYII=" title="N_{i, expected}"></embed> before rounding is higher than zero (<embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAAAUBAMAAADbxC2BAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHarRM1UZrsi790ymYmFLq+pAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADxUlEQVRIDa1V32scVRT+5s5kdmd3djNUDYKWjtWmIm26lODzlEi1ipI3LQgOW0nwR9uhkaYPJmx9qBV82IeG+iKu/0EWQR8dlBZFggPGBAUhatm8FQMlWMiD59zZmcze2R8WetjMnO873/nuvXPvTADNxcOLh+KlP9B8qt82cfBfb1DPQaUwQq6ou/CZ/vQg9rkIqA0qwgyU0nC5IoZx9A5Rsyo9HC+3oKnDZjpUtxHyTCentzDWzK9KESnQ/nEXRlMhM7CTySkdJZdqzUmarkFEKA6xT4SwIkB4DAt4A4KTATHTy4+SS7X2R9jt2oPRQgkwD99c6jXKoXPAlCQFLjrDZkR22Rglj7Xa355M7Puwd1AGJg4FlSDrk88LkdiSrMC4W8jXU2Y8zf6XPFFfkeMbNKP7WAG8l1Gt5d4SOImc70vHY3QDldaZbIEecbqax12UeroQy/cV+51anFKLjJk/6UbToUndouxp6FFcyF4/yQJ9NUYB7HvpDLICznUPZZqRcZ1DqgbLu+eXWuK4GALWHswdPEHENZT8mM9eW1mwFB8juMBX9Nc/6BAp54ikA+RdYaKf+Y0t78GUJxs7eAULRIhFR1zwFnDswJ3zztrrmJpnwNL0HLnAiYALmHwKneVCTYQLKTzSb0Ykl9515/T6/IHNZYi6Ixaf/DWQDtTCccWVt48hahhz+Hy/WeDH/XzVm8Y3ZedssFf1hWuWbh8lwFp61+7y3aC9OBRSwdW9F4rhVNAeu1meSCHwGavSiOXSe9o4FZx8LfhSD6cNjwY6THvMDqzVnvXjlpf4Cyl8iM16k0+4vcq/f1bQsht6WAwtsidAYqsGVD1Kfv8aqIALX8y5P2HDmi1hJYXrwCKJ9iOWs7e1W9dwFnajeGa3TqPg09iBWqD9EnZbzEn6L0KDFWnh2OatoZ8xO2U3hFviE3EJWLZpMrmgwnl6/9AWWz9QZwqBqzktEeRtRjTyqlZwSxM8CmihsQOVLae36SrGm8S0g6YZaaejYtipTurhzI3HCpgGOlW3Vy4RFb6HfcFqVf2//HaQwLbPDzMf5E0L+26u8Y7u8RJvR9qp2UA6tP28/HP8zORm8yNsz2H7GNZe3CjikaDyPhrA2nshV5Vo0CZeDirnavb6kr/Z7MK5k6goy437pPe88UHHK192sT3PA22E7EAt+TDefmtLsma+Rgx90weGcNXShyrRxYk3f2tGB+8Zx6PxredqNeiMDIxiqJYSL5VPvF9VC0Ox36+66PZju9y7wZBiT8mPkXa97672SP8DYuPyJddLq+kAAAAASUVORK5CYII=" title="(p_{i, country} \times N_{required}) - N_{i, expected} &gt; 0"></embed>), starting by the higher values (that is, those closer to be rounded up);</p></li>
+<li><p>for each block, starting by those requiring more hospitals, <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAATBAMAAADVH8ihAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABLElEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt2A4TamkkoDsBg3A8P5akxZoAgnRJSDgYFpBVYFp+AKOH4zcC8A8vZuYJDtZmmsDd4r4BG9kaGDgeOGAwMD0HiWPwwbVBgYeAT2sB1o5OY/0MagsGEK14EchuXsBQysky4wMAQwMD8AKvh14BBDOMMxhuUsCjwJbAUTmP/eAJoLAYwgjx6csJVBBWiyCm8AdwOnTwJvAEwa6E5vZoZTDAsuMqtcWMOiwFXNVbCRW5ZnAcMBmBLWzWwN3tUHWO+uYEjgEeDoYdrbwBzLII0SOkC3IIATggljsRTAWCC6FJkDYfMiC7GkOUC5APDHRNuyztUYAAAAAElFTkSuQmCC" title="N_{i, sample}"></embed> hospitals belonging to it are selected;</p></li>
+<li><p>if <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAATBAMAAADlvxvFAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACK0lEQVQ4EY2TS2gTURSG/2TuJJN51EEE0VKYRXZugrjv4MIKURlQEJViQLEuuhgRkRoKU4i1UANB6j67dNHFFFsRdGAs6CIojovUoBa6d6kL8QGeeZFJY5K5i3v+c853/7kH7gA4/B3s+hxSrVSs8BQQU9kBqVjpGFBOaZiKfTft4e5Yw1MBkYq1Jyqwxhm2LwVEKtZSfow13K2FX0zDktlP2CNvyJa9qD+eBTgTV/IlfBm0XCiFNe6qGzWHs9ADhN0GJOBDNTrQHwpRumDG9eEsboRMi54WkF2PT/TFdpT1bjicRSOEKRAk/IbUpIJjY2qVLS1edNSz1zaxAqGr+xw77vmhj63X8p3FrYcvVdRrWN16882HM919gMZlf2AXAVl9lXOXpEPuMjR7TXTn0cpH0z63fL8EK5r3y+KjyYK+QUr0jgqWD88LKvgn9HUD3D4Z/nJ3cBlv0WKaXMmZDe5vN/Ch7cER2hLs9J6lT5SInSO1A+RcgmWNjy4AZGw68LqxjSJNWlQMySqcqygGFaMV/ilB4rMdUqehv8AaqW2gAIIlI6sHBG3ZMoc2mh+5orfBNLEqmpvSlNyEGwOJGLJyfVcptSS1DbmDmQsSwe/Vk+djjn+Ws8pVl99bR0VWhcdZx+JmMfmf10mTE5tx7OqdTzjRBamM4/FffXj2sxUbUvQSmsYZuSKWaSMoZiab95LJgI7ZvDHQ6hWUnqSHdEtPpgd1zJ65ebCDf42DnoDu4b6dAAAAAElFTkSuQmCC" title="N_{i, sample} &lt; N_{i, expected}"></embed> (i.e., the block is underrepresented), hospitals from similar blocks are <em>assigned</em> to it and included in the subsample, becoming not available for the other blocks. The final number of hospitals assigned to a block is <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAAATBAMAAAAuSD1+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQoFY2PMUvDQBTHf2nSml6SIi5SpFs+QDc320nEgnQTcbCba0BE0CWCgyBKEdw7dnAIiChWMXVUoXXoVAt+AAdBB8EOXiy1Jx3i48H93//93r07YOodY22dmDBPQMQwYGWhFEs9FtpsxFJBpoIfS/nOx38oPgni7tI9VibydFXO+TM1L99jQWtHRca08MCERH2soxppWUjK/MKqSZk7wOpGeYXTKC9Md4oc7pE7ki25zegTuJAKd2laYdN6SBQ3jWrQ19rC24pcksdtKKO/wB3LtE6jnOPVrtgVERZ6fuQOQ5O/OsfFzkY5w5vpm36azsAdUomSzpPuPteEXRO4QTXjiXB79h5bunLbIJJnKT/ZqxsX1zJZzV/ekmIx0G4C6Q6h6Pyd+DGX1NZIG95I44T7SqVIR9FojUm1/AaLwlGKa35W9wAAAABJRU5ErkJggg==" title="N_{i, assigned}"></embed> and may comprise hospitals actually belonging to other blocks: for example a hospital from the Piedmont region could be inserted in the subsample but assigned to the Lombardy region since it is a close region. Similarity is computed via characteristic-specific algorithms (check the R code online at <a href="https://github.com/AD-Papers-Material/SubsamplingMethods">https://github.com/AD-Papers-Material/SubsamplingMethods</a>), and is evaluated with a priority chosen by the user, that is either hospital size similarity is considered followed by location similarity or vice-versa. In case of ties, the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> is used while random selection if also the <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> is equal.</p></li>
+</ul>
+<p>At this point, an initial subsample is achieved, with <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAATBAMAAADSXRa0AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVQoFWNgYBD6zMASn86AG3BMZWDgwi3NwMAtycDgjU/BGfsLDMX4FGzgS2BowKeggfcLAQUMPxg24DGBuYAhkt0AVcFtGJclA+gJBobz1TABDHo5AwMHAwPTCgwJmMAEsAKO3wwcstsZOG44MN4W2MXQw70Axr3xgIEBaDzLH4YLc24wLGcvyOGQZnJ4vEEFzhVgYJ10gYEhgME4gYH57w0eBdYLdgwTmB/AuQUwu7gbGHgDGLgDmBwaeRIYNyC4MAVcBQw8CxjOClgyyDL2MnnDuEa+MAVsQIb0bYbYVQxHq2NZN8O4txpgCmB0B4yBi87BJQEV552NrgAAxgtCTAG8MIcAAAAASUVORK5CYII=" title="N_{required}"></embed> hospitals each representing a block (not necessarily the actual block they belong to); hospitals not included in the sample are labeled as “unassigned” to any block. The initial subsample may have a bias due to the order in which block are evaluated, which depends on <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAATBAMAAADBilZAAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAid0iEJm7RHbvq2YyVM2JF0xrAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABRklEQVQoFY2QMUvDYBCGnzZJkzZtKS4iXTq4uRT/QIODDkXJ6iAKCnVwqDg4FCGD4iAFEd271cEhYAVBCiLoIIpdqsEquDvqIKjgmbaTofGGu5f3Hu7u+4ChN9T5EoPDOIDEYATMESiGQTeFFmthkJtewAmDnNT7PyA+cEMmKWVm9TydAMzyPXVZHgd3lQBCrMWuXQcDoofB0G7XliKQ8YlZE6O6qbc3GltnGVHsNC5fMTwr4r2ArFK/cEfl28vrxcR2Nm4diUq0hg2Hul5eMTJoey2wUQQvPDtWOs8VJVEXEDtXvr1kTivLEj8iLrRFTWCdsi/qBOKkbEw7avmEpGhR4Zpk9T6Vr5sZUW2mZsxkjdvM+HQf0o5jTqTpVlYfGPMQFWm2tCeyHeYenT4kVW77DTXnl+Ck9u7T7eC+76Z6vcmlP9APZvVPl8AO58MAAAAASUVORK5CYII=" title="N_{i, expected}"></embed>: some block may not access their hospitals anymore since they were already assigned to a block evaluated earlier.<br />
+A <em>random search</em> attempts to reduce this bias by finding solutions which decrease the overall distance between the hospital <em>assigned</em> blocks and the real ones, while improving the fit with the population data.<br />
+This is done by randomly selecting a hospital inside or outside the subsample and evaluating possible swaps with other hospitals. All the swaps are evaluated and the best one, in term of lower real-assigned block distance, is accepted if the subsample overall distance for one of the characteristic or the overall <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> decrease, and the swap does not impact negatively its target population representativeness:</p>
+<ul>
+<li><p>for a chosen number of iteration, a random hospital is chosen and a set of candidate hospitals to swap is generated from those with the opposite assignment status (i.e.: if the hospital is included in the subsample, than the candidates are chosen among those not included and vice-versa);</p></li>
+<li><p>For each candidate swap, the assigned region and size class are inverted with those of the randomly selected hospital and the distance between the new assigned block and the real block of the hospitals is computed. Unassigned hospitals are always at distance of one from their real block;</p></li>
+<li><p>It is chosen the candidate swap that minimizes the sum of distances arranged by size and location (in order according to priority) providing an improvement in the distance in at least one of the characteristics or a decrease of the overall <embed src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAARBAMAAAAxo6E+AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEHZmmbsi74lEVDLdq82NUXSoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAt0lEQVQIHU2OwQoBYRSFPwz+GWSytDHZKk3KnjfwCFMWHsDKQokNVnZW4gns7Ck70ZQNb8Fa4Rgpf/33nu90bvcCsXKtCdjDUVut7tJxYYrdA9OKvt2ALczlOzcsHwbQVTjzIBlCgLmJnDvOsyKRbalYsjavHeS9j6UY9hFKK4lloBnWkPZFezIzWGgkLFSskLgiV9118BMXPgsSnlLmXA1SGDOeCPRyFL8iqlm38U8n74/i/R+8AVzrIxJf8bGFAAAAAElFTkSuQmCC" title="QS"></embed> in the subsample. For example (considering only location for simplicity), if the random chosen hospital is from the Tuscany region but is assigned to Sicily (distance: 2) and the candidate is a hospital from Sicily but unassigned (distance: 1), the swap would unassign out of the subsample the first hospital (distance: 1) and include the other assigning it to Sicily (distance: 0): the final distance is (1 + 0) - (2 + 1) = -2, therefore implying an overall improvement of the distances;</p></li>
+<li><p>the swap is finally accepted if the target population representativeness of the subsample after the swap does not decrease. The representativeness is evaluated through a log-likelihood based score as described in the statistical analysis section of the manuscript. The code to compute such score is available online.</p></li>
+</ul>
+<!-- end list -->
+
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>subsample.distance &lt;-<span class="st"> </span><span class="cf">function</span>(Input.Sample, Reference.Data, n.required,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>     <span class="dt">n.quantiles =</span> <span class="dv">10</span>, <span class="dt">priority =</span> <span class="kw">c</span>(<span class="st">&#39;size&#39;</span>, <span class="st">&#39;location&#39;</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>     <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&#39;logLik&#39;</span>, <span class="st">&#39;spearman&#39;</span>), <span class="dt">reallocate =</span> T,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>     <span class="dt">realloc.steps =</span> <span class="dv">2000</span>, <span class="dt">steps.to.try =</span> <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>n.required){</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="kw">library</span>(dplyr)</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">library</span>(Hmisc)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">library</span>(pbapply)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="kw">library</span>(parallel)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    priority &lt;-<span class="st"> </span><span class="kw">match.arg</span>(priority)</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    method &lt;-<span class="st"> </span><span class="kw">match.arg</span>(method)</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="co"># Definition of quantiles in the distribution of number of beds according to</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="co"># reference data</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(Reference.Data<span class="op">$</span>Beds, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> n.quantiles)) <span class="op">%&gt;%</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="st">        </span><span class="kw">round</span>()</span>
+<span id="cb4-18"><a href="#cb4-18"></a></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    Hospitals &lt;-<span class="st"> </span>Input.Sample <span class="op">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="st">        </span><span class="kw">transmute</span>(</span>
+<span id="cb4-21"><a href="#cb4-21"></a>            Code, QS,</span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a>            <span class="co"># Hospital size is quantized according to reference data and location/size</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>            <span class="co"># blocks are defined</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>            Region,</span>
+<span id="cb4-26"><a href="#cb4-26"></a>            <span class="dt">Size.class =</span> Hmisc<span class="op">::</span><span class="kw">cut2</span>(Beds, quantiles),</span>
+<span id="cb4-27"><a href="#cb4-27"></a>            <span class="dt">Block =</span> <span class="kw">paste</span>(Size.class, <span class="st">&#39;-&#39;</span>, Region),</span>
+<span id="cb4-28"><a href="#cb4-28"></a></span>
+<span id="cb4-29"><a href="#cb4-29"></a>            <span class="co"># To each hospital is assigned a fictitious region and size class, the</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>            <span class="co"># initial value is &#39;unassigned&#39; which means not selected in the sample</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>            <span class="dt">Region.assigned =</span> <span class="st">&#39;unassigned&#39;</span>,</span>
+<span id="cb4-32"><a href="#cb4-32"></a>            <span class="dt">Size.class.assigned =</span> <span class="kw">factor</span>(<span class="st">&#39;unassigned&#39;</span>,</span>
+<span id="cb4-33"><a href="#cb4-33"></a>                <span class="dt">levels =</span> <span class="kw">c</span>(<span class="kw">levels</span>(Size.class), <span class="st">&#39;unassigned&#39;</span>)),</span>
+<span id="cb4-34"><a href="#cb4-34"></a></span>
+<span id="cb4-35"><a href="#cb4-35"></a>            <span class="co"># The distance associated to the &#39;unassigned&#39; status is 1</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>            <span class="dt">Distance =</span> <span class="dv">1</span>,</span>
+<span id="cb4-37"><a href="#cb4-37"></a>            <span class="dt">Size.diff =</span> <span class="dv">1</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>        )</span>
+<span id="cb4-39"><a href="#cb4-39"></a></span>
+<span id="cb4-40"><a href="#cb4-40"></a>    <span class="co"># Blocks are identified in the reference data too</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>    Reference.Data &lt;-<span class="st"> </span>Reference.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb4-42"><a href="#cb4-42"></a>        <span class="dt">Size.class =</span> Hmisc<span class="op">::</span><span class="kw">cut2</span>(Beds, quantiles),</span>
+<span id="cb4-43"><a href="#cb4-43"></a>        <span class="dt">Block =</span> <span class="kw">paste</span>(Size.class, <span class="st">&#39;-&#39;</span>, Region)</span>
+<span id="cb4-44"><a href="#cb4-44"></a>    )</span>
+<span id="cb4-45"><a href="#cb4-45"></a></span>
+<span id="cb4-46"><a href="#cb4-46"></a>    <span class="co"># For each block the expected number or required hospital is computed,</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>    <span class="co"># translating the target population proportion to the required sample size</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>    Blocks &lt;-<span class="st"> </span><span class="kw">count</span>(Reference.Data, Block, <span class="dt">name =</span> <span class="st">&#39;N.country&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a><span class="st">        </span><span class="kw">mutate</span>(</span>
+<span id="cb4-50"><a href="#cb4-50"></a>            <span class="dt">F.expected =</span> N.country<span class="op">/</span><span class="kw">sum</span>(N.country) <span class="op">*</span><span class="st"> </span>n.required,</span>
+<span id="cb4-51"><a href="#cb4-51"></a>            <span class="dt">N.expected =</span> <span class="kw">round</span>(F.expected),</span>
+<span id="cb4-52"><a href="#cb4-52"></a></span>
+<span id="cb4-53"><a href="#cb4-53"></a>            <span class="co"># If the required sample size is not reached, additional units are added</span></span>
+<span id="cb4-54"><a href="#cb4-54"></a>            <span class="co"># to blocks closer to be rounded up</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a>            <span class="dt">N.expected =</span> <span class="cf">if</span> (<span class="kw">sum</span>(N.expected) <span class="op">==</span><span class="st"> </span>n.required) N.expected <span class="cf">else</span> {</span>
+<span id="cb4-56"><a href="#cb4-56"></a>                delta &lt;-<span class="st"> </span>(F.expected <span class="op">-</span><span class="st"> </span>N.expected)</span>
+<span id="cb4-57"><a href="#cb4-57"></a>                rank &lt;-<span class="st"> </span><span class="kw">row_number</span>(<span class="op">-</span>delta) <span class="co"># rank blocks by fractional part</span></span>
+<span id="cb4-58"><a href="#cb4-58"></a>                missing &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>(n.required <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(N.expected))</span>
+<span id="cb4-59"><a href="#cb4-59"></a>                <span class="kw">case_when</span>(</span>
+<span id="cb4-60"><a href="#cb4-60"></a>                    rank <span class="op">%in%</span><span class="st"> </span>missing <span class="op">&amp;</span><span class="st"> </span>delta <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> </span>N.expected <span class="op">+</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb4-61"><a href="#cb4-61"></a>                    T <span class="op">~</span><span class="st"> </span>N.expected</span>
+<span id="cb4-62"><a href="#cb4-62"></a>                )</span>
+<span id="cb4-63"><a href="#cb4-63"></a>            }</span>
+<span id="cb4-64"><a href="#cb4-64"></a>        ) <span class="op">%&gt;%</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a><span class="st">        </span><span class="co"># Join the expected block numerosity with the Reference data, to associate</span></span>
+<span id="cb4-66"><a href="#cb4-66"></a><span class="st">        </span><span class="co"># information about region and size class</span></span>
+<span id="cb4-67"><a href="#cb4-67"></a><span class="st">        </span><span class="kw">left_join</span>(Reference.Data[,<span class="kw">c</span>(<span class="st">&#39;Region&#39;</span>, <span class="st">&#39;Size.class&#39;</span>, <span class="st">&#39;Block&#39;</span>)], <span class="dt">by =</span> <span class="st">&#39;Block&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-68"><a href="#cb4-68"></a><span class="st">        </span>distinct <span class="op">%&gt;%</span></span>
+<span id="cb4-69"><a href="#cb4-69"></a><span class="st">        </span><span class="co"># Blocks that need more hospital first</span></span>
+<span id="cb4-70"><a href="#cb4-70"></a><span class="st">        </span><span class="kw">arrange</span>(<span class="kw">desc</span>(F.expected))</span>
+<span id="cb4-71"><a href="#cb4-71"></a></span>
+<span id="cb4-72"><a href="#cb4-72"></a>    <span class="co">## Reservoir of available hospitals to assign</span></span>
+<span id="cb4-73"><a href="#cb4-73"></a>    Available.hospitals &lt;-<span class="st"> </span>Hospitals <span class="op">%&gt;%</span></span>
+<span id="cb4-74"><a href="#cb4-74"></a><span class="st">        </span><span class="kw">slice_sample</span>(<span class="dt">prop =</span> <span class="dv">1</span>)</span>
+<span id="cb4-75"><a href="#cb4-75"></a></span>
+<span id="cb4-76"><a href="#cb4-76"></a>    <span class="co"># First assignment: associate hospitals to block until N_expected is reached;</span></span>
+<span id="cb4-77"><a href="#cb4-77"></a>    <span class="co"># if not enough hospitals for a block are available in the sample, uses</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a>    <span class="co"># hospitals from &quot;similar&quot; blocks.</span></span>
+<span id="cb4-79"><a href="#cb4-79"></a>    Hospitals.reassigned &lt;-<span class="st"> </span><span class="kw">pblapply</span>(<span class="kw">which</span>(Blocks<span class="op">$</span>N.expected <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>), <span class="cf">function</span>(i) {</span>
+<span id="cb4-80"><a href="#cb4-80"></a>        Block &lt;-<span class="st"> </span>Blocks[i,]</span>
+<span id="cb4-81"><a href="#cb4-81"></a></span>
+<span id="cb4-82"><a href="#cb4-82"></a>        <span class="cf">if</span> (Block<span class="op">$</span>N.expected <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">return</span>(<span class="ot">NULL</span>) <span class="co"># No hospitals required for this block</span></span>
+<span id="cb4-83"><a href="#cb4-83"></a></span>
+<span id="cb4-84"><a href="#cb4-84"></a>        <span class="co"># Compute &quot;distances&quot; of the block with all hospitals</span></span>
+<span id="cb4-85"><a href="#cb4-85"></a>        Available.hospitals<span class="op">$</span>Distance &lt;-<span class="st"> </span><span class="kw">get.location.distance</span>(</span>
+<span id="cb4-86"><a href="#cb4-86"></a>            <span class="kw">rep</span>(Block<span class="op">$</span>Region, <span class="kw">nrow</span>(Available.hospitals)),</span>
+<span id="cb4-87"><a href="#cb4-87"></a>            Available.hospitals<span class="op">$</span>Region</span>
+<span id="cb4-88"><a href="#cb4-88"></a>        )</span>
+<span id="cb4-89"><a href="#cb4-89"></a>        Available.hospitals<span class="op">$</span>Size.diff &lt;-<span class="st"> </span><span class="kw">get.onedim.distance</span>(</span>
+<span id="cb4-90"><a href="#cb4-90"></a>            <span class="kw">rep</span>(Block<span class="op">$</span>Size.class, <span class="kw">nrow</span>(Available.hospitals)),</span>
+<span id="cb4-91"><a href="#cb4-91"></a>            Available.hospitals<span class="op">$</span>Size.class</span>
+<span id="cb4-92"><a href="#cb4-92"></a>        )</span>
+<span id="cb4-93"><a href="#cb4-93"></a></span>
+<span id="cb4-94"><a href="#cb4-94"></a>        <span class="co"># Arrange hospitals by distance from the block, prioritizing the</span></span>
+<span id="cb4-95"><a href="#cb4-95"></a>        <span class="co"># chosen characteristic. Hospitals belonging to the block will have</span></span>
+<span id="cb4-96"><a href="#cb4-96"></a>        <span class="co"># zero distance and will be prioritize. QS is used in case of ties</span></span>
+<span id="cb4-97"><a href="#cb4-97"></a>        Selected.hospitals &lt;-<span class="st"> </span>Available.hospitals <span class="op">%&gt;%</span><span class="st"> </span>{</span>
+<span id="cb4-98"><a href="#cb4-98"></a>            <span class="cf">if</span> (priority <span class="op">==</span><span class="st"> &#39;size&#39;</span>) {</span>
+<span id="cb4-99"><a href="#cb4-99"></a>                <span class="kw">arrange</span>(., Size.diff, Distance, QS)</span>
+<span id="cb4-100"><a href="#cb4-100"></a>            } <span class="cf">else</span> {</span>
+<span id="cb4-101"><a href="#cb4-101"></a>                <span class="kw">arrange</span>(., Distance, Size.diff, QS)</span>
+<span id="cb4-102"><a href="#cb4-102"></a>            }</span>
+<span id="cb4-103"><a href="#cb4-103"></a>        } <span class="op">%&gt;%</span></span>
+<span id="cb4-104"><a href="#cb4-104"></a><span class="st">            </span><span class="co"># Select the N_expected hospitals for the block, ordered by distance.</span></span>
+<span id="cb4-105"><a href="#cb4-105"></a><span class="st">            </span><span class="kw">head</span>(Block<span class="op">$</span>N.expected) <span class="op">%&gt;%</span></span>
+<span id="cb4-106"><a href="#cb4-106"></a><span class="st">            </span><span class="co"># &quot;Assign&quot; the block size location to the selected hospitals</span></span>
+<span id="cb4-107"><a href="#cb4-107"></a><span class="st">            </span><span class="kw">mutate</span>(</span>
+<span id="cb4-108"><a href="#cb4-108"></a>                <span class="dt">Region.assigned =</span> <span class="op">!!</span>Block<span class="op">$</span>Region,</span>
+<span id="cb4-109"><a href="#cb4-109"></a>                <span class="dt">Size.class.assigned =</span> <span class="op">!!</span>Block<span class="op">$</span>Size.class</span>
+<span id="cb4-110"><a href="#cb4-110"></a>                )</span>
+<span id="cb4-111"><a href="#cb4-111"></a></span>
+<span id="cb4-112"><a href="#cb4-112"></a>        <span class="co"># Remove the selected hospitals from those still available for sampling</span></span>
+<span id="cb4-113"><a href="#cb4-113"></a>        Available.hospitals &lt;&lt;-<span class="st"> </span>Available.hospitals <span class="op">%&gt;%</span></span>
+<span id="cb4-114"><a href="#cb4-114"></a><span class="st">            </span><span class="kw">filter</span>(<span class="op">!</span>(Code <span class="op">%in%</span><span class="st"> </span>Selected.hospitals<span class="op">$</span>Code))</span>
+<span id="cb4-115"><a href="#cb4-115"></a></span>
+<span id="cb4-116"><a href="#cb4-116"></a>        Selected.hospitals</span>
+<span id="cb4-117"><a href="#cb4-117"></a>    }) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>()</span>
+<span id="cb4-118"><a href="#cb4-118"></a></span>
+<span id="cb4-119"><a href="#cb4-119"></a>    score &lt;-<span class="st"> </span><span class="kw">get.distr.fit</span>(Hospitals.reassigned, Reference.Data, <span class="dt">method =</span> method)</span>
+<span id="cb4-120"><a href="#cb4-120"></a>    <span class="kw">message</span>(<span class="st">&#39;First distribution score: &#39;</span>, score)</span>
+<span id="cb4-121"><a href="#cb4-121"></a></span>
+<span id="cb4-122"><a href="#cb4-122"></a>    <span class="co"># Rebuild the dataset with assigned and not hospitals</span></span>
+<span id="cb4-123"><a href="#cb4-123"></a>    Hospitals &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb4-124"><a href="#cb4-124"></a>        Hospitals.reassigned,</span>
+<span id="cb4-125"><a href="#cb4-125"></a>        Hospitals <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span>(Code <span class="op">%in%</span><span class="st"> </span>Hospitals.reassigned<span class="op">$</span>Code))</span>
+<span id="cb4-126"><a href="#cb4-126"></a>    )</span>
+<span id="cb4-127"><a href="#cb4-127"></a></span>
+<span id="cb4-128"><a href="#cb4-128"></a>    <span class="cf">if</span> (reallocate) {</span>
+<span id="cb4-129"><a href="#cb4-129"></a>        <span class="kw">message</span>(<span class="st">&#39;Reallocation&#39;</span>)</span>
+<span id="cb4-130"><a href="#cb4-130"></a></span>
+<span id="cb4-131"><a href="#cb4-131"></a>        <span class="co"># Windows doesn&#39;t support forking for parallelization, and socketing is</span></span>
+<span id="cb4-132"><a href="#cb4-132"></a>        <span class="co"># actually slower</span></span>
+<span id="cb4-133"><a href="#cb4-133"></a>        <span class="kw">options</span>(<span class="dt">mc.cores =</span>  <span class="cf">if</span> (<span class="kw">Sys.info</span>()[[<span class="st">&#39;sysname&#39;</span>]] <span class="op">==</span><span class="st"> &#39;Windows&#39;</span>) {</span>
+<span id="cb4-134"><a href="#cb4-134"></a>            <span class="dv">1</span></span>
+<span id="cb4-135"><a href="#cb4-135"></a>        } <span class="cf">else</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span>
+<span id="cb4-136"><a href="#cb4-136"></a></span>
+<span id="cb4-137"><a href="#cb4-137"></a>        steps.wo.improvements &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb4-138"><a href="#cb4-138"></a></span>
+<span id="cb4-139"><a href="#cb4-139"></a>        <span class="co"># Initiate random swapping of hospitals to improve the fit</span></span>
+<span id="cb4-140"><a href="#cb4-140"></a>        <span class="kw">pblapply</span>(<span class="dv">1</span><span class="op">:</span>realloc.steps, <span class="cf">function</span>(step) {</span>
+<span id="cb4-141"><a href="#cb4-141"></a></span>
+<span id="cb4-142"><a href="#cb4-142"></a>            steps.wo.improvements &lt;&lt;-<span class="st"> </span>steps.wo.improvements <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb4-143"><a href="#cb4-143"></a></span>
+<span id="cb4-144"><a href="#cb4-144"></a>            <span class="co"># iI too many steps are gone without improvement, stops</span></span>
+<span id="cb4-145"><a href="#cb4-145"></a>            <span class="cf">if</span> (steps.wo.improvements <span class="op">&gt;</span><span class="st"> </span>steps.to.try) {</span>
+<span id="cb4-146"><a href="#cb4-146"></a>                <span class="kw">return</span>()</span>
+<span id="cb4-147"><a href="#cb4-147"></a>            }</span>
+<span id="cb4-148"><a href="#cb4-148"></a></span>
+<span id="cb4-149"><a href="#cb4-149"></a>            <span class="co"># Select a random hospital</span></span>
+<span id="cb4-150"><a href="#cb4-150"></a>            Evaluated.hospital &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(Hospitals, <span class="dt">n =</span> <span class="dv">1</span>)</span>
+<span id="cb4-151"><a href="#cb4-151"></a></span>
+<span id="cb4-152"><a href="#cb4-152"></a>            <span class="co"># Evaluate swaps with hospital in the opposite assignment status</span></span>
+<span id="cb4-153"><a href="#cb4-153"></a>            Candidate.swaps &lt;-<span class="st"> </span>Hospitals <span class="op">%&gt;%</span></span>
+<span id="cb4-154"><a href="#cb4-154"></a><span class="st">                </span><span class="kw">filter</span>(<span class="cf">if</span> (Evaluated.hospital<span class="op">$</span>Region.assigned <span class="op">==</span><span class="st"> &#39;unassigned&#39;</span>) {</span>
+<span id="cb4-155"><a href="#cb4-155"></a>                    Region.assigned <span class="op">!=</span><span class="st"> &#39;unassigned&#39;</span></span>
+<span id="cb4-156"><a href="#cb4-156"></a>                } <span class="cf">else</span> Region.assigned <span class="op">==</span><span class="st"> &#39;unassigned&#39;</span>)</span>
+<span id="cb4-157"><a href="#cb4-157"></a></span>
+<span id="cb4-158"><a href="#cb4-158"></a>            <span class="co"># Evaluate all candidate swaps, computing the change in distance between</span></span>
+<span id="cb4-159"><a href="#cb4-159"></a>            <span class="co"># the assigned and the actual block. mclapply allows parallel looping on</span></span>
+<span id="cb4-160"><a href="#cb4-160"></a>            <span class="co"># Unix OS, but reverts to lapply on Windows</span></span>
+<span id="cb4-161"><a href="#cb4-161"></a>            Best.swap &lt;-<span class="st"> </span><span class="kw">mclapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Candidate.swaps), <span class="cf">function</span>(i) {</span>
+<span id="cb4-162"><a href="#cb4-162"></a>                Candidates &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(Evaluated.hospital, Candidate.swaps[i,])</span>
+<span id="cb4-163"><a href="#cb4-163"></a></span>
+<span id="cb4-164"><a href="#cb4-164"></a>                <span class="co"># Compute the distances after swapping</span></span>
+<span id="cb4-165"><a href="#cb4-165"></a>                Candidates<span class="op">$</span>swapped.dist &lt;-<span class="st"> </span><span class="kw">get.location.distance</span>(</span>
+<span id="cb4-166"><a href="#cb4-166"></a>                    Candidates<span class="op">$</span>Region, <span class="kw">rev</span>(Candidates<span class="op">$</span>Region.assigned)</span>
+<span id="cb4-167"><a href="#cb4-167"></a>                )</span>
+<span id="cb4-168"><a href="#cb4-168"></a>                Candidates<span class="op">$</span>swapped.size.diff &lt;-<span class="st"> </span><span class="kw">get.onedim.distance</span>(</span>
+<span id="cb4-169"><a href="#cb4-169"></a>                    Candidates<span class="op">$</span>Size.class, <span class="kw">rev</span>(Candidates<span class="op">$</span>Size.class.assigned)</span>
+<span id="cb4-170"><a href="#cb4-170"></a>                )</span>
+<span id="cb4-171"><a href="#cb4-171"></a>                Candidates<span class="op">$</span>swapped.QS &lt;-<span class="st"> </span><span class="kw">rev</span>(Candidates<span class="op">$</span>QS)</span>
+<span id="cb4-172"><a href="#cb4-172"></a></span>
+<span id="cb4-173"><a href="#cb4-173"></a>                <span class="kw">data.frame</span>(</span>
+<span id="cb4-174"><a href="#cb4-174"></a>                    <span class="dt">Evaluated =</span> Candidates<span class="op">$</span>Code[<span class="dv">1</span>],</span>
+<span id="cb4-175"><a href="#cb4-175"></a>                    <span class="dt">Candidate =</span> Candidates<span class="op">$</span>Code[<span class="dv">2</span>],</span>
+<span id="cb4-176"><a href="#cb4-176"></a></span>
+<span id="cb4-177"><a href="#cb4-177"></a>                    <span class="co"># Compute the delta in the distances, a negative value</span></span>
+<span id="cb4-178"><a href="#cb4-178"></a>                    <span class="co"># means improvement</span></span>
+<span id="cb4-179"><a href="#cb4-179"></a>                    <span class="dt">delta.location =</span> <span class="kw">with</span>(Candidates, <span class="kw">sum</span>(swapped.dist) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(Distance)),</span>
+<span id="cb4-180"><a href="#cb4-180"></a>                    <span class="dt">delta.size =</span> <span class="kw">with</span>(Candidates, <span class="kw">sum</span>(swapped.size.diff) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(Size.diff)),</span>
+<span id="cb4-181"><a href="#cb4-181"></a>                    <span class="dt">delta.QS =</span> <span class="kw">with</span>(</span>
+<span id="cb4-182"><a href="#cb4-182"></a>                        <span class="kw">filter</span>(Candidates, Region.assigned <span class="op">!=</span><span class="st"> &#39;unassigned&#39;</span>),</span>
+<span id="cb4-183"><a href="#cb4-183"></a>                        swapped.QS <span class="op">-</span><span class="st"> </span>QS</span>
+<span id="cb4-184"><a href="#cb4-184"></a>                    )</span>
+<span id="cb4-185"><a href="#cb4-185"></a>                )</span>
+<span id="cb4-186"><a href="#cb4-186"></a>            }) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>() <span class="op">%&gt;%</span></span>
+<span id="cb4-187"><a href="#cb4-187"></a><span class="st">                </span><span class="co"># Arrange the swaps according to priority</span></span>
+<span id="cb4-188"><a href="#cb4-188"></a><span class="st">                </span>{</span>
+<span id="cb4-189"><a href="#cb4-189"></a>                    <span class="cf">if</span> (priority <span class="op">==</span><span class="st"> &#39;size&#39;</span>) {</span>
+<span id="cb4-190"><a href="#cb4-190"></a>                        <span class="kw">arrange</span>(., delta.size, delta.location, delta.QS)</span>
+<span id="cb4-191"><a href="#cb4-191"></a>                    } <span class="cf">else</span> {</span>
+<span id="cb4-192"><a href="#cb4-192"></a>                        <span class="kw">arrange</span>(., delta.location, delta.size, delta.QS)</span>
+<span id="cb4-193"><a href="#cb4-193"></a>                    }</span>
+<span id="cb4-194"><a href="#cb4-194"></a>                } <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="co"># And select the best swap</span></span>
+<span id="cb4-195"><a href="#cb4-195"></a></span>
+<span id="cb4-196"><a href="#cb4-196"></a>            <span class="co"># If at least one of the distances real/assigned blocks is improved proceed</span></span>
+<span id="cb4-197"><a href="#cb4-197"></a>            <span class="cf">if</span> (<span class="kw">with</span>(Best.swap, delta.location <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>delta.size <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>delta.QS <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)) {</span>
+<span id="cb4-198"><a href="#cb4-198"></a></span>
+<span id="cb4-199"><a href="#cb4-199"></a>                <span class="co"># Select the hospitals of the best swap and invert their assigned</span></span>
+<span id="cb4-200"><a href="#cb4-200"></a>                <span class="co"># blocks. Then recompute the distances</span></span>
+<span id="cb4-201"><a href="#cb4-201"></a>                Best.swap.hospitals &lt;-<span class="st"> </span>Hospitals <span class="op">%&gt;%</span></span>
+<span id="cb4-202"><a href="#cb4-202"></a><span class="st">                    </span><span class="kw">filter</span>(Code <span class="op">%in%</span><span class="st"> </span><span class="kw">unlist</span>(Best.swap[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])) <span class="op">%&gt;%</span></span>
+<span id="cb4-203"><a href="#cb4-203"></a><span class="st">                    </span><span class="kw">mutate</span>(</span>
+<span id="cb4-204"><a href="#cb4-204"></a>                        <span class="kw">across</span>(<span class="kw">c</span>(Region.assigned, Size.class.assigned), rev),</span>
+<span id="cb4-205"><a href="#cb4-205"></a>                        <span class="dt">Distance =</span> <span class="kw">get.location.distance</span>(Region, Region.assigned),</span>
+<span id="cb4-206"><a href="#cb4-206"></a>                        <span class="dt">Size.diff =</span> <span class="kw">get.onedim.distance</span>(Size.class, Size.class.assigned)</span>
+<span id="cb4-207"><a href="#cb4-207"></a>                    )</span>
+<span id="cb4-208"><a href="#cb4-208"></a></span>
+<span id="cb4-209"><a href="#cb4-209"></a>                <span class="co"># Remove the swapped hospitals from the sample and add them again with</span></span>
+<span id="cb4-210"><a href="#cb4-210"></a>                <span class="co"># the updated assignment</span></span>
+<span id="cb4-211"><a href="#cb4-211"></a>                Hospital.proposal &lt;-<span class="st"> </span>Hospitals <span class="op">%&gt;%</span></span>
+<span id="cb4-212"><a href="#cb4-212"></a><span class="st">                    </span><span class="kw">filter</span>(Code <span class="op">%nin%</span><span class="st"> </span>Best.swap.hospitals<span class="op">$</span>Code) <span class="op">%&gt;%</span></span>
+<span id="cb4-213"><a href="#cb4-213"></a><span class="st">                    </span><span class="kw">rbind</span>(Best.swap.hospitals)</span>
+<span id="cb4-214"><a href="#cb4-214"></a></span>
+<span id="cb4-215"><a href="#cb4-215"></a>                <span class="co"># Compute the fit with the target population before and after the swap</span></span>
+<span id="cb4-216"><a href="#cb4-216"></a>                score_before &lt;-<span class="st"> </span><span class="kw">get.distr.fit</span>(</span>
+<span id="cb4-217"><a href="#cb4-217"></a>                    <span class="kw">filter</span>(Hospitals, Region.assigned <span class="op">!=</span><span class="st"> &#39;unassigned&#39;</span>),</span>
+<span id="cb4-218"><a href="#cb4-218"></a>                    Reference.Data, <span class="dt">method =</span> method)</span>
+<span id="cb4-219"><a href="#cb4-219"></a>                score_after &lt;-<span class="st"> </span><span class="kw">get.distr.fit</span>(</span>
+<span id="cb4-220"><a href="#cb4-220"></a>                    <span class="kw">filter</span>(Hospital.proposal, Region.assigned <span class="op">!=</span><span class="st"> &#39;unassigned&#39;</span>),</span>
+<span id="cb4-221"><a href="#cb4-221"></a>                    Reference.Data, <span class="dt">method =</span> method)</span>
+<span id="cb4-222"><a href="#cb4-222"></a></span>
+<span id="cb4-223"><a href="#cb4-223"></a>                <span class="co"># If the the swap didn&#39;t decrease the fit, the swap is accepted</span></span>
+<span id="cb4-224"><a href="#cb4-224"></a>                <span class="cf">if</span> (score_after <span class="op">&gt;=</span><span class="st"> </span>score_before) {</span>
+<span id="cb4-225"><a href="#cb4-225"></a></span>
+<span id="cb4-226"><a href="#cb4-226"></a>                    <span class="kw">message</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">Step: &#39;</span>, step)</span>
+<span id="cb4-227"><a href="#cb4-227"></a>                    <span class="kw">message</span>(<span class="st">&#39;Improvement after &#39;</span>, steps.wo.improvements, <span class="st">&#39; steps&#39;</span>)</span>
+<span id="cb4-228"><a href="#cb4-228"></a>                    <span class="kw">message</span>(<span class="st">&#39;Score after reassignment:&#39;</span>, score_after)</span>
+<span id="cb4-229"><a href="#cb4-229"></a></span>
+<span id="cb4-230"><a href="#cb4-230"></a>                    steps.wo.improvements &lt;&lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb4-231"><a href="#cb4-231"></a></span>
+<span id="cb4-232"><a href="#cb4-232"></a>                    Hospitals &lt;&lt;-<span class="st"> </span>Hospital.proposal</span>
+<span id="cb4-233"><a href="#cb4-233"></a>                }</span>
+<span id="cb4-234"><a href="#cb4-234"></a>            }</span>
+<span id="cb4-235"><a href="#cb4-235"></a>        })</span>
+<span id="cb4-236"><a href="#cb4-236"></a></span>
+<span id="cb4-237"><a href="#cb4-237"></a>    }</span>
+<span id="cb4-238"><a href="#cb4-238"></a></span>
+<span id="cb4-239"><a href="#cb4-239"></a>    <span class="co"># Return the subsampled data</span></span>
+<span id="cb4-240"><a href="#cb4-240"></a>    Input.Sample <span class="op">%&gt;%</span></span>
+<span id="cb4-241"><a href="#cb4-241"></a><span class="st">        </span><span class="kw">filter</span>(Code <span class="op">%in%</span><span class="st"> </span><span class="kw">filter</span>(Hospitals, Region.assigned <span class="op">!=</span><span class="st"> &#39;unassigned&#39;</span>)<span class="op">$</span>Code)</span>
+<span id="cb4-242"><a href="#cb4-242"></a>}</span>
+<span id="cb4-243"><a href="#cb4-243"></a></span>
+<span id="cb4-244"><a href="#cb4-244"></a><span class="co">## Examples</span></span>
+<span id="cb4-245"><a href="#cb4-245"></a></span>
+<span id="cb4-246"><a href="#cb4-246"></a><span class="co"># Create a subsample of 55 hospitals prioritizing hospital size, without</span></span>
+<span id="cb4-247"><a href="#cb4-247"></a><span class="co"># reallocation after the initial sampling</span></span>
+<span id="cb4-248"><a href="#cb4-248"></a></span>
+<span id="cb4-249"><a href="#cb4-249"></a><span class="co"># subsample.distance(Sample.Data, Reference.Data, n.required = 55,</span></span>
+<span id="cb4-250"><a href="#cb4-250"></a><span class="co">#   reallocate = F)</span></span>
+<span id="cb4-251"><a href="#cb4-251"></a></span>
+<span id="cb4-252"><a href="#cb4-252"></a><span class="co"># This time prioritize location and perform reallocation. (Warning: it takes</span></span>
+<span id="cb4-253"><a href="#cb4-253"></a><span class="co"># time!)</span></span>
+<span id="cb4-254"><a href="#cb4-254"></a></span>
+<span id="cb4-255"><a href="#cb4-255"></a><span class="co"># subsample.distance(Sample.Data, Reference.Data, n.required = 55,</span></span>
+<span id="cb4-256"><a href="#cb4-256"></a><span class="co">#     priority = &#39;location&#39;)</span></span></code></pre></div>
+
+</body>
+</html>
