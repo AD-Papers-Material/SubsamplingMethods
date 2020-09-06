@@ -23,20 +23,20 @@ Sample.Data <- read.csv(file.path('Data', 'SampleData.csv'))
 
 ## Introduction
 
-We implemented three algorithms, defined “Distance procedure”, the “Probability procedure”, and the “Uniformity procedure” with the aim of producing subsamples with specific distributional properties starting from an initial collection of data which is possibly biased in terms of generalizability to the target population. In the following document we present the R code to implement the algorithms. The specific implementation described here is focused on the Italian PPS study on HAI/AMU prevalence in acute care hospitals but can be easily translated to different settings.  
+We implemented three algorithms, defined “Distance procedure”, “Probability procedure”, and “Uniformity procedure”, in order to produce subsamples with specific distributional properties starting from an initial data collection which is possibly biased in terms of generalizability to the target population. In the following document we present the R code to implement the algorithms. The specific implementation described here is focused on the Italian PPS study on HAI/AMU prevalence in acute care hospitals but can be easily translated to different settings.  
 
-The methods try to change the distributional characteristics of a sample by producing a subsample whose units are chosen using information on some characteristics of interest. Two of these methods, the Distance procedure and the Probability procedure, are aimed at generating a representative sample of a target population, by using reference data at the population level with information on the distribution of relevant characteristics. The Uniformity procedure instead generate a sample which is uniform in relation to such characteristics, therefore it does not require population reference data.  
+The methods try to change the distributional characteristics of a sample by producing a subsample whose units are chosen using information on some characteristics of interest. Two of these methods, the Distance procedure and the Probability procedure, aim at generating a representative sample of a target population, by using reference data at the population level **(?)** with information on the distribution of relevant characteristics. On the contrary, the Uniformity procedure generates a sample which is uniform in relation to such characteristics, therefore it does not require population reference data.  
 
 This document and all the relative material is available at https://github.com/AD-Papers-Material/SubsamplingMethods.
 
 
 ## Input data
 
-The algorithms take as input a database with a statistical unit for each row and the characteristics of interest as columns. In addition, a column with an unique ID for each unit is needed. Our algorithms also accept a Quality Score ($QS$, cfr. Methods and Supplemental material S1) as additional characteristic.  
+The algorithms take as input a database with a statistical unit for each row and the characteristics of interest as columns. In addition, a column with a unique ID for each unit is needed. Our algorithms also accept a Quality Score ($QS$, cfr. Methods and Supplementary material S1) as additional characteristic.  
 
-The Probability and the Distance procedures require population level reference data with information for on same characteristics. If individual unit data is not available at the population level, simulated data can be generated given access to the joint distribution of the considered characteristics, ensuring that the simulated dataset is large enough to limit random variation.  
+The Probability and Distance procedures require population level reference data with information for on same characteristics. If individual unit data is not available at the population level, simulated data can be generated given access to the joint distribution of the considered characteristics, ensuring that the simulated dataset is large enough to limit random variation. **[Controllare]**  
 
-Our study data use acute care hospitals as observational units and hospital size (number of acute care beds) and region of location as characteristics of interest. We also used the official Italian national database of acute care hospital as population level data. We provide simulated sample data and the population level data for the testing of the procedures at https://github.com/AD-Papers-Material/SubsamplingMethods. These two datasets also provide hospital size grouped in three  categories as used in the manuscript.
+Our study data use acute care hospitals as observational units and hospital size (number of acute care beds) and region of location as characteristics of interest. We also used the official Italian national database of acute care hospital as population level data. We provide simulated sample data and the population level data for the testing of the procedures at https://github.com/AD-Papers-Material/SubsamplingMethods. These two datasets also provide hospital size grouped in three categories as used in the manuscript.
 
 
 ```{r data, echo=TRUE}
@@ -51,13 +51,13 @@ str(Reference.Data, vec.len = 3)
 ## General aspects and notation
 
 The procedures at the moment can utilize only **two characteristics** at once and these need to be **categorical variables**. Therefore continuous characteristics (specifically, hospital size in this case) are discretized in quantiles by the algorithms before use. The number of quantiles to split continuous features into is an input to the algorithms.  
-The hospitals are then grouped into *blocks* according to the characteristics of interest: in this study, we used *location/hospital size blocks*, defined by the Italian region ($Region$) and the quantile of number of acute beds ($HSize$) the hospitals fall into. The region and the hospital size quantile allow the definition of a joint discrete probability distribution which is used by the algorithms.  
-For each block $block_i$ a probability $p_{i} = Pr(hospital|Region, HSize)$ is defined, both for the sample ($p_{i,sample}$) or and the target population ($p_{i,country}$) which indicates the fraction of hospital in a block over the total. All the algorithms are constrained by a parameter $N_{required}$ which defines the size of the final subsample.  
+The hospitals are then grouped into *blocks* according to the characteristics of interest: in this study, we used *location/hospital size blocks*, defined by the Italian region where hospitals are ($Region$) and the quantile of the number of their acute beds ($HSize$). The region and the hospital size quantile allow the definition of a joint discrete probability distribution which is used by the algorithms.  
+For each block $block_i$ a probability $p_{i} = Pr(hospital|Region, HSize)$ is defined, both for the sample ($p_{i,sample}$) and the target population ($p_{i,country}$) which indicates the fraction of hospitals in a block over the total. All the algorithms are constrained by a parameter $N_{required}$ which defines the size of the final subsample.  
 The algorithms employ the Quality Score $QS$ as a further discriminant in sampling; to avoid using it without code modification it is sufficient to assign the same value (a positive number) to all units. Note that a lower $QS$ implies better data quality.
 
-## Unformity procedure
+## Uniformity procedure
 
-This procedure subsamples hospitals trying to obtain an equal number of units in every block, by iteratively choosing one hospital from each block. This is the general implementation:
+This procedure subsamples hospitals so as to obtain an equal number of units in every block, by iteratively choosing one hospital from each block. This is the general implementation:
 
 * a candidate list is created from the original sample;
 
@@ -65,7 +65,7 @@ This procedure subsamples hospitals trying to obtain an equal number of units in
 
 * the first hospital is selected;
 
-* all other hospitals belonging to the same block of the selected hospital are removed from the candidate list;
+* all other hospitals belonging to the same block as the selected hospital are removed from the candidate list;
 
 * the process is repeated until there are still available blocks in the candidate list;
 
@@ -73,7 +73,7 @@ This procedure subsamples hospitals trying to obtain an equal number of units in
 
 * continue until $N_{required}$ is reached.
 
-For the uniform procedure, we discretized the number of beds only into 4 quantiles since it was less relevant to build a precise discrete probability distribution.
+For the uniform procedure, we discretized the number of beds into 4 quantiles only, since it was less relevant to build a precise discrete probability distribution.
 
 ```{r uniformity}
 uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS = T){
@@ -134,7 +134,7 @@ uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS =
 
 ## Probability procedure
 
-This algorithm uses information from a population level list (Reference Data) to built a discrete probability distribution of the target population which is then used to drive the creation of a representative subsample. The hospitals are selected according to how relevant, in term of number hospitals over the total, is the block they belong to at the country level. The $QS$ is used to weight such representativeness. The weight of the $QS$ itself can be tuned.
+This algorithm uses information from a population level list (Reference Data) to built a discrete probability distribution of the target population, which is then used to drive the creation of a representative subsample. The hospitals are selected according to how relevant, in term of number of hospitals over the total, is the block they belong to at the country level. **Mia proposta di modifica: the hospitals are selected proportionally to the weight on a country scale of the block to which they belong, in term of...** The $QS$ is used to weight such representativeness. The weight of the $QS$ itself can be tuned.
 
 * the blocks are identified in the Reference Data and for each block $i$ the probability $p_{i, country} = Pr(hospital|Region, Hospital.Size) = \frac{N_{hospitals} | block_i}{N_{hospitals}}$ is computed as the proportion of hospitals in the block over the total;
 
@@ -144,7 +144,7 @@ This algorithm uses information from a population level list (Reference Data) to
 
    + $p_{j, country}$ is the probability of the block of the hospital $j$ at the country level;
 
-   + $scaled.QS_j$ is the $QS$ of the hospital $j$ after that all hospital $QS$ have been rescaled to the range [0,1], with 1 representing the worst quality score and 0 the best. The term $(1-scaled.QS_j)$ reweighs the sampling probability of a hospital using the quality of its data;
+   + $scaled.QS_j$ is the $QS$ of the hospital $j$ after that all hospital $QS$ have been rescaled to the range [0,1], with 1 representing the worst quality score and 0 the best. The term $(1-scaled.QS_j)$ reweights the sampling probability of a hospital using the quality of its data;
 
    + $w$ allows scaling the importance of the $QS$ in the selection, with $w = 0$ removing its influence;
 
