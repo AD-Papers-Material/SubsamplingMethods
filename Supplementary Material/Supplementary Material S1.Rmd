@@ -1,5 +1,7 @@
 ---
-output: pdf_document
+output:
+  github_document:
+    pandoc_args: --webtex
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -35,7 +37,8 @@ In our implementation, the score was computed as $10^{(1-p.value_{LRT})}$ with $
 The enumeration of the “data problems” is a very study-specific task. The nature and precise definition of a “problem” cannot follow general rules but, in our experience, we can categorize them into:
 
 * Missing data: data points that are either missing or have a placeholder implying that the data collector was not able to retrieve the information. Do not consider missing values due to non-applicability given other characteristics of the unit (e.g., missing weight at birth in non-newborns or drug type in patients not under AM therapy).
-*Inconsistencies: unexpected values in variables connected to other variables, e.g., numerators variables with higher values than the denominator; sum of variables which is lower or higher than the total (which is collected); presence of values where non-applicable (see examples related to correct missingness).
+
+* Inconsistencies: unexpected values in variables connected to other variables, e.g., numerators variables with higher values than the denominator; sum of variables which is lower or higher than the total (which is collected); presence of values where non-applicable (see examples related to correct missingness).
 
 * Outliers: numerical values which are unexpected given domain knowledge. The best approach should be a case by case manual evaluation. However, the identification of numerical outliers has shown in our case to be a useful heuristic: the large majority of these outliers were obvious typos or unexplained impossible values, e.g., extremely high drug dosages.
 
