@@ -49,29 +49,29 @@ The enumeration of the “data problems” is a very study-specific task.
 The nature and precise definition of a “problem” cannot follow general
 rules but, in our experience, we can categorize them into:
 
--   Missing data: data points that are either missing or have a
+-   **Missing data**: data points that are either missing or have a
     placeholder implying that the data collector was not able to
     retrieve the information. Do not consider missing values due to
     non-applicability given other characteristics of the unit (e.g.,
     missing weight at birth in non-newborns or drug type in patients not
     under AM therapy).
 
--   Inconsistencies: unexpected values in variables connected to other
-    variables, e.g., numerators variables with higher values than the
-    denominator; sum of variables which is lower or higher than the
+-   **Inconsistencies**: unexpected values in variables connected to
+    other variables, e.g., numerators variables with higher values than
+    the denominator; sum of variables which is lower or higher than the
     total (which is collected); presence of values where non-applicable
     (see examples related to correct missingness).
 
--   Outliers: numerical values which are unexpected given domain
+-   **Outliers**: numerical values which are unexpected given domain
     knowledge. The best approach should be a case by case manual
     evaluation. However, the identification of numerical outliers has
     shown in our case to be a useful heuristic: the large majority of
     these outliers were obvious typos or unexplained impossible values,
     e.g., extremely high drug dosages.
 
--   Data duplication: erroneous duplication of statistical units or unit
-    clusters, e.g. duplicated patients, duplicated wards with or without
-    patients, etc….
+-   **Data duplication**: erroneous duplication of statistical units or
+    unit clusters, e.g. duplicated patients, duplicated wards with or
+    without patients, etc….
 
 ## Specific data problems encountered in the study
 
