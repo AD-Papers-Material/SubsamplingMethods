@@ -134,7 +134,7 @@ uniform.sampling <- function(Input.Sample, n.required, n.quantiles = 4, use.QS =
 
 ## Probability procedure
 
-This algorithm uses information from a population level list (Reference Data) to built a discrete probability distribution of the target population, which is then used to drive the creation of a representative subsample. ospitals are selected proportionally to the relative weight of the block to which they belong, in term of number of hospitals over the total. The $QS$ is used to weight such representativeness. The weight of the $QS$ itself can be tuned.
+This algorithm uses information from a population level list (Reference Data) to built a discrete probability distribution of the target population, which is then used to drive the creation of a representative subsample. Hospitals are selected proportionally to the relative weight of the block to which they belong, in term of number of hospitals over the total. The $QS$ is used to weight such representativeness. The weight of the $QS$ itself can be tuned.
 
 * the blocks are identified in the Reference Data and for each block $i$ the probability $p_{i, country} = Pr(hospital|Region, Hospital.Size) = \frac{N_{hospitals} | block_i}{N_{hospitals}}$ is computed as the proportion of hospitals in the block over the total;
 
